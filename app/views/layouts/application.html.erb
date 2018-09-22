@@ -4,14 +4,16 @@
     <title>Dms</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class='notice'><%= notice %></p>
-    <p class='alert'><%= alert %></p>
-    <%= yield %>
+    <%= render 'shared/navigation_bar' %>
+    <div class='container'>
+      <%= render 'shared/flash_messages' %>
+      <%= yield %>
+    </div>
   </body>
 </html>
