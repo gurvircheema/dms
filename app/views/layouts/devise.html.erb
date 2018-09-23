@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dms</title>
+    <title>DMS</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -10,10 +10,7 @@
   </head>
 
   <body>
-    <%= render 'shared/navigation_bar' %>
     <%= render 'shared/flash_messages' %>
-    <div class='container'>
-      <%= yield %>
-    </div>
+    <%= yield %>
   </body>
 </html>
