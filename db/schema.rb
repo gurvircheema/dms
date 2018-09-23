@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_21_231419) do
+ActiveRecord::Schema.define(version: 2018_09_23_071731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drivers", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "country", default: "Canada"
+    t.string "zip"
+    t.string "phone"
+    t.string "cell"
+    t.string "email"
+    t.date "date_of_birth"
+    t.boolean "active", default: true
+    t.integer "ability_to_work", default: 0
+    t.integer "driver_type", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
