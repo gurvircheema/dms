@@ -1,0 +1,74 @@
+<div class='row'>
+  <div class='col-md-6'>
+    <div class='form-group'>
+      <%= f.input :name, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.input :address, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.input :city, class: 'form-control' %>
+    </div>
+    <div class='row'>
+      <div class='col-md-4'>
+        <div class='form-group'>
+          <%= f.input :state, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='col-md-4'>
+        <div class='form-group'>
+          <%= f.input :country, collection: ['Canada', 'United States'], selected: 'Canada', class: 'form-control' %>
+        </div>
+      </div>
+      <div class='col-md-4'>
+        <div class='form-group'>
+          <%= f.input :zip, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', [:admin, :drivers], class: 'btn btn-light' %>
+  </div>
+  <div class='col-md-6'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class='form-group'>
+          <%= f.input :phone, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class='form-group'>
+          <%= f.input :cell, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <%= f.input :email, class: 'form-control' %>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class='form-group'>
+          <%= f.label :date_of_birth %>
+          <%= f.date_field :date_of_birth, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class='form-group'>
+          <%= f.input :active, collection: [true, false], selected: true, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class='form-group'>
+          <%= f.input :ability_to_work, collection: Driver.ability_to_works.keys, selected: 'Citizenship', class: 'form-control' %>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class='form-group'>
+          <%= f.input :driver_type, collection: Driver.driver_types.keys, selected: 'Company Driver', class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

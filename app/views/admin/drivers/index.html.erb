@@ -1,21 +1,44 @@
-<h1>Drivers</h1>
-<table class='table table-bordered'>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Email</th>
-      <th>Cell</th>
-      <th>Violations</th>
-      <th>Safety Compliances</th>
-      <th>Documents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @drivers.each do |driver| %>
-      <tr></tr>
-    <% end %>
-  </tbody>
-</table>
+<div class='mt-2 d-flex justify-content-between'>
+  <h3>Drivers</h3>
+  <div class='float-right'>
+    <%= link_to 'Add new driver', [:new, :admin, :driver], class: 'btn btn-primary' %>
+  </div>
+</div>
+<hr>
+<div class='table-responsive'>
+  <table class='table table-bordered'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Email</th>
+        <th>Cell</th>
+        <th>Violations</th>
+        <th>Safety Compliances</th>
+        <th>Documents</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @drivers.each do |driver| %>
+        <tr>
+          <td><%= driver.id %></td>
+          <td><%= driver.name %></td>
+          <td><%= driver.city %></td>
+          <td><%= driver.state %></td>
+          <td><%= driver.email %></td>
+          <td><%= driver.cell %></td>
+          <td>2</td>
+          <td>4/7</td>
+          <td>See all documents</td>
+          <td>
+            <%= link_to 'Show', [:admin, driver], class: 'btn btn-sm btn-info' %>
+            <%= link_to 'Delete', [:admin, driver], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
