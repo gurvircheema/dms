@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/minimagick/minimagick.git
+  revision: 6d0f8f953112cce6324a524d76c7e126ee14f392
+  ref: 6d0f8f953112cce6324a524d76c7e126ee14f392
+  specs:
+    mini_magick (3.6.0)
+      subexec (~> 0.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -223,6 +231,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    subexec (0.2.3)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -263,6 +272,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mini_magick!
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.1)
