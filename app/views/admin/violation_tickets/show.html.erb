@@ -1,0 +1,38 @@
+<div class='h4 mt-2 pt-2'>Violation Ticket for <%= @driver.name %></div>
+<div class='row'>
+  <div class='col-md-6'>
+    <table class='table table-bordered'>
+      <tr>
+        <th>Date occured</th>
+        <td><%= @violation_ticket.issue_date %></td>
+      </tr>
+      <tr>
+        <th>Place occurred</th>
+        <td><%= @violation_ticket.issue_place %></td>
+      </tr>
+      <tr>
+        <th>Motor Vehicle Act Section</th>
+        <td><%= @violation_ticket.motor_vehicle_act_section %>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td><%= @violation_ticket.description %>
+      </tr>
+      <tr>
+        <th>Fine Amount CAD</th>
+        <td><%= @violation_ticket.fine_amount %>
+      </tr>
+      <tr>
+        <th>Points Deducted</th>
+        <td><%= @violation_ticket.points_deducted %>
+      </tr>
+    </table>
+  </div>
+  <div class='col-md-6'>
+    <% if @violation_ticket.ticket.attached? %>
+      <%= link_to 'View Attachment', @violation_ticket.ticket, target: '_blank', class: 'btn btn-outline-secondary' %>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'Back', [:admin, @driver], class: 'btn btn-secondary' %>
+<%= link_to 'Edit', [:edit, :admin, @driver, @violation_ticket], class: 'btn btn-outline-primary' %>

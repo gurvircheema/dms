@@ -5,7 +5,9 @@ class Admin::DriversController < Admin::ApplicationController
     @drivers = Driver.all
   end
 
-  def show; end
+  def show
+    @violation_tickets = @driver.violation_tickets
+  end
 
   def edit; end
 

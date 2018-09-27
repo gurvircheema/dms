@@ -1,0 +1,9 @@
+  <%= f.input :motor_vehicle_act_section %>
+  <%= f.input :description %>
+  <%= f.input :fine_amount %>
+  <%= f.input :points_deducted %>
+  <%= f.input :issue_date %>
+  <%= f.input :issue_place %>
+  <%= f.input :ticket, as: :file %>
+  <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', [:admin, @driver], class: 'btn btn-secondary' %>

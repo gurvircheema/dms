@@ -8,4 +8,6 @@ RSpec.describe Driver, type: :model do
   it { is_expected.to validate_presence_of(:phone) }
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to validate_presence_of(:active) }
+
+  it { should have_many(:violation_tickets) }
 end
