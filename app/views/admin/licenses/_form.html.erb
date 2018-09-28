@@ -1,0 +1,21 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='form-group'>
+      <%= f.input :number %>
+    </div>
+    <div class='form-group'>
+      <%= f.input :issue_date %>
+    </div>
+    <div class='form-group'>
+      <%= f.input :expiry_date %>
+    </div>
+    <div class='form-group'>
+      <%= f.input :restrictions %>
+    </div>
+    <div class='form-group'>
+      <%= f.input :province %>
+    </div>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', [:admin, @driver], class: 'btn btn-secondary' %>
+  </div>
+</div>

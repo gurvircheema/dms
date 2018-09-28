@@ -1,0 +1,12 @@
+<div class='row'>
+  <h4>Driving License</h4>
+</div>
+<%= simple_form_for([:admin, @driver, @license]) do |f| %>
+  <%= f.input :number, readonly: true %>
+  <%= f.input :issue_date, readonly: true %>
+  <%= f.input :expiry_date, readonly: true %>
+  <%= f.input :restrictions, readonly: true %>
+  <%= f.input :driver, collection: Driver.all, selected: @driver, readonly: true %>
+<% end %>
+<%= link_to 'Back', [:admin, @driver], class: 'btn btn-primary' %>
+<%= link_to 'Edit', [:edit, :admin, @driver, @license], class: 'btn btn-secondary' %>

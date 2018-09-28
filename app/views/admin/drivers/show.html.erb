@@ -90,6 +90,37 @@
       </div>
     </div>
   </div>
+  <div class='col-md-4'>
+    <div class='row'>
+      <div class='col-md-12 small'>
+        <%= link_to 'Add License', [:new, :admin, @driver, :license], class: 'btn btn-sm btn-primary' %>
+      </div>
+    </div>
+    <div class='row'>
+      <table class='table table-sm small'>
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Issue Date</th>
+            <th>Expiry Date</th>
+            <th>Restrictions</th>
+            <th>Province</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @driver.licenses.each do |license| %>
+            <tr>
+              <td><%= link_to license.number, [:admin, @driver, license], class: 'btn-link' %></td>
+              <td><%= license.issue_date %></td>
+              <td><%= license.expiry_date %></td>
+              <td><%= license.restrictions %></td>
+              <td><%= license.province %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 <%= link_to 'Back', [:admin, :drivers], class: 'btn btn-secondary' %>
 <%= link_to 'Edit', [:edit, :admin, @driver], class: 'btn btn-outline-primary' %>

@@ -5,6 +5,7 @@ class CreateLicenses < ActiveRecord::Migration[5.2]
       t.date :issue_date
       t.date :expiry_date
       t.string :restrictions
+      t.string :province
       t.references :driver, foreign_key: true
 
       t.timestamps

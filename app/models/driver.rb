@@ -3,6 +3,6 @@ class Driver < ApplicationRecord
   enum driver_type: [:company_driver, :owner_operator]
 
   has_many :violation_tickets
-  has_one :license
+  has_many :licenses
   validates_presence_of :name, :city, :state, :country, :phone, :email, :active
 end

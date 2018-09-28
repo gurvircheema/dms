@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_013349) do
     t.date "issue_date"
     t.date "expiry_date"
     t.string "restrictions"
+    t.string "province"
     t.bigint "driver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

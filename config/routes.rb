@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
   namespace :admin do
     resources :drivers do
-      resources :violation_tickets, except: [:index]
+      resources :violation_tickets, except: [:index, :destroy]
+      resources :licenses, except: [:index, :destroy]
     end
   end
 end

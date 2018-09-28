@@ -10,5 +10,5 @@ RSpec.describe Driver, type: :model do
   it { is_expected.to validate_presence_of(:active) }
 
   it { should have_many(:violation_tickets) }
-  it { should have_one(:license) }
+  it { should have_many(:licenses) }
 end
