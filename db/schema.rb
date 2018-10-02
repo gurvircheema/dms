@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_28_235402) do
+ActiveRecord::Schema.define(version: 2018_10_02_150624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,27 @@ ActiveRecord::Schema.define(version: 2018_09_28_235402) do
     t.index ["driver_id"], name: "index_licenses_on_driver_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "province"
+    t.string "country"
+    t.string "zip"
+    t.string "contact"
+    t.string "email"
+    t.string "phone"
+    t.string "toll_free"
+    t.string "fax"
+    t.text "loading_info"
+    t.text "receiving_info"
+    t.text "additional_info"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_locations_on_company_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -116,5 +137,6 @@ ActiveRecord::Schema.define(version: 2018_09_28_235402) do
   end
 
   add_foreign_key "licenses", "drivers"
+  add_foreign_key "locations", "companies"
   add_foreign_key "violation_tickets", "drivers"
 end
