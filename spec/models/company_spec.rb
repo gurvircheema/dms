@@ -5,8 +5,8 @@ RSpec.describe Company, type: :model do
   it { is_expected.to validate_presence_of(:city) }
   it { is_expected.to validate_presence_of(:province) }
   it { is_expected.to validate_presence_of(:email) }
-  it { is_expected.to validate_presence_of(:is_customer) }
-  it { is_expected.to validate_presence_of(:is_carrier) }
+  it { is_expected.to validate_inclusion_of(:is_customer).in_array([true, false]) }
+  it { is_expected.to validate_inclusion_of(:is_carrier).in_array([true, false]) }
 
   it { is_expected.to validate_uniqueness_of(:name) }
   it { is_expected.to validate_uniqueness_of(:email) }
