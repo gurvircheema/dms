@@ -3,4 +3,6 @@ class Company < ApplicationRecord
   validates_inclusion_of :is_customer, :is_carrier, in: [true, false]
   validates_uniqueness_of :name, :email
   validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }
+
+  has_many :locations
 end
