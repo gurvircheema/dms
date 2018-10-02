@@ -1,0 +1,45 @@
+<div class='mt-2 d-flex justify-content-between'>
+  <h3>Customers and Carriers</h3>
+  <div class='mt-1 float-right'>
+    <a href='/admin/companies/new' class='btn btn-sm btn-primary'>Add Customer/Carrier</a>
+  </div>
+</div>
+<hr>
+<div class='table-responsive'>
+  <table class='table table-sm'>
+    <thead class='small text-uppercase'>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Country</th>
+        <th>Zip</th>
+        <th>Phone</th>
+        <th>Fax</th>
+        <th>Email</th>
+        <th>Customer</th>
+        <th>Carrier</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <td><%= company.name %></td>
+          <td><%= company.address %></td>
+          <td><%= company.city %></td>
+          <td><%= company.province %></td>
+          <td><%= company.country %></td>
+          <td><%= company.zip %></td>
+          <td><%= company.phone %></td>
+          <td><%= company.fax %></td>
+          <td><%= company.email %></td>
+          <td><%= company.is_customer %></td>
+          <td><%= company.is_carrier %></td>
+          <td><%= link_to 'Show', [:admin, company], class: 'btn btn-sm btn-outline-primary' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
