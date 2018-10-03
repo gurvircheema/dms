@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_150624) do
+ActiveRecord::Schema.define(version: 2018_10_03_162002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,9 @@ ActiveRecord::Schema.define(version: 2018_10_02_150624) do
     t.datetime "updated_at", null: false
   end
 
+# Could not dump table "equipment" because of following StandardError
+#   Unknown type 'unit_type' for column 'unit_type'
+
   create_table "licenses", force: :cascade do |t|
     t.string "number"
     t.date "issue_date"
@@ -136,6 +139,7 @@ ActiveRecord::Schema.define(version: 2018_10_02_150624) do
     t.index ["driver_id"], name: "index_violation_tickets_on_driver_id"
   end
 
+  add_foreign_key "equipment", "drivers"
   add_foreign_key "licenses", "drivers"
   add_foreign_key "locations", "companies"
   add_foreign_key "violation_tickets", "drivers"
