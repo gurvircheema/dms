@@ -1,2 +1,88 @@
-<h1>Admin::Locations#show</h1>
-<p>Find me in app/views/admin/locations/show.html.erb</p>
+<div class='primary-header'>
+  <%= @location.name %>
+  <small class='text-muted'><%= @company.name%></small>
+</div>
+<div class='row'>
+  <div class='col-sm-6'>
+    <div class='row'>
+      <div class='col-sm-6'>
+        <div class='secondary-header border-bottom'>Address</div>
+        <div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Street</div>
+            <div class='col-sm-8'><%= @location.address %></div>
+          </div>
+          <div class='row'>
+            <div class='col-sm-4 label'>City</div>
+            <div class='col-sm-8'><%= @location.city %></div>
+          </div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Province</div>
+            <div class='col-sm-8'><%= @location.province %></div>
+          </div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Country</div>
+            <div class='col-sm-8'><%= @location.country %></div>
+          </div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Zipcode</div>
+            <div class='col-sm-8'><%= @location.zip %></div>
+          </div>
+        </div>
+      </div>
+      <div class='col-sm-6'>
+        <div class='secondary-header border-bottom'>Contact Info</div>
+        <div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Contact</div>
+            <div class='col-sm-8'><%= @location.contact %></div>
+          </div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Phone</div>
+            <div class='col-sm-8'><%= @location.phone %></div>
+          </div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Toll Free</div>
+            <div class='col-sm-8'><%= @location.toll_free %></div>
+          </div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Fax</div>
+            <div class='col-sm-8'><%= @location.fax %></div>
+          </div>
+          <div class='row'>
+            <div class='col-sm-4 label'>Email</div>
+            <div class='col-sm-8'><%= @location.email %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='row mt-2 pt-2'>
+      <div class='col-sm-12'>
+        <div class='secondary-header border-bottom'>Shipping/Loading Notes</div>
+        <div class='row'>
+          <div class='col-sm-3 label'>Loading Info</div>
+          <div class='col-sm-9'><%= @location.loading_info %></div>
+        </div>
+        <div class='row'>
+          <div class='col-sm-3 label'>Receiving Info</div>
+          <div class='col-sm-9'><%= @location.receiving_info %></div>
+        </div>
+        <div class='row'>
+          <div class='col-sm-3 label'>Additional Info</div>
+          <div class='col-sm-9'><%= @location.additional_info %></div>
+        </div>
+      </div>  
+    </div>
+    <div class='row mt-2 pt-2'>
+      <div class='col-sm-12'>
+        <%= link_to 'Back', [:admin, @company], class: 'btn btn-sm btn-secondary' %>
+        <%= link_to 'Edit', [:edit, :admin, @company, @location], class: 'btn btn-sm btn-primary' %>
+      </div>
+    </div>
+  </div>
+  <div class='col-sm-6'>
+    <div class='embed-responsive embed-responsive-16by9'>
+      <iframe class='embed-responsive-item' width='600' height='400' id='gmap_canvas' src='https://maps.google.com/maps?q=<%= @location.city %>&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+    </div>
+  </div>
+</div>

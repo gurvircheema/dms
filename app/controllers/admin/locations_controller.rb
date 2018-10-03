@@ -2,6 +2,10 @@ class Admin::LocationsController < ApplicationController
   before_action :set_company
   before_action :set_location, only: [:show, :edit, :update]
 
+  def new
+    @location = @company.locations.new
+  end
+
   def create
     @location = @company.locations.build(location_params)
     if @location.save

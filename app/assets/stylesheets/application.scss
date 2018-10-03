@@ -3,9 +3,27 @@ body, html {
   height: 100%;
 }
 
-.btn-group-xs > .btn, .btn-xs {
-    padding  : .25rem .4rem;
-    font-size  : .875rem;
-    line-height  : .5;
-    border-radius : .2rem;
+.primary-header {
+  @extend .mt-2;
+  @extend .pt-2;
+  @extend .border-bottom;
+  @extend .mb-2;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.secondary-header {
+  @extend .text-muted;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-variant: small-caps;
+}
+
+.table-header {
+  @extend .mb-2;
+}
+
+.label {
+  @extend .text-muted;
+  font-variant: small-caps;
 }
