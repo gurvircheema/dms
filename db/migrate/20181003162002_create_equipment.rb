@@ -15,8 +15,8 @@ class CreateEquipment < ActiveRecord::Migration[5.2]
       t.string :license_plate
       t.string :license_plate_state
       t.string :vin
-      t.string :cerfification_registration_number
-      t.date :cerfification_registration_expiry
+      t.string :certification_registration_number
+      t.date :certification_registration_expiry
       t.string :safety_inspection_number
       t.date :safety_inspection_expiry
       t.string :insurance_provider
