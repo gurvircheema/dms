@@ -1,12 +1,11 @@
-<div class='mt-2 d-flex justify-content-between'>
-  <h3>Drivers</h3>
-  <div class='float-right'>
-    <%= link_to 'Add new driver', [:new, :admin, :driver], class: 'btn btn-primary' %>
-  </div>
+<div class='primary-header'>
+  Drivers
+  <span class='float-right'>
+    <%= link_to 'Add new driver', [:new, :admin, :driver], class: 'btn btn-sm btn-primary' %>
+  </span>
 </div>
-<hr>
-<div class='table-responsive'>
-  <table class='table table-bordered'>
+<div class='table-responsive small'>
+  <table class='table table-sm table-bordered'>
     <thead>
       <tr>
         <th>ID</th>
@@ -34,8 +33,7 @@
           <td>4/7</td>
           <td>See all documents</td>
           <td>
-            <%= link_to 'Show', [:admin, driver], class: 'btn btn-sm btn-info' %>
-            <%= link_to 'Delete', [:admin, driver], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+            <%= link_to 'Show', [:admin, driver], class: 'btn btn-xs btn-outline-primary' %>
           </td>
         </tr>
       <% end %>

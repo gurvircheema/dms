@@ -1,6 +1,6 @@
-<div class='container'>
-  <h4 class='pt-2'>Edit Violation Ticket</h4>
-  <%= simple_form_for([:admin, :driver, @violation_ticket], html: { class: 'form' }) do |f| %>
-    <%= render 'form', f: f %>
-  <% end %>
+<div class='primary-header'>
+  Edit Violation Ticket
 </div>
+<%= simple_form_for([:admin, :driver, @violation_ticket], html: { class: 'form' }) do |f| %>
+  <%= render 'form', f: f %>
+<% end %>

@@ -1,6 +1,10 @@
 <div class='primary-header'>
   <%= @company.name %>
   <small class='text-muted'>Company Information</small>
+  <span class='float-right'>
+    <%= link_to 'Edit', [:edit, :admin, @company], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', [:admin, :companies], class: 'btn btn-sm btn-secondary' %>
+  <span>
 </div>
 <div class='row'>
   <div class='col-md-4'>
@@ -41,7 +45,7 @@
       </dd>
     </dl>
     <%= link_to 'Back', [:admin, :companies], class: 'btn btn-sm btn-secondary' %>
-    <%= link_to 'Edit', [:edit, :admin, @company], class: 'btn btn-sm btn-outline-danger' %>
+    <%= link_to 'Edit', [:edit, :admin, @company], class: 'btn btn-sm btn-danger' %>
   </div>
   <div class='col-md-4'>
     <div class='row table-header'>
@@ -50,31 +54,33 @@
       </div>
       <div class='col'>
         <span class='float-right'>
-          <%= link_to 'Add location', [:new, :admin, @company, :location], class: 'btn btn-sm btn-outline-primary' %>
+          <%= link_to 'Add location', [:new, :admin, @company, :location], class: 'btn btn-sm btn-primary' %>
         </span>
       </div>
     </div>
-    <table class='table table-bordered table-sm'>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th colspan='2'>Address</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @company.locations.each do |location| %>
+    <div class='small table-responsive'>
+      <table class='table table-bordered table-sm'>
+        <thead>
           <tr>
-            <td><%= location.name %></td>
-            <td><%= location.address %></td>
-            <td><%= location.city %> <%= location.province %></td>
-            <td><%= link_to 'Show', [:admin, @company, location], class: 'btn-link btn-sm' %></td>
+            <th>Name</th>
+            <th colspan='2'>Address</th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @company.locations.each do |location| %>
+            <tr>
+              <td><%= location.name %></td>
+              <td><%= location.address %></td>
+              <td><%= location.city %> <%= location.province %></td>
+              <td><%= link_to 'Show', [:admin, @company, location], class: 'btn-link btn-sm' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class='col-md-4'>
-    Safety Compliances
+    <div class='secondary-header'>Safety Compliances</div>
   </div>
 </div>

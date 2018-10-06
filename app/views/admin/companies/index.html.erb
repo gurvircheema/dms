@@ -1,14 +1,14 @@
-<div class='mt-2 d-flex justify-content-between'>
-  <h3>Customers and Carriers</h3>
-  <div class='mt-1 float-right'>
-    <a href='/admin/companies/new' class='btn btn-sm btn-primary'>Add Customer/Carrier</a>
-  </div>
+<div class='primary-header'>
+  Customers and Carriers
+  <span class='float-right'>
+    <%= link_to 'Add Customer/Carrier', [:new, :admin, :company], class: 'btn btn-sm btn-primary' %>
+  </span>
 </div>
-<hr>
-<div class='table-responsive'>
-  <table class='table table-sm'>
-    <thead class='small text-uppercase'>
+<div class='table-responsive small'>
+  <table class='table table-sm table-bordered'>
+    <thead>
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Address</th>
         <th>City</th>
@@ -26,6 +26,7 @@
     <tbody>
       <% @companies.each do |company| %>
         <tr>
+          <td><%= company.id %></td>
           <td><%= company.name %></td>
           <td><%= company.address %></td>
           <td><%= company.city %></td>
@@ -37,7 +38,7 @@
           <td><%= company.email %></td>
           <td><%= company.is_customer %></td>
           <td><%= company.is_carrier %></td>
-          <td><%= link_to 'Show', [:admin, company], class: 'btn btn-sm btn-outline-primary' %></td>
+          <td><%= link_to 'Show', [:admin, company], class: 'btn btn-xs btn-outline-primary' %></td>
         </tr>
       <% end %>
     </tbody>

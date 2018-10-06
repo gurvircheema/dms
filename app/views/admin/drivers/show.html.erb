@@ -1,6 +1,15 @@
-<h4 class='mt-3 pb-3'>Driver Information <small class='text-muted'><%= @driver.name %></small></h4>
+<div class='primary-header'>
+  <%= @driver.name %>
+  <small class='text-muted'>Personal Information</small>
+  <span class='float-right'>
+    <%= link_to 'Mark active/inactive', [:admin, @driver], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-warning' %>
+    <%= link_to 'Edit', [:edit, :admin, @driver], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', [:admin, :drivers], class: 'btn btn-sm btn-secondary' %>
+  </span>
+</div>
 <div class='row'>
   <div class='col-md-4'>
+    <div class='secondary-header'>Basic Information</div>
     <table class='table table-sm table-bordered'>
       <tr>
         <td>Name</td>
@@ -59,19 +68,19 @@
   <div class='col-md-4'>
     <div class='row'>
       <div class='col-md-12 small'>
-        <div class='d-flex justify-content-between'>
-          <h4>Ticket Violations</h4>
+        <div class='secondary-header'>
+          Ticket Violations
           <div class='float-right'>
             <%= link_to 'Add new violation', [:new, :admin, @driver, :violation_ticket], class: 'btn btn-sm btn-primary', data: { modal: true } %>
           </div>
         </div>
         <table class='table table-sm'>
-          <thead>
+          <thead class='small'>
             <tr>
-              <th class='small'>Vehicle Act</th>
-              <th class='small'>Description</th>
-              <th class='small'>Fine Amount</th>
-              <th class='small'>Points</th>
+              <th>Vehicle Act</th>
+              <th>Description</th>
+              <th>Fine Amount</th>
+              <th>Points</th>
               <th></th>
             </tr>
           </thead>
@@ -82,7 +91,7 @@
                 <td><%= violation.description %></td>
                 <td><%= violation.fine_amount %></td>
                 <td><%= violation.points_deducted %></td>
-                <td><%= link_to 'Show', [:admin, @driver, violation], class: 'btn-link' %></td>
+                <td><%= link_to 'Show', [:admin, @driver, violation], class: 'btn btn-xs btn-outline-primary' %></td>
               </tr>
             <% end %>
           </tbody>
@@ -92,35 +101,41 @@
   </div>
   <div class='col-md-4'>
     <div class='row'>
-      <div class='col-md-12 small'>
-        <%= link_to 'Add License', [:new, :admin, @driver, :license], class: 'btn btn-sm btn-primary' %>
+      <div class='col-md-12'>
+        <div class='secondary-header'>
+          Licenses
+          <span class='float-right'>
+            <%= link_to 'Add License', [:new, :admin, @driver, :license], class: 'btn btn-sm btn-primary' %>
+          </span>
+        </div>
+        <div class='table-responsive'>
+          <table class='table table-sm small'>
+            <thead class='small'>
+              <tr>
+                <th>Number</th>
+                <th>Issue Date</th>
+                <th>Expiry Date</th>
+                <th>Restrictions</th>
+                <th>Province</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @driver.licenses.each do |license| %>
+                <tr>
+                  <td><%= link_to license.number, [:admin, @driver, license], class: 'btn btn-xs btn-outline-primary' %></td>
+                  <td><%= license.issue_date %></td>
+                  <td><%= license.expiry_date %></td>
+                  <td><%= license.restrictions %></td>
+                  <td><%= license.province %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-    <div class='row'>
-      <table class='table table-sm small'>
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Issue Date</th>
-            <th>Expiry Date</th>
-            <th>Restrictions</th>
-            <th>Province</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @driver.licenses.each do |license| %>
-            <tr>
-              <td><%= link_to license.number, [:admin, @driver, license], class: 'btn-link' %></td>
-              <td><%= license.issue_date %></td>
-              <td><%= license.expiry_date %></td>
-              <td><%= license.restrictions %></td>
-              <td><%= license.province %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>
-<%= link_to 'Back', [:admin, :drivers], class: 'btn btn-secondary' %>
-<%= link_to 'Edit', [:edit, :admin, @driver], class: 'btn btn-outline-primary' %>
+<%= link_to 'Back', [:admin, :drivers], class: 'btn btn-sm btn-secondary' %>
+<%= link_to 'Edit', [:edit, :admin, @driver], class: 'btn btn-sm btn-danger' %>
+
