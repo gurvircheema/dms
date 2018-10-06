@@ -1,0 +1,285 @@
+<div class='primary-header'>
+  <%= @equipment.year %>
+  <%= @equipment.make %>
+  <%= @equipment.model %>
+  <small class='text-muted'>Equipment</small>
+  <span class='float-right'>
+    <%= link_to 'Edit', [:edit, :admin, @equipment], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', admin_equipment_index_path, class: 'btn btn-sm btn-secondary' %>
+  </span>
+</div>
+<div class='row small'>
+  <div class='col-md-6'>
+    <div class='secondary-header'>General Info</div>
+    <div class='row'>
+      <div class='col-md-5'>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Unit Number</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.unit_number %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Unit Type</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.unit_type %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Company</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.owned_by_company %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Make</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.make %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Model</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.model %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Year</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.year %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>VIN</strong>
+          </div>
+          <div class='col-md-7 word-break'>
+            <%= @equipment.vin %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Fuel</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.fuel_type %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Body Color</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.body_color %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Active Date</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.active_date %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Inactive Date</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.inactive_date %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>License Plate</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.license_plate %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>License Plate Province</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.license_plate_state %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Number of axles</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.number_of_axles %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-5'>
+            <strong>Gross weight(lbs)</strong>
+          </div>
+          <div class='col-md-7'>
+            <%= @equipment.gross_weight_lbs %>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-7'>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Driver</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.driver %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Certification Registration Number</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.certification_registration_number %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Certification Registration Expiry</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.certification_registration_expiry %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Safety Inspection Number</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.safety_inspection_number %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Safety Inspection Expiry</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.safety_inspection_expiry %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Insurance Provider</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.insurance_provider %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Insurance Policy Number</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.insurance_policy_number %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Insurance Policy Expiry</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.insurance_policy_expiry %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>IFTA Decal Number</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.ifta_decal_number %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>IFTA Decal Expiry</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.ifta_decal_expiry %>
+          </div>
+        </div>
+        <hr>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Leased Vehicle ?</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.leased_vehicle %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Lease Company</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.lease_company %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Lease End Date</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.lease_end_date %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Lease monthly rate</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.lease_monthly_rate %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-7'>
+            <strong>Lease buyout cost</strong>
+          </div>
+          <div class='col-md-5'>
+            <%= @equipment.lease_buyout_cost %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class='row'>
+          <div class='col-md-12'>
+            <div class='secondary-header'>Fuel Cards</div>
+          </div>
+        </div>
+        <div class='col-md-12'>
+          <div class='secondary-header'>Services</div>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class='col-md-12'>
+          <div class='secondary-header'>Permits</div>
+        </div>
+        <div class='col-md-12'>
+          <div class='secondary-header'>Notes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,46 @@
+<div class='primary-header'>
+  Equipment
+  <span class='float-right'>
+    <%= link_to 'New Equipment', [:new, :admin, :equipment], class: 'btn btn-sm btn-primary' %>
+  </span>
+</div>
+<div class='table-responsive small'>
+  <table class='table table-sm table-bordered'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Unit</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Company</th>
+        <th>Driver</th>
+        <th>Plate</th>
+        <th>Reg Exp.</th>
+        <th>Safety Exp.</th>
+        <th>IFTA Exp.</th>
+        <th>Insurance Exp.</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @equipment.each do |eq| %>
+        <tr>
+          <td><%= eq.id %></td>
+          <td><%= eq.unit_number %></td>
+          <td><%= eq.make %></td>
+          <td><%= eq.model %></td>
+          <td><%= eq.year %></td>
+          <td><%= eq.owned_by_company %></td>
+          <td><%= eq.driver.try(:name) %></td>
+          <td><%= eq.license_plate %></td>
+          <td><%= eq.certification_registration_expiry %></td>
+          <td><%= eq.safety_inspection_expiry %></td>
+          <td><%= eq.ifta_decal_expiry %></td>
+          <td><%= eq.insurance_policy_expiry %></td>
+          <td><%= link_to 'Show', [:admin, eq], class: 'btn btn-xs btn-outline-primary' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

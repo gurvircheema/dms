@@ -1,0 +1,117 @@
+<%= simple_form_for([:admin, @equipment], html: { class: 'form' }) do |f| %>
+  <div class='row small'>
+    <div class='col-md-4'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :unit_number %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :unit_type, collection: Equipment.unit_types %>
+        </div>
+      </div>
+      <%= f.input :owned_by_company %>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :active_date, html5: true  %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :inactive_date, html5: true  %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-8'>
+          <%= f.input :license_plate %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.input :license_plate_state %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>
+          <%= f.input :make %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.input :model %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.input :year %>
+        </div>
+      </div>
+      <%= f.input :vin %>
+      <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+      <%= link_to 'Cancel', admin_equipment_index_path, class: 'btn btn-sm btn-secondary' %>
+    </div>
+    <div class='col-md-4'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :certification_registration_number %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :certification_registration_expiry, html5: true %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :safety_inspection_number %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :safety_inspection_expiry, html5: true %>
+        </div>
+      </div>
+      <%= f.input :insurance_provider %>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :insurance_policy_number %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :insurance_policy_expiry, html5: true  %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :ifta_decal_number %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :ifta_decal_expiry, html5: true  %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :fuel_type, collection: Equipment.fuel_types %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :number_of_axles %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :gross_weight_lbs %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :body_color %>
+        </div>
+      </div>
+      <%= f.input :driver, collection: Driver.all %>
+      <hr>
+      <%= f.input :leased_vehicle %>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :lease_company %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :lease_end_date, html5: true  %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :lease_monthly_rate %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :lease_buyout_cost %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

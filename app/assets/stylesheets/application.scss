@@ -27,3 +27,12 @@ body, html {
   @extend .text-muted;
   font-variant: small-caps;
 }
+
+.word-break {
+  word-break: break-word;
+}
+
+.btn-xs {
+  padding: 0px 2px !important;
+  font-size: 0.8rem;
+}
