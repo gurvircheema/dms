@@ -93,7 +93,7 @@
           <%= f.input :body_color %>
         </div>
       </div>
-      <%= f.input :driver, collection: Driver.all %>
+      <%= f.input :driver, collection: Driver.all, selected: @equipment.driver_id %>
       <hr>
       <%= f.input :leased_vehicle %>
       <div class='row'>

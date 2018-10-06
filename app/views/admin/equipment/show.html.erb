@@ -140,7 +140,7 @@
             <strong>Driver</strong>
           </div>
           <div class='col-md-5'>
-            <%= @equipment.driver %>
+            <%= @equipment.driver.try(:name) %>
           </div>
         </div>
         <div class='row'>
@@ -267,16 +267,49 @@
             <div class='secondary-header'>Fuel Cards</div>
           </div>
         </div>
-        <div class='col-md-12'>
-          <div class='secondary-header'>Services</div>
+        <div class='row'>
+          <div class='col-md-12'>
+            <div class='secondary-header'>Services</div>
+          </div>
         </div>
       </div>
       <div class='col-md-6'>
-        <div class='col-md-12'>
-          <div class='secondary-header'>Permits</div>
+        <div class='row'>
+          <div class='col-md-12'>
+            <div class='secondary-header'>
+              Permits
+              <span class='float-right'>
+                <%= link_to 'Add Permit', [:new, :admin, @equipment, :permit], class: 'btn btn-sm btn-primary' %>
+              </span>
+            </div>
+            <div class='table-responsive'>
+              <table class='table table-sm'>
+                <thead class='small'>
+                  <tr>
+                    <th>Type</th>
+                    <th>Number</th>
+                    <th>Province</th>
+                    <th>Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @equipment.permits.each do |permit| %>
+                    <tr>
+                      <td><%= permit.permit_type %></td>
+                      <td><%= link_to permit.permit_number, [:edit, :admin, @equipment, permit], class: 'btn btn-xs btn-outline-primary' %></td>
+                      <td><%= permit.state_province %></td>
+                      <td><%= permit.expiry_date %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-        <div class='col-md-12'>
-          <div class='secondary-header'>Notes</div>
+        <div class='row'>
+          <div class='col-md-12'>
+            <div class='secondary-header'>Notes</div>
+          </div>
         </div>
       </div>
     </div>
