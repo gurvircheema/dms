@@ -1,0 +1,7 @@
+<%= simple_form_for([:admin, @notable, @note], html: { class: 'form' }) do |f| %>
+  <%= f.input :notable_type, readonly: true %>
+  <%= f.input :subject %>
+  <%= f.input :description %>
+  <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', [:admin, @notable], class: 'btn btn-secondary' %>
+<% end %>

@@ -308,7 +308,30 @@
         </div>
         <div class='row'>
           <div class='col-md-12'>
-            <div class='secondary-header'>Notes</div>
+            <div class='secondary-header'>
+              Notes
+              <span class='float-right'>
+                <%= link_to 'Add Note', [:new, :admin, @equipment, :note], class: 'btn btn-sm btn-primary' %>
+              </span>
+            </div>
+            <div class='table-responsive'>
+              <table class='table table-sm'>
+                <thead>
+                  <tr>
+                    <th>Subject</td>
+                    <th>Description</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @equipment.notes.each do |note| %>
+                    <tr>
+                      <td><%= link_to note.subject, [:edit, :admin, @equipment, note], class: 'btn btn-xs btn-link' %></td>
+                      <td><%= note.description %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

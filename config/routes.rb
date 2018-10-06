@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :locations, except: [:index, :destroy]
     end
     resources :equipment do
+      resources :notes, except: [:index, :show]
       resources :permits
     end
   end
