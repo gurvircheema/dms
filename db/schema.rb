@@ -119,8 +119,10 @@ ActiveRecord::Schema.define(version: 2018_10_06_015947) do
     t.date "expiry_date"
     t.boolean "reminder", default: false, null: false
     t.datetime "deleted_at"
+    t.bigint "equipment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["equipment_id"], name: "index_permits_on_equipment_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -153,5 +155,6 @@ ActiveRecord::Schema.define(version: 2018_10_06_015947) do
   add_foreign_key "equipment", "drivers"
   add_foreign_key "licenses", "drivers"
   add_foreign_key "locations", "companies"
+  add_foreign_key "permits", "equipment"
   add_foreign_key "violation_tickets", "drivers"
 end

@@ -1,4 +1,5 @@
 class Equipment < ApplicationRecord
+  has_many :permits
   belongs_to :driver, optional: true
   validates_presence_of :unit_number, :unit_type, :owned_by_company,
     :active_date, :make, :model, :year, :fuel_type, :vin

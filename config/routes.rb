@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :companies, except: [:destroy] do
       resources :locations, except: [:index, :destroy]
     end
-    resources :equipment
+    resources :equipment do
+      resources :permits
+    end
   end
 end
