@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_06_015947) do
+ActiveRecord::Schema.define(version: 2018_10_06_041815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,17 @@ ActiveRecord::Schema.define(version: 2018_10_06_015947) do
     t.index ["company_id"], name: "index_locations_on_company_id"
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.string "notable_type"
+    t.integer "notable_id"
+    t.string "subject"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
   create_table "permits", force: :cascade do |t|
     t.string "permit_type"
     t.string "permit_number"
@@ -155,6 +166,7 @@ ActiveRecord::Schema.define(version: 2018_10_06_015947) do
   add_foreign_key "equipment", "drivers"
   add_foreign_key "licenses", "drivers"
   add_foreign_key "locations", "companies"
+  add_foreign_key "notes", "users"
   add_foreign_key "permits", "equipment"
   add_foreign_key "violation_tickets", "drivers"
 end

@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Equipment, type: :model do
-  it { should belong_to(:driver) }
-  it { should have_many(:permits) }
+  it { is_expected.to belong_to(:driver) }
+  it { is_expected.to have_many(:permits) }
+  it { is_expected.to have_many(:notes) }
 
   it { is_expected.to validate_presence_of(:unit_number) }
   it { is_expected.to validate_presence_of(:unit_type) }

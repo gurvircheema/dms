@@ -14,7 +14,7 @@ class Admin::EquipmentController < Admin::ApplicationController
 
   def create
     @equipment = Equipment.new(equipment_params)
-    @equipment.driver = Driver.find(params[:equipment][:driver]) if params.key?(:equipment)
+    @equipment.driver = Driver.find(params[:equipment][:driver]) if params.dig(:equipment, :driver).present?
     if @equipment.save
       redirect_to [:admin, @equipment], notice: 'New Equipment Added'
     else
@@ -26,7 +26,7 @@ class Admin::EquipmentController < Admin::ApplicationController
   end
 
   def update
-    @equipment.driver = Driver.find(params[:equipment][:driver]) if params.key?(:equipment)
+    @equipment.driver = Driver.find(params[:equipment][:driver]) if params.dig(:equipment, :driver).present?
     if @equipment.update(equipment_params)
       redirect_to [:admin, @equipment], notice: 'Equipment updated'
     else
