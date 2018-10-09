@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       resources :notes, except: [:index, :show]
       resources :permits
     end
-    resources :vendors
+    resources :vendors do
+      resources :notes, except: [:index, :show]
+    end
   end
 end

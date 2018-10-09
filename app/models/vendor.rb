@@ -1,5 +1,6 @@
 class Vendor < ApplicationRecord
   validates_presence_of :internal_name, :legal_name, :remit_name, :vendor_type
+  has_many :notes, as: :notable
 
   enum vendor_type: {
     carrier_canadian: 'carrier_canadian',
