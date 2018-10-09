@@ -1,0 +1,44 @@
+<div class='primary-header'>
+  Carriers and Vendors
+  <span class='float-right'>
+    <%= link_to 'New Carrier/Vendor', [:new, :admin, :vendor], class: 'btn btn-sm btn-primary' %>
+  </span>
+</div>
+<div class='table-responsive small'>
+  <table class='table table-sm table-bordered'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Province</th>
+        <%# <th>Email</th> %>
+        <th>Phone</th>
+        <th>Fax</th>
+        <th>Type</th>
+        <th>Liability Ins.</th>
+        <th>Cargo Ins.</th>
+        <th>US DOT</th>
+        <th>WCB #</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @vendors.each do |vendor| %>
+        <tr>
+          <td><%= vendor.internal_name %></td>
+          <td><%= vendor.city %></td>
+          <td><%= vendor.state_province %></td>
+          <!-- <td></td> -->
+          <td><%= vendor.phone %></td>
+          <td><%= vendor.fax %></td>
+          <td><%= vendor.vendor_type %></td>
+          <td><%= vendor.liability_insurance_expiry_date %></td>
+          <td><%= vendor.cargo_insurance_expiry_date %></td>
+          <td><%= vendor.dot_number %></td>
+          <td><%= vendor.wcb_number %></td>
+          <td><%= link_to 'Show', [:admin, vendor], class: 'btn btn-xs btn-outline-primary' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

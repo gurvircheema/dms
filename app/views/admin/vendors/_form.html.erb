@@ -1,0 +1,147 @@
+<%= simple_form_for([:admin, @vendor], html: { class: 'form' }) do |f| %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class='row'>
+        <div class='col-sm-4'>
+          <%= f.input :internal_name %>
+        </div>
+        <div class='col-sm-4'>
+          <%= f.input :legal_name %>
+        </div>
+        <div class='col-sm-4'>
+          <%= f.input :remit_name %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>
+          <%= f.input :account_number %>
+        </div>
+        <div class='col-sm-4'>
+          <%= f.input :website %>
+        </div>
+        <div class='col-sm-4'>
+          <%= f.input :federal_id_number %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>
+          <%= f.input :preferred_currency, collection: ['USD', 'CAD'] %>
+        </div>
+        <div class='col-sm-4'>
+          <%= f.input :payment_terms %>
+        </div>
+        <div class='col-sm-4'>
+          <%= f.input :required_1099 %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :vendor_type, collection: Vendor.vendor_types %></div>
+        <div class='col-md-4'><%= f.input :rating %></div>
+        <div class='col-md-4'><%= f.input :contract_on_file %></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :docker_number %></div>
+        <div class='col-md-4'><%= f.input :dot_number %></div>
+        <div class='col-md-4'><%= f.input :wcb_number %></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :ca_bond_number %></div>
+        <div class='col-md-4'><%= f.input :us_bond_number %></div>
+        <div class='col-md-4'><%= f.input :scac %></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :csa_approved %></div>
+        <div class='col-md-4'><%= f.input :hazmat %></div>
+        <div class='col-md-4'><%= f.input :hazmat_expiry_date, html5: true %></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :smc3_tariff_code %></div>
+        <div class='col-md-4'><%= f.input :approved %></div>
+        <div class='col-md-4'></div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class='row'>
+        <div class='col-md-7'><%= f.input :liability_insurance_provider %></div>
+        <div class='col-md-5'><%= f.input :liability_policy_number, label: 'Policy Number'  %></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :liability_coverage %></div>
+        <div class='col-md-4'><%= f.input :liability_insurance_start_date, html5: true, label: 'Start Date' %></div>
+        <div class='col-md-4'><%= f.input :liability_insurance_expiry_date, html5: true, label: 'Expiry Date'%></div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class='row'>
+        <div class='col-md-7'><%= f.input :cargo_insurnace_provider %></div>
+        <div class='col-md-5'><%= f.input :cargo_insurance_policy_number, label: 'Policy Number' %></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :cargo_insurance_coverage %></div>
+        <div class='col-md-4'><%= f.input :cargo_insurance_start_date, html5: true, label: 'Start Date' %></div>
+        <div class='col-md-4'><%= f.input :cargo_insurance_expiry_date, html5: true, label: 'Expiry Date' %></div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class='row'>
+        <div class='col-md-5'>
+          <div class='row'>
+            <div class='col-md-12'><%= f.input :address %></div>
+          </div>
+          <div class='row'>
+            <div class='col-md-8'><%= f.input :city %></div>
+            <div class='col-md-4'><%= f.input :zip %></div>
+          </div>
+          <div class='row'>
+            <div class='col-md-6'><%= f.input :country, collection: ['Canada', 'US'] %></div>
+            <div class='col-md-6'><%= f.input :state_province %></div>
+          </div>
+        </div>
+        <div class='col-md-5'></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :phone %></div>
+        <div class='col-md-4'><%= f.input :toll_free %></div>
+        <div class='col-md-4'><%= f.input :fax %></div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class='row'>
+        <div class='col-md-12'><%= f.input :remit_same_as_primary_address %></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-5'>
+          <div class='row'>
+            <div class='col-md-12'><%= f.input :remit_address, label: 'Address' %></div>
+          </div>
+          <div class='row'>
+            <div class='col-md-8'><%= f.input :remit_city, label: 'City' %></div>
+            <div class='col-md-4'><%= f.input :remit_zip, label: 'Zip' %></div>
+          </div>
+          <div class='row'>
+            <div class='col-md-6'><%= f.input :remit_country, collection: ['Canada', 'US'], label: 'Country' %></div>
+            <div class='col-md-6'><%= f.input :remit_state_province, label: 'State Province' %></div>
+          </div>
+        </div>
+        <div class='col-md-5'></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'><%= f.input :remit_phone, label: 'Phone' %></div>
+        <div class='col-md-4'><%= f.input :remit_toll_free, label: 'Toll Free' %></div>
+        <div class='col-md-4'><%= f.input :remit_fax, label: 'Fax' %></div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-6'>
+      <%= f.submit :Submit, class: 'btn btn-sm btn-primary' %>
+      <%= link_to 'Back', [:admin, :vendors], class: 'btn btn-sm btn-secondary' %>
+    </div>
+  </div>
+<% end %>

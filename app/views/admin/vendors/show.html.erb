@@ -1,0 +1,146 @@
+<div class='primary-header'>
+  <%= @vendor.internal_name %>
+  <small class='text-muted'>
+    <%= @vendor.vendor_type %>
+  </small>
+  <span class='float-right'>
+    <%= link_to 'Edit', [:edit, :admin, @vendor], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', [ :admin, :vendors], class: 'btn btn-sm btn-secondary' %>
+  </span>
+</div>
+<div class='row small'>
+  <div class='col-md-8'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class='secondary-header'>General Info</div>
+        <dl class='row'>
+          <dt class='col-sm-4'>Internal Name</dt>
+          <dd class='col-sm-8'><%= @vendor.internal_name %></dd>
+          <dt class='col-sm-4'>Legal Name</dt>
+          <dd class='col-sm-8'><%= @vendor.legal_name %></dd>
+          <dt class='col-sm-4'>Remit Name</dt>
+          <dd class='col-sm-8'><%= @vendor.remit_name %></dd>
+          <dt class='col-sm-4'>Account Number</dt>
+          <dd class='col-sm-8'><%= @vendor.account_number %></dd>
+          <dt class='col-sm-4'>Website</dt>
+          <dd class='col-sm-8'><%= @vendor.website %></dd>
+          <dt class='col-sm-4'>Email</dt>
+          <dd class='col-sm-8'>NA</dd>
+          <dt class='col-sm-4'>Federal ID Number</dt>
+          <dd class='col-sm-8'><%= @vendor.federal_id_number %></dd>
+          <dt class='col-sm-4'>Preferred Currency</dt>
+          <dd class='col-sm-8'><%= @vendor.preferred_currency %></dd>
+          <dt class='col-sm-4'>1099 Required</dt>
+          <dd class='col-sm-8'><%= @vendor.required_1099 %></dd>
+        </dl>
+      </div>
+      <div class='col-md-6'>
+        <div class='secondary-header'>Carrier Info</div>
+        <dl class='row'>
+          <dt class='col-sm-4'>Vendor Type</dt>
+          <dd class='col-sm-8'><%= @vendor.vendor_type %></dd>
+          <dt class='col-sm-4'>Rating</dt>
+          <dd class='col-sm-8'><%= @vendor.rating %></dd>
+          <dt class='col-sm-4'>Contract on File</dt>
+          <dd class='col-sm-8'><%= @vendor.contract_on_file %></dd>
+          <dt class='col-sm-4'>Docker Number</dt>
+          <dd class='col-sm-8'><%= @vendor.docker_number %></dd>
+          <dt class='col-sm-4'>DOT Number</dt>
+          <dd class='col-sm-8'><%= @vendor.dot_number %></dd>
+          <dt class='col-sm-4'>WCB Number</dt>
+          <dd class='col-sm-8'><%= @vendor.wcb_number %></dd>
+          <dt class='col-sm-4'>CA Bond Number</dt>
+          <dd class='col-sm-8'><%= @vendor.ca_bond_number %></dd>
+          <dt class='col-sm-4'>US Bond Number</dt>
+          <dd class='col-sm-8'><%= @vendor.us_bond_number %></dd>
+          <dt class='col-sm-4'>SCAC</dt>
+          <dd class='col-sm-8'><%= @vendor.scac %></dd>
+          <dt class='col-sm-4'>CSA Approved</dt>
+          <dd class='col-sm-8'><%= @vendor.csa_approved %></dd>
+          <dt class='col-sm-4'>Hazmat</dt>
+          <dd class='col-sm-8'><%= @vendor.hazmat %></dd>
+          <dt class='col-sm-4'>Hazmat Expiry Date</dt>
+          <dd class='col-sm-8'><%= @vendor.hazmat_expiry_date %></dd>
+          <dt class='col-sm-4'>SMC3 Tariff Code</dt>
+          <dd class='col-sm-8'><%= @vendor.smc3_tariff_code %></dd>
+          <dt class='col-sm-4'>Approved</dt>
+          <dd class='col-sm-8'><%= @vendor.approved %></dd>
+        </dl>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class='secondary-header'>Liability Insurance</div>
+        <dl class='row'>
+          <dt class='col-sm-4'>Provider Name</dt>
+          <dd class='col-sm-8'><%= @vendor.liability_insurance_provider %></dd>
+          <dt class='col-sm-4'>Insured Amount</dt>
+          <dd class='col-sm-8'><%= @vendor.liability_coverage %></dd>
+          <dt class='col-sm-4'>Policy Number</dt>
+          <dd class='col-sm-8'><%= @vendor.liability_policy_number %></dd>
+          <dt class='col-sm-4'>Start</dt>
+          <dd class='col-sm-8'><%= @vendor.liability_insurance_start_date %></dd>
+          <dt class='col-sm-4'>Expiry</dt>
+          <dd class='col-sm-8'><%= @vendor.liability_insurance_expiry_date %></dd>
+        </dl>
+      </div>
+      <div class='col-md-6'>
+        <div class='secondary-header'>Cargo Insurance</div>
+        <dl class='row'>
+          <dt class='col-sm-4'>Provider Name</dt>
+          <dd class='col-sm-8'><%= @vendor.cargo_insurnace_provider %></dd>
+          <dt class='col-sm-4'>Insured Amount</dt>
+          <dd class='col-sm-8'><%= @vendor.cargo_insurance_coverage %></dd>
+          <dt class='col-sm-4'>Policy Number</dt>
+          <dd class='col-sm-8'><%= @vendor.cargo_insurance_policy_number %></dd>
+          <dt class='col-sm-4'>Start</dt>
+          <dd class='col-sm-8'><%= @vendor.cargo_insurance_start_date %></dd>
+          <dt class='col-sm-4'>Expiry</dt>
+          <dd class='col-sm-8'><%= @vendor.cargo_insurance_expiry_date %></dd>
+        </dl>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <div class='secondary-header'>Address</div>
+        <div class='row'>
+          <div class='col-md-4'>
+            <dl class='row'>
+              <dt class='col-sm-4 col-xs-4'>Address</dt>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.address %></dd>
+              <dt class='col-sm-4 col-xs-4'>City</dt>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.city %></dd>
+              <dt class='col-sm-4 col-xs-4'>State Province</dt>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.state_province %></dd>
+              <dt class='col-sm-4 col-xs-4'>Country</dt>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.country %></dd>
+              <dt class='col-sm-4 col-xs-4'>ZIP</dt>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.zip %></dd>
+              <hr>
+              <dt class='col-sm-4 col-xs-4'>Phone</dt>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.phone %></dd>
+              <dt class='col-sm-4 col-xs-4'>Toll Free</dt>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.toll_free %></dd>
+              <dt class='col-sm-4 col-xs-4'>Fax</dt>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.fax %></dd>
+            </dl>
+          </div>
+          <div class='col-md-8'>
+            <div class='embed-responsive embed-responsive-4by3'>
+              <iframe class='embed-responsive-item' width="800" height="800" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= @vendor.city%>%20<%= @vendor.state_province %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-4'>
+    <div class='secondary-header'>
+      Contacts
+    </div>
+    <div class='secondary-header'>
+      Notes
+    </div>
+  </div>
+</div>
