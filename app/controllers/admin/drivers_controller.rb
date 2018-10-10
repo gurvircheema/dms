@@ -46,7 +46,7 @@ class Admin::DriversController < Admin::ApplicationController
   def driver_params
     params.require(:driver).permit(:name, :address, :city, :state, :country,
                                    :zip, :phone, :cell, :email, :active,
-                                   :driver_type, :ability_to_work,
+                                   :driver_type, :immigration_status,
                                    :date_of_birth)
   end
 end

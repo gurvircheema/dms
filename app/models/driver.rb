@@ -1,5 +1,5 @@
 class Driver < ApplicationRecord
-  enum ability_to_work: [:citizenship, :permanent_residence, :work_permit]
+  enum immigration_status: [:canadian_citizen, :permanent_resident, :work_permit, :student_permit]
   enum driver_type: [:company_driver, :owner_operator]
 
   has_many :violation_tickets

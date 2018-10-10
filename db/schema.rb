@@ -36,67 +36,102 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "companies", force: :cascade do |t|
-    t.string "name"
+  create_table "customers", force: :cascade do |t|
+    t.string "name", null: false
     t.string "address"
-    t.string "city"
-    t.string "province"
+    t.string "city", null: false
+    t.string "province", null: false
     t.string "country"
     t.string "zip"
     t.string "phone"
     t.string "toll_free"
     t.string "fax"
-    t.string "email"
+    t.string "email", null: false
     t.string "billing_address"
     t.string "billing_city"
     t.string "billing_province"
     t.string "billing_country"
     t.string "billing_zip"
-    t.boolean "is_customer"
-    t.boolean "is_carrier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_customers_on_email", unique: true
+    t.index ["name"], name: "index_customers_on_name", unique: true
   end
 
   create_table "drivers", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "address"
-    t.string "city"
-    t.string "state"
-    t.string "country", default: "Canada"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "country", default: "Canada", null: false
     t.string "zip"
-    t.string "phone"
+    t.string "phone", null: false
     t.string "cell"
-    t.string "email"
+    t.string "email", null: false
     t.date "date_of_birth"
-    t.boolean "active", default: true
-    t.integer "ability_to_work", default: 0
-    t.integer "driver_type", default: 0
+    t.boolean "active", default: true, null: false
+    t.integer "immigration_status", default: 0, null: false
+    t.integer "driver_type", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "email"], name: "index_drivers_on_name_and_email", unique: true
   end
 
-# Could not dump table "equipment" because of following StandardError
-#   Unknown type 'unit_type' for column 'unit_type'
+  create_table "equipment", force: :cascade do |t|
+    t.string "unit_number", null: false
+    t.integer "unit_type", default: 0, null: false
+    t.string "owned_by_company", null: false
+    t.date "active_date", null: false
+    t.date "inactive_date"
+    t.string "license_plate"
+    t.string "license_plate_state"
+    t.string "vin", null: false
+    t.string "certification_registration_number"
+    t.date "certification_registration_expiry"
+    t.string "safety_inspection_number"
+    t.date "safety_inspection_expiry"
+    t.string "insurance_provider"
+    t.string "insurance_policy_number"
+    t.date "insurance_policy_expiry"
+    t.string "ifta_decal_number"
+    t.date "ifta_decal_expiry"
+    t.string "make", null: false
+    t.string "model", null: false
+    t.string "year", null: false
+    t.integer "fuel_type", default: 0, null: false
+    t.string "number_of_axles"
+    t.integer "gross_weight_lbs"
+    t.string "body_color"
+    t.boolean "leased_vehicle", default: false, null: false
+    t.string "lease_company"
+    t.date "lease_end_date"
+    t.integer "lease_monthly_rate"
+    t.integer "lease_buyout_cost"
+    t.bigint "driver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["driver_id"], name: "index_equipment_on_driver_id"
+  end
 
   create_table "licenses", force: :cascade do |t|
-    t.string "number"
-    t.date "issue_date"
-    t.date "expiry_date"
+    t.string "number", null: false
+    t.date "issue_date", null: false
+    t.date "expiry_date", null: false
     t.string "restrictions"
     t.string "province"
     t.bigint "driver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_licenses_on_driver_id"
+    t.index ["number"], name: "index_licenses_on_number", unique: true
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "province"
-    t.string "country"
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "city", null: false
+    t.string "province", null: false
+    t.string "country", null: false
     t.string "zip"
     t.string "contact"
     t.string "email"
@@ -106,10 +141,11 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.text "loading_info"
     t.text "receiving_info"
     t.text "additional_info"
-    t.bigint "company_id"
+    t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_locations_on_company_id"
+    t.index ["customer_id"], name: "index_locations_on_customer_id"
+    t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
   create_table "notes", force: :cascade do |t|
@@ -124,10 +160,10 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
   end
 
   create_table "permits", force: :cascade do |t|
-    t.string "permit_type"
-    t.string "permit_number"
-    t.string "state_province"
-    t.date "expiry_date"
+    t.string "permit_type", null: false
+    t.string "permit_number", null: false
+    t.string "state_province", null: false
+    t.date "expiry_date", null: false
     t.boolean "reminder", default: false, null: false
     t.datetime "deleted_at"
     t.bigint "equipment_id"
@@ -140,7 +176,7 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
-    t.boolean "is_admin", default: false, null: false
+    t.boolean "admin", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -151,9 +187,9 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
   end
 
   create_table "vendors", force: :cascade do |t|
-    t.string "internal_name"
-    t.string "legal_name"
-    t.string "remit_name"
+    t.string "internal_name", null: false
+    t.string "legal_name", null: false
+    t.string "remit_name", null: false
     t.string "account_number"
     t.string "website"
     t.string "federal_id_number"
@@ -177,7 +213,7 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.string "remit_phone"
     t.string "remit_toll_free"
     t.string "remit_fax"
-    t.string "vendor_type"
+    t.integer "vendor_type", default: 0, null: false
     t.string "rating"
     t.string "contract_on_file"
     t.string "docker_number"
@@ -204,14 +240,15 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.date "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["internal_name"], name: "index_vendors_on_internal_name", unique: true
   end
 
   create_table "violation_tickets", force: :cascade do |t|
     t.bigint "driver_id"
-    t.string "motor_vehicle_act_section"
-    t.string "description"
-    t.integer "fine_amount"
-    t.integer "points_deducted"
+    t.string "motor_vehicle_act_section", null: false
+    t.string "description", null: false
+    t.integer "fine_amount", default: 0, null: false
+    t.integer "points_deducted", default: 0, null: false
     t.date "issue_date"
     t.string "issue_place"
     t.datetime "created_at", null: false
@@ -221,7 +258,7 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
 
   add_foreign_key "equipment", "drivers"
   add_foreign_key "licenses", "drivers"
-  add_foreign_key "locations", "companies"
+  add_foreign_key "locations", "customers"
   add_foreign_key "notes", "users"
   add_foreign_key "permits", "equipment"
   add_foreign_key "violation_tickets", "drivers"

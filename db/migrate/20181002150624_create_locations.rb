@@ -1,11 +1,11 @@
 class CreateLocations < ActiveRecord::Migration[5.2]
   def change
     create_table :locations do |t|
-      t.string :name
-      t.string :address
-      t.string :city
-      t.string :province
-      t.string :country
+      t.string :name,         null: false
+      t.string :address,      null: false
+      t.string :city,         null: false
+      t.string :province,     null: false
+      t.string :country,      null: false
       t.string :zip
       t.string :contact
       t.string :email
@@ -15,9 +15,11 @@ class CreateLocations < ActiveRecord::Migration[5.2]
       t.text :loading_info
       t.text :receiving_info
       t.text :additional_info
-      t.references :company, foreign_key: true
+      t.references :customer, foreign_key: true
 
       t.timestamps
     end
+
+    add_index :locations, :name, unique: true
   end
 end
