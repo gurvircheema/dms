@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :violation_tickets, except: [:index, :destroy]
       resources :licenses, except: [:index, :destroy]
     end
-    resources :companies, except: [:destroy] do
+    resources :customers, except: [:destroy] do
       resources :locations, except: [:index, :destroy]
     end
     resources :equipment do

@@ -1,23 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Admin::LocationsController, type: :controller do
-  let(:company) { FactoryBot.create(:company) }
-  let(:location) { FactoryBot.create(:location, company: company) }
-  let(:request_params) { { company_id: company.id, id: location.id } }
+  let(:customer) { FactoryBot.create(:customer) }
+  let(:location) { FactoryBot.create(:location, customer: customer) }
+  let(:request_params) { { customer_id: customer.id, id: location.id } }
   before { sign_in_admin_user }
 
   describe 'POST #create' do
     let(:post_request) do
-      post :create, params: { company_id: company.id, location: FactoryBot.attributes_for(:location) }
+      post :create, params: { customer_id: customer.id, location: FactoryBot.attributes_for(:location) }
     end
 
     it 'creates a new location' do
       expect { post_request }.to change(Location, :count).by(1)
     end
 
-    it 'redirects to company page' do
+    it 'redirects to customer page' do
       post_request
-      expect(response).to redirect_to([:admin, company])
+      expect(response).to redirect_to([:admin, customer])
     end
   end
 

@@ -1,4 +1,4 @@
-<%= simple_form_for([:admin, @company], html: { class: 'form' }) do |f| %>
+<%= simple_form_for([:admin, @customer], html: { class: 'form' }) do |f| %>
   <div class='row'>
     <div class='col-md-8'>
       <%= f.input :name %>
@@ -50,16 +50,8 @@
       <%= f.input :toll_free %>
       <%= f.input :fax %>
       <%= f.input :email %>
-      <div class='row'>
-        <div class='col-md-6'>
-          <%= f.input :is_customer, as: :radio_buttons, required: false %>
-        </div>
-        <div class='col-md-6'>
-          <%= f.input :is_carrier, as: :radio_buttons, required: false %>
-        </div>
-      </div>
     </div>
   </div>
   <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
-  <%= link_to 'Cancel', [:admin, :companies], class: 'btn btn-sm btn-secondary' %>
+  <%= link_to 'Cancel', [:admin, :customers], class: 'btn btn-sm btn-secondary' %>
 <% end %>

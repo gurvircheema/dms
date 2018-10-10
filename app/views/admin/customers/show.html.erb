@@ -1,0 +1,80 @@
+<div class='primary-header'>
+  <%= @customer.name %>
+  <small class='text-muted'>Customer Information</small>
+  <span class='float-right'>
+    <%= link_to 'Edit', [:edit, :admin, @customer], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', [:admin, :customers], class: 'btn btn-sm btn-secondary' %>
+  <span>
+</div>
+<div class='row'>
+  <div class='col-md-4'>
+    <div class='secondary-header'>Address & Contact</div>
+    <dl class='row'>
+      <dt class='col-sm-4'>Address</dt>
+      <dd class='col-sm-8'>
+        <div><%= @customer.address %></div>
+        <div><%= @customer.city %>, <%= @customer.province %></div>
+        <div><%= @customer.country %></div>
+        <div><%= @customer.zip %></div>
+      </dd>
+
+      <dt class='col-sm-4'>Phone</dt>
+      <dd class='col-sm-8'><%= @customer.phone %></dd>
+
+      <dt class='col-sm-4'>Toll Free</dt>
+      <dd class='col-sm-8'><%= @customer.toll_free %></dd>
+
+      <dt class='col-sm-4'>Fax</dt>
+      <dd class='col-sm-8'><%= @customer.fax %></dd>
+
+      <dt class='col-sm-4'>Email</dt>
+      <dd class='col-sm-8'><%= @customer.email %></dd>
+
+      <dt class='col-sm-4'>Billing Address</dt>
+      <dd class='col-sm-8'>
+        <div><%= @customer.billing_address %></div>
+        <div><%= @customer.billing_city %>, <%= @customer.billing_province %></div>
+        <div><%= @customer.billing_country %></div>
+        <div><%= @customer.billing_zip %></div>
+      </dd>
+    </dl>
+    <%= link_to 'Back', [:admin, :customers], class: 'btn btn-sm btn-secondary' %>
+    <%= link_to 'Edit', [:edit, :admin, @customer], class: 'btn btn-sm btn-danger' %>
+  </div>
+  <div class='col-md-4'>
+    <div class='row table-header'>
+      <div class='col'>
+        <div class='secondary-header'>Locations</div>
+      </div>
+      <div class='col'>
+        <span class='float-right'>
+          <%= link_to 'Add location', [:new, :admin, @customer, :location], class: 'btn btn-sm btn-primary' %>
+        </span>
+      </div>
+    </div>
+    <div class='small table-responsive'>
+      <table class='table table-bordered table-sm'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th colspan='2'>Address</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customer.locations.each do |location| %>
+            <tr>
+              <td><%= location.name %></td>
+              <td><%= location.address %></td>
+              <td><%= location.city %> <%= location.province %></td>
+              <td><%= link_to 'Show', [:admin, @customer, location], class: 'btn-link btn-sm' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class='col-md-4'>
+    <div class='secondary-header'>Safety Compliances</div>
+  </div>
+</div>

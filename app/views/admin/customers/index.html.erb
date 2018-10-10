@@ -1,0 +1,42 @@
+<div class='primary-header'>
+  Customers
+  <span class='float-right'>
+    <%= link_to 'Add Customer', [:new, :admin, :customer], class: 'btn btn-sm btn-primary' %>
+  </span>
+</div>
+<div class='table-responsive small'>
+  <table class='table table-sm table-bordered'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Country</th>
+        <th>Zip</th>
+        <th>Phone</th>
+        <th>Fax</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= customer.name %></td>
+          <td><%= customer.address %></td>
+          <td><%= customer.city %></td>
+          <td><%= customer.province %></td>
+          <td><%= customer.country %></td>
+          <td><%= customer.zip %></td>
+          <td><%= customer.phone %></td>
+          <td><%= customer.fax %></td>
+          <td><%= customer.email %></td>
+          <td><%= link_to 'Show', [:admin, customer], class: 'btn btn-xs btn-outline-primary' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

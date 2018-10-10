@@ -1,6 +1,6 @@
 <div class='primary-header'>
   Location: <%= @location.name %>
-  <small class='text-muted'><%= @company.name%></small>
+  <small class='text-muted'><%= @customer.name %></small>
 </div>
 <div class='row'>
   <div class='col-sm-6'>
@@ -75,8 +75,8 @@
     </div>
     <div class='row mt-2 pt-2'>
       <div class='col-sm-12'>
-        <%= link_to 'Back', [:admin, @company], class: 'btn btn-sm btn-secondary' %>
-        <%= link_to 'Edit', [:edit, :admin, @company, @location], class: 'btn btn-sm btn-primary' %>
+        <%= link_to 'Back', [:admin, @customer], class: 'btn btn-sm btn-secondary' %>
+        <%= link_to 'Edit', [:edit, :admin, @customer, @location], class: 'btn btn-sm btn-primary' %>
       </div>
     </div>
   </div>

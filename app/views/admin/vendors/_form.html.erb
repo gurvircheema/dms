@@ -37,7 +37,7 @@
     </div>
     <div class='col-md-6'>
       <div class='row'>
-        <div class='col-md-4'><%= f.input :vendor_type, collection: Vendor.vendor_types %></div>
+        <div class='col-md-4'><%= f.input :vendor_type, collection: Vendor.vendor_types.keys %></div>
         <div class='col-md-4'><%= f.input :rating %></div>
         <div class='col-md-4'><%= f.input :contract_on_file %></div>
       </div>
