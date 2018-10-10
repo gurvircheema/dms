@@ -15,7 +15,7 @@ FactoryBot.define do
     toll_free { FFaker::PhoneNumber.short_phone_number }
     fax { FFaker::PhoneNumber.short_phone_number }
     email { FFaker::Internet.safe_email }
-    is_customer { FFaker::Boolean.random }
-    is_carrier { FFaker::Boolean.random }
+    customer { FFaker::Boolean.random }
+    carrier { FFaker::Boolean.random }
   end
 end

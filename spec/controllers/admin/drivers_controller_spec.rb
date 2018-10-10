@@ -33,7 +33,7 @@ RSpec.describe Admin::DriversController, type: :controller do
     end
 
     context 'when user is signed in as an admin' do
-      let(:user) { FactoryBot.create(:user, is_admin: true) }
+      let(:user) { FactoryBot.create(:user, admin: true) }
       before do
         sign_in user
         get :index
@@ -63,7 +63,7 @@ RSpec.describe Admin::DriversController, type: :controller do
     end
 
     context 'when user is signed in as an admin' do
-      let(:user) { FactoryBot.create(:user, is_admin: true) }
+      let(:user) { FactoryBot.create(:user, admin: true) }
       before do
         sign_in user
         get :show, params: { id: driver.id }
@@ -95,7 +95,7 @@ RSpec.describe Admin::DriversController, type: :controller do
     end
 
     context 'when user is signed in as an admin' do
-      let(:user) { FactoryBot.create(:user, is_admin: true) }
+      let(:user) { FactoryBot.create(:user, admin: true) }
       let(:create_request) do
         post :create, params: { driver: valid_attributes }
       end
@@ -129,7 +129,7 @@ RSpec.describe Admin::DriversController, type: :controller do
     end
 
     context 'when user is signed in as an admin' do
-      let(:user) { FactoryBot.create(:user, is_admin: true) }
+      let(:user) { FactoryBot.create(:user, admin: true) }
       before do
         sign_in user
         put :update, params: { id: driver.id, driver: { name: 'Test User'} }
@@ -160,7 +160,7 @@ RSpec.describe Admin::DriversController, type: :controller do
     end
 
     context 'when user is signed in as an admin' do
-      let(:user) { FactoryBot.create(:user, is_admin: true) }
+      let(:user) { FactoryBot.create(:user, admin: true) }
       before do
         sign_in user
         delete :destroy, params: { id: driver.id }

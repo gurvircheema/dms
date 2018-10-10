@@ -53,8 +53,8 @@ class Admin::CompaniesController < Admin::ApplicationController
       :toll_free,
       :fax,
       :email,
-      :is_customer,
-      :is_carrier
+      :customer,
+      :carrier
      )
   end
 end

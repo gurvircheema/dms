@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::LicensesController, type: :controller do
-  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:user) { FactoryBot.create(:user, admin: true) }
   let(:driver) { FactoryBot.create(:driver) }
   let(:license) { FactoryBot.create(:license, driver: driver) }
   let(:valid_attr) { FactoryBot.attributes_for(:license) }
