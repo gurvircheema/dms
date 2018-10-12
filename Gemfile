@@ -8,6 +8,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1.3'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'foreman'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mini_magick', :git => 'git://github.com/minimagick/minimagick.git', :ref => '6d0f8f953112cce6324a524d76c7e126ee14f392'
