@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_204443) do
+ActiveRecord::Schema.define(version: 2018_10_14_230942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,25 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "city"
+    t.string "state_province"
+    t.string "country"
+    t.string "zipcode"
+    t.bigint "location_id"
+    t.bigint "customer_id"
+    t.bigint "vendor_id"
+    t.bigint "driver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
+    t.index ["driver_id"], name: "index_addresses_on_driver_id"
+    t.index ["location_id"], name: "index_addresses_on_location_id"
+    t.index ["vendor_id"], name: "index_addresses_on_vendor_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -256,6 +275,10 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.index ["driver_id"], name: "index_violation_tickets_on_driver_id"
   end
 
+  add_foreign_key "addresses", "customers"
+  add_foreign_key "addresses", "drivers"
+  add_foreign_key "addresses", "locations"
+  add_foreign_key "addresses", "vendors"
   add_foreign_key "equipment", "drivers"
   add_foreign_key "licenses", "drivers"
   add_foreign_key "locations", "customers"
