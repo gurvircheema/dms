@@ -5,12 +5,20 @@ class Admin::CustomersController < Admin::ApplicationController
     @customers = Customer.all.order(:name)
   end
 
-  def show; end
+  def show
+    @address = @customer.primary_address
+    @billing_address = @customer.secondary_address
+  end
 
-  def edit; end
+  def edit
+    @customer.build_address unless @customer.address
+    @customer.build_billing_address unless @customer.billing_address
+  end
 
   def new
     @customer = Customer.new
+    @customer.build_address
+    @customer.build_billing_address
   end
 
   def create
@@ -39,20 +47,18 @@ class Admin::CustomersController < Admin::ApplicationController
   def customer_params
     params.require(:customer).permit(
       :name,
-      :address,
-      :city,
-      :province,
-      :zip,
-      :country,
-      :billing_address,
-      :billing_city,
-      :billing_province,
-      :billing_zip,
-      :billing_country,
       :phone,
       :toll_free,
       :fax,
-      :email
+      :email,
+      address_attributes: [
+        :address_line_1, :address_line_2, :city,
+        :state_province, :country, :zipcode
+      ],
+      billing_address_attributes: [
+        :address_line_1, :address_line_2, :city,
+        :state_province, :country, :zipcode
+      ]
      )
   end
 end

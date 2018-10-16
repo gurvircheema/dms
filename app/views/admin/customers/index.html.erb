@@ -26,11 +26,11 @@
         <tr>
           <td><%= customer.id %></td>
           <td><%= customer.name %></td>
-          <td><%= customer.address %></td>
-          <td><%= customer.city %></td>
-          <td><%= customer.province %></td>
-          <td><%= customer.country %></td>
-          <td><%= customer.zip %></td>
+          <td><%= customer.primary_address.address_line_1 %></td>
+          <td><%= customer.primary_address.city %></td>
+          <td><%= customer.primary_address.state_province %></td>
+          <td><%= customer.primary_address.country %></td>
+          <td><%= customer.primary_address.zipcode %></td>
           <td><%= customer.phone %></td>
           <td><%= customer.fax %></td>
           <td><%= customer.email %></td>

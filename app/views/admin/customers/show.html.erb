@@ -12,10 +12,10 @@
     <dl class='row'>
       <dt class='col-sm-4'>Address</dt>
       <dd class='col-sm-8'>
-        <div><%= @customer.address %></div>
-        <div><%= @customer.city %>, <%= @customer.province %></div>
-        <div><%= @customer.country %></div>
-        <div><%= @customer.zip %></div>
+        <div><%= @address.address_line_1 %></div>
+        <div><%= @address.city %>, <%= @address.state_province %></div>
+        <div><%= @address.country %></div>
+        <div><%= @address.zipcode %></div>
       </dd>
 
       <dt class='col-sm-4'>Phone</dt>
@@ -32,10 +32,10 @@
 
       <dt class='col-sm-4'>Billing Address</dt>
       <dd class='col-sm-8'>
-        <div><%= @customer.billing_address %></div>
-        <div><%= @customer.billing_city %>, <%= @customer.billing_province %></div>
-        <div><%= @customer.billing_country %></div>
-        <div><%= @customer.billing_zip %></div>
+        <div><%= @billing_address.address_line_1 %></div>
+        <div><%= @billing_address.city %>, <%= @billing_address.state_province %></div>
+        <div><%= @billing_address.country %></div>
+        <div><%= @billing_address.zipcode %></div>
       </dd>
     </dl>
     <%= link_to 'Back', [:admin, :customers], class: 'btn btn-sm btn-secondary' %>
@@ -65,8 +65,8 @@
           <% @customer.locations.each do |location| %>
             <tr>
               <td><%= location.name %></td>
-              <td><%= location.address %></td>
-              <td><%= location.city %> <%= location.province %></td>
+              <td><%= location.primary_address.address_line_1 %></td>
+              <td><%= location.primary_address.city %> <%= location.primary_address.state_province %></td>
               <td><%= link_to 'Show', [:admin, @customer, location], class: 'btn-link btn-sm' %></td>
             </tr>
           <% end %>

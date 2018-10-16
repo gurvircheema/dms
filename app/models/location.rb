@@ -4,4 +4,8 @@ class Location < ApplicationRecord
   validates_presence_of :name
 
   accepts_nested_attributes_for :address
+
+  def primary_address
+    address || Address.new
+  end
 end

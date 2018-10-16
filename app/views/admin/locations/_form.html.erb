@@ -2,23 +2,9 @@
   <div class='row'>
     <div class='col-md-6'>
       <%= f.input :name %>
-      <%= f.input :address %>
-      <div class='row'>
-        <div class='col-md-8'>
-          <%= f.input :city %>
-        </div>
-        <div class='col-md-4'>
-          <%= f.input :province %>
-        </div>
-      </div>
-      <div class='row'>
-        <div class='col-md-6'>
-          <%= f.input :country, collection: ['Canada', 'US'] %>
-        </div>
-        <div class='col-md-6'>
-          <%= f.input :zip %>
-        </div>
-      </div>
+      <%= f.simple_fields_for :address do |la| %>
+        <%= render 'shared/address_fields', ff: la %>
+      <% end %>
       <%= f.submit 'Submit', class: 'btn btn-primary' %>
       <%= link_to 'Cancel', [:admin, @customer], class: 'btn btn-secondary' %>
     </div>

@@ -9,4 +9,12 @@ class Customer < ApplicationRecord
 
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :billing_address
+
+  def primary_address
+    address || Address.new
+  end
+
+  def secondary_address
+    billing_address || Address.new
+  end
 end

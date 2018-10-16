@@ -26,8 +26,8 @@
       <% @vendors.each do |vendor| %>
         <tr>
           <td><%= vendor.internal_name %></td>
-          <td><%= vendor.city %></td>
-          <td><%= vendor.state_province %></td>
+          <td><%= vendor.primary_address.city %></td>
+          <td><%= vendor.primary_address.state_province %></td>
           <!-- <td></td> -->
           <td><%= vendor.phone %></td>
           <td><%= vendor.fax %></td>

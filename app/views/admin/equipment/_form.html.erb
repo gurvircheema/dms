@@ -9,7 +9,7 @@
           <%= f.input :unit_type, collection: Equipment.unit_types.keys %>
         </div>
       </div>
-      <%= f.input :owned_by_company %>
+      <%= f.input :owned_by_company, collection: Vendor.all.map(&:internal_name) %>
       <div class='row'>
         <div class='col-md-6'>
           <%= f.input :active_date, html5: true  %>
@@ -23,7 +23,7 @@
           <%= f.input :license_plate %>
         </div>
         <div class='col-md-4'>
-          <%= f.input :license_plate_state %>
+          <%= f.input :license_plate_state, collection: State.list.collect { |f| [f[1], f[0]]} %>
         </div>
       </div>
       <div class='row'>

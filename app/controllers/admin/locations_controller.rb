@@ -4,6 +4,7 @@ class Admin::LocationsController < ApplicationController
 
   def new
     @location = @customer.locations.new
+    @location.build_address
   end
 
   def create
@@ -19,6 +20,7 @@ class Admin::LocationsController < ApplicationController
   end
 
   def edit
+    @location.build_address unless @location.address
   end
 
   def update
@@ -40,10 +42,13 @@ class Admin::LocationsController < ApplicationController
   end
 
   def location_params
-    params.require(:location).permit(:name, :address, :city, :province,
-                                     :country, :zip, :contact, :email, :phone,
-                                     :toll_free, :fax, :loading_info,
-                                     :receiving_info, :additional_info
-                                    )
+    params.require(:location).permit(
+      :name, :contact, :email, :phone, :toll_free, :fax,
+      :loading_info, :receiving_info, :additional_info,
+      address_attributes: [
+        :address_line_1, :address_line_2, :city, :state_province,
+        :country, :zipcode
+      ]
+   )
   end
 end
