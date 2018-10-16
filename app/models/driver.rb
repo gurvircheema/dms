@@ -4,5 +4,8 @@ class Driver < ApplicationRecord
 
   has_many :violation_tickets
   has_many :licenses
-  validates_presence_of :name, :city, :state, :country, :phone, :email, :active
+  has_one :address
+  validates_presence_of :name, :phone, :email, :active
+
+  accepts_nested_attributes_for :address
 end

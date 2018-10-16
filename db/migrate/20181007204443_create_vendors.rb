@@ -10,20 +10,10 @@ class CreateVendors < ActiveRecord::Migration[5.2]
       t.string :preferred_currency
       t.integer :payment_terms,                 null: false, default: 30
       t.boolean :required_1099,                 null: false, default: false
-      t.string :address
-      t.string :city
-      t.string :state_province
-      t.string :country
-      t.string :zip
       t.string :phone
       t.string :toll_free
       t.string :fax
       t.boolean :remit_same_as_primary_address, null: false, default: false
-      t.string :remit_address
-      t.string :remit_city
-      t.string :remit_state_province
-      t.string :remit_country
-      t.string :remit_zip
       t.string :remit_phone
       t.string :remit_toll_free
       t.string :remit_fax

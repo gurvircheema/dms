@@ -57,20 +57,10 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address"
-    t.string "city", null: false
-    t.string "province", null: false
-    t.string "country"
-    t.string "zip"
     t.string "phone"
     t.string "toll_free"
     t.string "fax"
     t.string "email", null: false
-    t.string "billing_address"
-    t.string "billing_city"
-    t.string "billing_province"
-    t.string "billing_country"
-    t.string "billing_zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -79,11 +69,6 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
 
   create_table "drivers", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address"
-    t.string "city", null: false
-    t.string "state", null: false
-    t.string "country", default: "Canada", null: false
-    t.string "zip"
     t.string "phone", null: false
     t.string "cell"
     t.string "email", null: false
@@ -147,11 +132,6 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address", null: false
-    t.string "city", null: false
-    t.string "province", null: false
-    t.string "country", null: false
-    t.string "zip"
     t.string "contact"
     t.string "email"
     t.string "phone"
@@ -215,20 +195,10 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.string "preferred_currency"
     t.integer "payment_terms", default: 30, null: false
     t.boolean "required_1099", default: false, null: false
-    t.string "address"
-    t.string "city"
-    t.string "state_province"
-    t.string "country"
-    t.string "zip"
     t.string "phone"
     t.string "toll_free"
     t.string "fax"
     t.boolean "remit_same_as_primary_address", default: false, null: false
-    t.string "remit_address"
-    t.string "remit_city"
-    t.string "remit_state_province"
-    t.string "remit_country"
-    t.string "remit_zip"
     t.string "remit_phone"
     t.string "remit_toll_free"
     t.string "remit_fax"
