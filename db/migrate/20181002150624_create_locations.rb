@@ -11,6 +11,8 @@ class CreateLocations < ActiveRecord::Migration[5.2]
       t.text :receiving_info
       t.text :additional_info
       t.references :customer, foreign_key: true
+      t.datetime :deleted_at
+      t.string :deleted_by
 
       t.timestamps
     end

@@ -9,6 +9,8 @@ class CreateDrivers < ActiveRecord::Migration[5.2]
       t.boolean :active,          null: false, default: true
       t.integer :immigration_status, null: false, default: 0
       t.integer :driver_type,     null: false, default: 0
+      t.datetime :deleted_at
+      t.string :deleted_by
 
       t.timestamps
     end

@@ -11,7 +11,8 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.references :customer, foreign_key: true
       t.references :vendor, foreign_key: true
       t.references :driver, foreign_key: true
-
+      t.datetime :deleted_at
+      t.string :deleted_by
       t.timestamps
     end
   end

@@ -31,6 +31,8 @@ class CreateEquipment < ActiveRecord::Migration[5.2]
       t.integer :lease_monthly_rate
       t.integer :lease_buyout_cost
       t.references :driver,       foreign_key: true
+      t.datetime :deleted_at
+      t.string :deleted_by
 
       t.timestamps
     end

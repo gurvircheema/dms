@@ -11,7 +11,7 @@
         <th>Name</th>
         <th>City</th>
         <th>Province</th>
-        <%# <th>Email</th> %>
+        <th>Email</th>
         <th>Phone</th>
         <th>Fax</th>
         <th>Type</th>
@@ -28,7 +28,7 @@
           <td><%= vendor.internal_name %></td>
           <td><%= vendor.primary_address.city %></td>
           <td><%= vendor.primary_address.state_province %></td>
-          <!-- <td></td> -->
+          <td><%= vendor.email %></td>
           <td><%= vendor.phone %></td>
           <td><%= vendor.fax %></td>
           <td><%= vendor.vendor_type %></td>

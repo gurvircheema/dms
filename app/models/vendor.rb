@@ -1,11 +1,17 @@
 class Vendor < ApplicationRecord
-  validates_presence_of :internal_name, :legal_name, :remit_name, :vendor_type
   has_many :notes, as: :notable
   has_one :address
   has_one :remit_address, class_name: 'Address', foreign_key: :vendor_id
+
+  validates_presence_of :internal_name, :legal_name, :remit_name, :vendor_type
+
+  default_scope { where(deleted_at: nil) }
+  
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :remit_address
-  
+
+  before_save :set_remit_address
+
   enum vendor_type: [
     :carrier_canadian,
     :carrier_us,
@@ -40,8 +46,6 @@ class Vendor < ApplicationRecord
     :vendor_warehousing,
     :other
   ]
-
-  before_save :set_remit_address
 
   def set_remit_address
     if self.remit_same_as_primary_address?

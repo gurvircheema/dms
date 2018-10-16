@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.bigint "customer_id"
     t.bigint "vendor_id"
     t.bigint "driver_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_addresses_on_customer_id"
@@ -61,6 +63,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.string "toll_free"
     t.string "fax"
     t.string "email", null: false
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -76,6 +80,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.boolean "active", default: true, null: false
     t.integer "immigration_status", default: 0, null: false
     t.integer "driver_type", default: 0, null: false
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "email"], name: "index_drivers_on_name_and_email", unique: true
@@ -112,6 +118,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.integer "lease_monthly_rate"
     t.integer "lease_buyout_cost"
     t.bigint "driver_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_equipment_on_driver_id"
@@ -124,6 +132,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.string "restrictions"
     t.string "province"
     t.bigint "driver_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_licenses_on_driver_id"
@@ -141,6 +151,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.text "receiving_info"
     t.text "additional_info"
     t.bigint "customer_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_locations_on_customer_id"
@@ -153,6 +165,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.string "subject"
     t.text "description"
     t.bigint "user_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notes_on_user_id"
@@ -166,6 +180,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.boolean "reminder", default: false, null: false
     t.datetime "deleted_at"
     t.bigint "equipment_id"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["equipment_id"], name: "index_permits_on_equipment_id"
@@ -189,6 +204,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.string "internal_name", null: false
     t.string "legal_name", null: false
     t.string "remit_name", null: false
+    t.string "email"
     t.string "account_number"
     t.string "website"
     t.string "federal_id_number"
@@ -221,12 +237,13 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.integer "liability_coverage", default: 0, null: false
     t.date "liability_insurance_start_date"
     t.date "liability_insurance_expiry_date"
-    t.string "cargo_insurnace_provider"
+    t.string "cargo_insurance_provider"
     t.string "cargo_insurance_policy_number"
     t.integer "cargo_insurance_coverage", default: 0, null: false
     t.date "cargo_insurance_start_date"
     t.date "cargo_insurance_expiry_date"
-    t.date "deleted_at"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["internal_name"], name: "index_vendors_on_internal_name", unique: true
@@ -240,6 +257,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.integer "points_deducted", default: 0, null: false
     t.date "issue_date"
     t.string "issue_place"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_violation_tickets_on_driver_id"
