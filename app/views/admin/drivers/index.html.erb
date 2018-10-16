@@ -25,8 +25,8 @@
         <tr>
           <td><%= driver.id %></td>
           <td><%= driver.name %></td>
-          <td><%= driver.city %></td>
-          <td><%= driver.state %></td>
+          <td><%= driver.address.try(:city) %></td>
+          <td><%= driver.address.try(:state_province) %></td>
           <td><%= driver.email %></td>
           <td><%= driver.cell %></td>
           <td><%= driver.violation_tickets.count %></td>
