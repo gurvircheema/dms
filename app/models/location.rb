@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  belongs_to :customer
+  belongs_to :customer, optional: true
   has_one :address
 
   validates_presence_of :name

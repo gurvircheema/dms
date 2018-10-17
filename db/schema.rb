@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_230942) do
+ActiveRecord::Schema.define(version: 2018_10_16_234109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,26 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.index ["name", "email"], name: "index_drivers_on_name_and_email", unique: true
   end
 
+  create_table "drop_locations", force: :cascade do |t|
+    t.datetime "appt_date"
+    t.string "ref_number"
+    t.string "contact"
+    t.integer "skids"
+    t.integer "cases"
+    t.integer "weight"
+    t.boolean "ltl", default: false, null: false
+    t.string "commodity"
+    t.string "notes"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
+    t.bigint "location_id"
+    t.bigint "load_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["load_id"], name: "index_drop_locations_on_load_id"
+    t.index ["location_id"], name: "index_drop_locations_on_location_id"
+  end
+
   create_table "equipment", force: :cascade do |t|
     t.string "unit_number", null: false
     t.integer "unit_type", default: 0, null: false
@@ -140,6 +160,29 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.index ["number"], name: "index_licenses_on_number", unique: true
   end
 
+  create_table "loads", force: :cascade do |t|
+    t.string "customer_ref_number"
+    t.integer "customer_rate"
+    t.string "currency"
+    t.string "customer_notes"
+    t.decimal "vendor_cost", precision: 10, scale: 2
+    t.boolean "picked_up", default: false, null: false
+    t.boolean "delivered", default: false, null: false
+    t.boolean "invoiced", default: false, null: false
+    t.boolean "payment_received", default: false, null: false
+    t.boolean "paid_to_vendor", default: false, null: false
+    t.datetime "deleted_at"
+    t.string "deleted_by"
+    t.bigint "customer_id"
+    t.bigint "driver_id"
+    t.bigint "vendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_loads_on_customer_id"
+    t.index ["driver_id"], name: "index_loads_on_driver_id"
+    t.index ["vendor_id"], name: "index_loads_on_vendor_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
     t.string "contact"
@@ -184,6 +227,26 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["equipment_id"], name: "index_permits_on_equipment_id"
+  end
+
+  create_table "pickup_locations", force: :cascade do |t|
+    t.datetime "appt_date"
+    t.string "ref_number"
+    t.string "contact"
+    t.integer "skids"
+    t.integer "cases"
+    t.decimal "weight", precision: 10, scale: 2
+    t.boolean "ltl", default: false, null: false
+    t.string "commodity"
+    t.string "notes"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
+    t.bigint "location_id"
+    t.bigint "load_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["load_id"], name: "index_pickup_locations_on_load_id"
+    t.index ["location_id"], name: "index_pickup_locations_on_location_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -268,10 +331,17 @@ ActiveRecord::Schema.define(version: 2018_10_14_230942) do
   add_foreign_key "addresses", "drivers"
   add_foreign_key "addresses", "locations"
   add_foreign_key "addresses", "vendors"
+  add_foreign_key "drop_locations", "loads"
+  add_foreign_key "drop_locations", "locations"
   add_foreign_key "equipment", "drivers"
   add_foreign_key "licenses", "drivers"
+  add_foreign_key "loads", "customers"
+  add_foreign_key "loads", "drivers"
+  add_foreign_key "loads", "vendors"
   add_foreign_key "locations", "customers"
   add_foreign_key "notes", "users"
   add_foreign_key "permits", "equipment"
+  add_foreign_key "pickup_locations", "loads"
+  add_foreign_key "pickup_locations", "locations"
   add_foreign_key "violation_tickets", "drivers"
 end
