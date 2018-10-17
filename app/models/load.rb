@@ -7,4 +7,7 @@ class Load < ApplicationRecord
 
   validates_presence_of :customer_ref_number
   validates_inclusion_of :currency, in: Currency.list
+
+  accepts_nested_attributes_for :pickup_locations
+  accepts_nested_attributes_for :drop_locations
 end

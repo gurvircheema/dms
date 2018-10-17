@@ -9,4 +9,12 @@ class Address < ApplicationRecord
   validates_inclusion_of :state_province, in: State.list.keys
 
   default_scope { where(deleted_at: nil) }
+
+  def full_address
+    "#{address_line_1}, #{city}, #{state_province} #{zipcode}"
+  end
+
+  def partial_address
+    "#{city}, #{state_province}"
+  end
 end

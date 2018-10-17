@@ -1,0 +1,114 @@
+<div class='primary-header'>
+  Trip #<%= @load.id %>:
+  <%= @load.customer.name %>
+  <small class='text-muted'>Load Information</small>
+  <span class='float-right'>
+    <%= link_to 'Edit', [:edit, :admin, @load], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', [:admin, :loads], class: 'btn btn-sm btn-secondary' %>
+  <span>
+</div>
+<div class='row small'>
+  <div class='col-md-4'>
+    <div class='secondary-header'>Address & Contact</div>
+    <dl class='row'>
+      <dt class='col-sm-4'>Customer</dt>
+      <dd class='col-sm-8'>
+        <div><%= link_to @load.customer.name, [:admin, @load.customer] %></div>
+        <div><%= @load.customer.primary_address.city %>, <%= @load.customer.primary_address.state_province %></div>
+        <div><%= @load.customer.primary_address.country %></div>
+        <div><%= @load.customer.primary_address.zipcode %></div>
+      </dd>
+
+      <dt class='col-sm-4'>Reference/Order No.</dt>
+      <dd class='col-sm-8'><%= @load.customer_ref_number %></dd>
+
+      <dt class='col-sm-4'>Customer Rate</dt>
+      <dd class='col-sm-8'><%= @load.customer_rate %> <%= @load.currency %></dd>
+
+      <dt class='col-sm-4'>Vendor Cost</dt>
+      <dd class='col-sm-8'><%= @load.vendor_cost %></dd>
+
+      <dt class='col-sm-4'>Status</dt>
+      <dd class='col-sm-8'>
+        <div>Picked Up: <strong><%= @load.picked_up %></strong></div>
+        <div>Delivered: <strong><%= @load.delivered %></strong></div>
+        <div>Invoiced: <strong><%= @load.invoiced %></strong></div>
+        <div>Payment Received: <strong><%= @load.payment_received %></strong></div>
+        <div>Paid to vendor: <strong><%= @load.paid_to_vendor %></strong></div>
+      </dd>
+    </dl>
+    <%= link_to 'Back', [:admin, :loads], class: 'btn btn-sm btn-secondary' %>
+    <%= link_to 'Edit', [:edit, :admin, @load], class: 'btn btn-sm btn-danger' %>
+  </div>
+  <div class='col-md-8'>
+    <div class='secondary-header small'>Actions</div>
+    <%= link_to 'Print load confirmation', '#', class: 'btn btn-xs btn-outline-primary' %>
+    <%= link_to 'Email load confirmation', '#', class: 'btn btn-xs btn-outline-primary' %>
+    <%= link_to 'Print Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
+    <%= link_to 'Email Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
+    <%= link_to 'Text Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
+    <hr>
+    <div class='secondary-header'>
+      Pickups
+      <span class='float-right'>
+        <%= link_to 'Add Pick', [:new, :admin, @load, :pickup_location], class: 'btn btn-sm btn-primary' %>
+      </span>
+    </div>
+    <div class='table-responsive'>
+      <table class='table table-sm'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Ref #</th>
+            <th>LTL</th>
+            <th>Commodity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @load.pickup_locations.each do |pickup| %>
+            <tr>
+              <td><%= pickup.location.name %></td>
+              <td><%= pickup.location.primary_address.full_address %></td>
+              <td><%= pickup.ref_number %></td>
+              <td><%= pickup.ltl %></td>
+              <td><%= pickup.commodity %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <div class='secondary-header'>
+      Drops
+      <span class='float-right'>
+        <%= link_to 'Add Drop', [:new, :admin, @load, :drop_location], class: 'btn btn-sm btn-primary' %>
+      </span>
+    </div>
+    <div class='table-responsive'>
+      <table class='table table-sm'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Ref #</th>
+            <th>LTL</th>
+            <th>Commodity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @load.drop_locations.each do |drop| %>
+            <tr>
+              <td><%= drop.location.name %></td>
+              <td><%= drop.location.primary_address.full_address %></td>
+              <td><%= drop.ref_number %></td>
+              <td><%= drop.ltl %></td>
+              <td><%= drop.commodity %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+    
+</div>
