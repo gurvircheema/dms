@@ -126,7 +126,7 @@
   <div class='row'>
     <div class='col-md-6'>
       <%= f.submit :Submit, class: 'btn btn-sm btn-primary' %>
-      <%= link_to 'Back', [:admin, :vendors], class: 'btn btn-sm btn-secondary' %>
+      <%= link_to 'Back', back_url(@vendor), class: 'btn btn-sm btn-secondary' %>
     </div>
   </div>
 <% end %>

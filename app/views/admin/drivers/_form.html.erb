@@ -7,7 +7,7 @@
       <%= render 'shared/address_fields', ff: a %>
     <% end %>
     <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
-    <%= link_to 'Cancel', [:admin, :drivers], class: 'btn btn-sm btn-secondary' %>
+    <%= link_to 'Cancel', back_url(@driver), class: 'btn btn-sm btn-secondary' %>
   </div>
   <div class='col-md-6'>
     <div class='row'>

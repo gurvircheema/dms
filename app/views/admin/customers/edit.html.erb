@@ -1,3 +1,7 @@
-<h4 class='pt-2 mt-2'>Edit Customer</h4>
-<hr>
+<div class='primary-header'>
+  Edit Customer
+  <span class='float-right'>
+    <%= link_to 'Back', back_url(@customer), class: 'btn btn-sm btn-secondary' %>
+  </span>
+</div>
 <%= render 'form' %>

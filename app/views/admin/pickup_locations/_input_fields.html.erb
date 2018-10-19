@@ -1,0 +1,16 @@
+<%= f.input :location_id, collection: Location.all.map(&:dropdown_list_item) %>
+<div class='row'>
+  <div class='col-md-4'><%= f.input :appt_date, html5: true, as: :date %></div>
+  <div class='col-md-4'><%= f.input :ref_number %></div>
+  <div class='col-md-4'><%= f.input :contact %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'><%= f.input :skids %></div>
+  <div class='col-md-4'><%= f.input :cases %></div>
+  <div class='col-md-4'><%= f.input :weight %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'><%= f.input :ltl %></div>
+  <div class='col-md-4'><%= f.input :commodity %></div>
+  <div class='col-md-4'><%= f.input :notes, as: :text %></div>
+</div>

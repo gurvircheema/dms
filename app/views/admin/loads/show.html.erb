@@ -19,14 +19,17 @@
         <div><%= @load.customer.primary_address.zipcode %></div>
       </dd>
 
+      <dt class='col-sm-4'>Equipment</dt>
+      <dd class='col-sm-8'><%= @load.equipment_type %></dd>
+
       <dt class='col-sm-4'>Reference/Order No.</dt>
       <dd class='col-sm-8'><%= @load.customer_ref_number %></dd>
 
       <dt class='col-sm-4'>Customer Rate</dt>
-      <dd class='col-sm-8'><%= @load.customer_rate %> <%= @load.currency %></dd>
+      <dd class='col-sm-8'><%= @load.customer_rate.to_i %> <%= @load.currency %></dd>
 
       <dt class='col-sm-4'>Vendor Cost</dt>
-      <dd class='col-sm-8'><%= @load.vendor_cost %></dd>
+      <dd class='col-sm-8'><%= @load.vendor_cost.to_i %></dd>
 
       <dt class='col-sm-4'>Status</dt>
       <dd class='col-sm-8'>
@@ -40,7 +43,7 @@
     <%= link_to 'Back', [:admin, :loads], class: 'btn btn-sm btn-secondary' %>
     <%= link_to 'Edit', [:edit, :admin, @load], class: 'btn btn-sm btn-danger' %>
   </div>
-  <div class='col-md-8'>
+  <div class='col-md-8 col-sm-12'>
     <div class='secondary-header small'>Actions</div>
     <%= link_to 'Print load confirmation', '#', class: 'btn btn-xs btn-outline-primary' %>
     <%= link_to 'Email load confirmation', '#', class: 'btn btn-xs btn-outline-primary' %>
@@ -73,6 +76,7 @@
               <td><%= pickup.ref_number %></td>
               <td><%= pickup.ltl %></td>
               <td><%= pickup.commodity %></td>
+              <td><%= link_to 'delete', [:admin, @load, pickup], method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-xs btn-danger' %></td>
             </tr>
           <% end %>
         </tbody>
@@ -104,6 +108,7 @@
               <td><%= drop.ref_number %></td>
               <td><%= drop.ltl %></td>
               <td><%= drop.commodity %></td>
+              <td><%= link_to 'delete', [:admin, @load, drop], method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-xs btn-danger' %></td>
             </tr>
           <% end %>
         </tbody>

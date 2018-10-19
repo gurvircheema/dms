@@ -1,6 +1,10 @@
 <div class='primary-header'>
   <%= @location.name %>
   <small class='text-muted'>Location</small>
+  <span class='float-right'>
+    <%= link_to 'Edit', [:edit, :admin, @location], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', [ :admin, :locations], class: 'btn btn-sm btn-secondary' %>
+  </span>
 </div>
 <div class='row'>
   <div class='col-sm-6'>

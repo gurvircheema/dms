@@ -64,6 +64,15 @@ RSpec.describe Admin::CustomersController, type: :controller do
       expect { post_request }.to change(Customer, :count).by(1)
     end
 
+    it 'creates a new location and assign to customer' do
+      expect { post_request }.to change(Location, :count).by(1)
+    end
+
+    # it 'creates a customer location' do
+    #   post_request
+    #   expect(customer.customer_locations.count).to eq(1)
+    # end
+
     it 'redirect after customer is created' do
       post_request
       expect(response).to redirect_to([:admin, Customer.last])

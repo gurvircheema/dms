@@ -7,19 +7,19 @@ Rails.application.routes.draw do
       resources :licenses, except: [:index, :destroy]
     end
     resources :customers, except: [:destroy] do
-      resources :customer_locations, except: [:indxe, :destroy]
+      resources :customer_locations, only: [:new, :create]
     end
     resources :locations, except: [:destroy]
     resources :equipment do
-      resources :notes, except: [:index, :show]
-      resources :permits
+      resources :notes, except: [:index, :show, :destroy]
+      resources :permits, except: [:index, :show]
     end
     resources :vendors do
       resources :notes, except: [:index, :show]
     end
     resources :loads do
-      resources :pickup_locations
-      resources :drop_locations
+      resources :pickup_locations, only: [:new, :create, :destroy]
+      resources :drop_locations, only: [:new, :create, :destroy]
     end
   end
 end

@@ -6,12 +6,15 @@
         <div class='col-md-4'><%= f.input :customer_ref_number %></div>
       </div>
       <div class='row'>
-        <div class='col-md-4'><%= f.input :currency, collection: Currency.list %></div>
+        <div class='col-md-4'><%= f.input :currency, collection: Currency.list, selected: 'CAD' %></div>
         <div class='col-md-4'><%= f.input :customer_rate %></div>
         <div class='col-md-4'><%= f.input :vendor_cost %></div>
       </div>
       <%= f.input :customer_notes, as: :text %>
       <div class='row'>
+        <div class='col-md-4'>
+          <%= f.input :equipment_type, collection: EquipmentType.list, selected: 'Super B' %>
+        </div>
         <div class='col-md-4'>
           <%= f.input :picked_up %>
           <%= f.input :delivered %>
@@ -23,29 +26,14 @@
         </div>
       </div>
       <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
-      <%= link_to 'Back', [:admin, :loads], class: 'btn btn-sm btn-secondary' %>
+      <%= link_to 'Back', back_url(@load), class: 'btn btn-sm btn-secondary' %>
     </div>
     <div class='col-md-6'>
       <div class='row'>
         <div class='col-md-12'>
           <div class='secondary-header'>Pickup Locations</div>
           <%= f.simple_fields_for :pickup_locations do |lpl| %>
-            <div class='row'>
-              <div class='col-md-3'><%= lpl.input :location, collection: Location.all %></div>
-              <div class='col-md-3'><%= lpl.input :appt_date, html5: true %></div>
-              <div class='col-md-3'><%= lpl.input :ref_number %></div>
-              <div class='col-md-3'><%= lpl.input :contact %></div>
-            </div>
-            <div class='row'>
-              <div class='col-md-3'><%= lpl.input :skids %></div>
-              <div class='col-md-3'><%= lpl.input :cases %></div>
-              <div class='col-md-3'><%= lpl.input :weight %></div>
-              <div class='col-md-3'><%= lpl.input :commodity %></div>
-            </div>
-            <div class='row'>
-              <div class='col-md-9'><%= lpl.input :notes, as: :text %></div>
-              <div class='col-md-3'><%= lpl.input :ltl %></div>
-            </div>
+            <%= render 'admin/pickup_locations/input_fields', f: lpl %>
           <% end %>
         </div>
       </div>
@@ -53,6 +41,7 @@
         <div class='col-md-12'>
           <div class='secondary-header'>Drop Locations</div>
           <%= f.simple_fields_for :drop_locations do |lpl| %>
+            <%= render 'admin/drop_locations/input_fields', f: lpl %>
           <% end %>
         </div>
       </div>

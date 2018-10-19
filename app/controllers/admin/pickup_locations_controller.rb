@@ -17,6 +17,7 @@ class Admin::PickupLocationsController < Admin::ApplicationController
 
   def destroy
     @pickup_location.update(deleted_at: Time.now, deleted_by: current_user)
+    redirect_to [:admin, @load], notice: 'Pickup location removed'
   end
 
   private

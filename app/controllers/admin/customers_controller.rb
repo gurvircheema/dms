@@ -23,7 +23,8 @@ class Admin::CustomersController < Admin::ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    if @customer.save
+    success = create_customer_and_location
+    if success
       redirect_to [:admin, @customer], notice: 'New customer added'
     else
       render :new, error: 'Error occurred, please try again'
@@ -60,5 +61,13 @@ class Admin::CustomersController < Admin::ApplicationController
         :state_province, :country, :zipcode
       ]
      )
+  end
+
+  def create_customer_and_location
+    ActiveRecord::Base.transaction do
+      @customer.save!
+      location = Location.create!(name: @customer.name, address: @customer.address, phone: @customer.phone, email: @customer.email, toll_free: @customer.toll_free, fax: @customer.fax)
+      @customer.customer_locations.create!(location: location)
+    end
   end
 end

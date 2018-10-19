@@ -17,6 +17,7 @@ class Admin::DropLocationsController < Admin::ApplicationController
 
   def destroy
     @drop_location.update(deleted_at: Time.now, deleted_by: current_user)
+    redirect_to [:admin, @load], notice: 'Drop location removed'
   end
 
   private

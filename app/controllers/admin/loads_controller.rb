@@ -24,8 +24,8 @@ class Admin::LoadsController < Admin::ApplicationController
   end
 
   def edit
-    @load.pickup_locations.build unless @load.pickup_locations.empty?
-    @load.drop_locations.build unless @load.drop_locations.empty?
+    @load.pickup_locations.build if @load.pickup_locations.empty?
+    @load.drop_locations.build if @load.drop_locations.empty?
   end
 
   def update
@@ -53,6 +53,7 @@ class Admin::LoadsController < Admin::ApplicationController
       :customer_ref_number,
       :customer_rate,
       :currency,
+      :equipment_type,
       :customer_notes,
       :vendor_cost,
       :picked_up,
@@ -60,12 +61,12 @@ class Admin::LoadsController < Admin::ApplicationController
       :invoiced,
       :payment_received,
       :paid_to_vendor,
-      pickup_location_attributes: [
-        :appt_date, :ref_number, :contact, :skids, :cases,
+      pickup_locations_attributes: [
+        :location_id, :appt_date, :ref_number, :contact, :skids, :cases,
         :weight, :ltl, :commodity, :notes
       ],
-      drop_location_attributes: [
-        :appt_date, :ref_number, :contact, :skids, :cases,
+      drop_locations_attributes: [
+        :location_id, :appt_date, :ref_number, :contact, :skids, :cases,
         :weight, :ltl, :commodity, :notes
       ],
     )

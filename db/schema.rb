@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_072902) do
   end
 
   create_table "drop_locations", force: :cascade do |t|
-    t.datetime "appt_date"
+    t.datetime "appt_date", null: false
     t.string "ref_number"
     t.string "contact"
     t.integer "skids"
@@ -172,8 +172,9 @@ ActiveRecord::Schema.define(version: 2018_10_17_072902) do
   create_table "loads", force: :cascade do |t|
     t.string "customer_ref_number"
     t.integer "customer_rate"
-    t.string "currency"
+    t.string "currency", null: false
     t.string "customer_notes"
+    t.string "equipment_type", null: false
     t.decimal "vendor_cost", precision: 10, scale: 2
     t.boolean "picked_up", default: false, null: false
     t.boolean "delivered", default: false, null: false
@@ -239,7 +240,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_072902) do
   end
 
   create_table "pickup_locations", force: :cascade do |t|
-    t.datetime "appt_date"
+    t.datetime "appt_date", null: false
     t.string "ref_number"
     t.string "contact"
     t.integer "skids"
