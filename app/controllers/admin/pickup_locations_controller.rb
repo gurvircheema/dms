@@ -19,7 +19,7 @@ class Admin::PickupLocationsController < Admin::ApplicationController
     @pickup_location.update(deleted_at: Time.now, deleted_by: current_user)
   end
 
-  private 
+  private
 
   def set_load
     @load = Load.find(params[:load_id])

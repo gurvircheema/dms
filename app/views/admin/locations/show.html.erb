@@ -1,6 +1,6 @@
 <div class='primary-header'>
-  Location: <%= @location.name %>
-  <small class='text-muted'><%= @customer.name %></small>
+  <%= @location.name %>
+  <small class='text-muted'>Location</small>
 </div>
 <div class='row'>
   <div class='col-sm-6'>
@@ -71,12 +71,12 @@
           <div class='col-sm-3 label'>Additional Info</div>
           <div class='col-sm-9'><%= @location.additional_info %></div>
         </div>
-      </div>  
+      </div>
     </div>
     <div class='row mt-2 pt-2'>
       <div class='col-sm-12'>
-        <%= link_to 'Back', [:admin, @customer], class: 'btn btn-sm btn-secondary' %>
-        <%= link_to 'Edit', [:edit, :admin, @customer, @location], class: 'btn btn-sm btn-primary' %>
+        <%= link_to 'Back', [:admin, :locations], class: 'btn btn-sm btn-secondary' %>
+        <%= link_to 'Edit', [:edit, :admin, @location], class: 'btn btn-sm btn-primary' %>
       </div>
     </div>
   </div>

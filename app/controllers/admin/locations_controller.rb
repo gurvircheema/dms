@@ -1,16 +1,19 @@
 class Admin::LocationsController < ApplicationController
-  before_action :set_customer
   before_action :set_location, only: [:show, :edit, :update]
 
+  def index
+    @locations = Location.all
+  end
+
   def new
-    @location = @customer.locations.new
+    @location = Location.new
     @location.build_address
   end
 
   def create
-    @location = @customer.locations.build(location_params)
+    @location = Location.new(location_params)
     if @location.save
-      redirect_to [:admin, @customer], notice: 'New location added'
+      redirect_to [:admin, @location], notice: 'New location added'
     else
       render :new, error: 'Something went wrong, please try again'
     end
@@ -25,7 +28,7 @@ class Admin::LocationsController < ApplicationController
 
   def update
     if @location.update(location_params)
-      redirect_to [:admin, @customer, @location], notice: 'Location updated'
+      redirect_to [:admin, @location], notice: 'Location updated'
     else
       render :edit, error: 'Something went wrong, please try again!'
     end
@@ -33,12 +36,8 @@ class Admin::LocationsController < ApplicationController
 
   private
 
-  def set_customer
-    @customer = Customer.find(params[:customer_id])
-  end
-
   def set_location
-    @location = @customer.locations.find(params[:id])
+    @location = Location.find(params[:id])
   end
 
   def location_params

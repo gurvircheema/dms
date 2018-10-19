@@ -23,12 +23,12 @@ class Admin::LoadsController < Admin::ApplicationController
   def show
   end
 
-  def edit 
+  def edit
     @load.pickup_locations.build unless @load.pickup_locations.empty?
     @load.drop_locations.build unless @load.drop_locations.empty?
   end
 
-  def update 
+  def update
     if @load.update(load_params)
       redirect_to [:admin, @load], notice: 'Load updated'
     else
@@ -51,15 +51,15 @@ class Admin::LoadsController < Admin::ApplicationController
     params.require(:load).permit(
       :customer_id,
       :customer_ref_number,
-      :customer_rate, 
+      :customer_rate,
       :currency,
       :customer_notes,
       :vendor_cost,
-      :picked_up,       
-      :delivered,       
-      :invoiced,        
+      :picked_up,
+      :delivered,
+      :invoiced,
       :payment_received,
-      :paid_to_vendor, 
+      :paid_to_vendor,
       pickup_location_attributes: [
         :appt_date, :ref_number, :contact, :skids, :cases,
         :weight, :ltl, :commodity, :notes

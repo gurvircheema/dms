@@ -6,7 +6,7 @@ class Vendor < ApplicationRecord
   validates_presence_of :internal_name, :legal_name, :remit_name, :vendor_type
 
   default_scope { where(deleted_at: nil) }
-  
+
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :remit_address
 

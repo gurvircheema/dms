@@ -59,7 +59,6 @@ RSpec.describe Admin::CustomersController, type: :controller do
     let(:post_request) {
       post :create, params: { customer: customer_attr }
     }
-    # before { post_request }
 
     it 'create the new customer' do
       expect { post_request }.to change(Customer, :count).by(1)

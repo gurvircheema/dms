@@ -1,7 +1,8 @@
 class Customer < ApplicationRecord
-  has_many :locations
   has_one :address
   has_one :billing_address, foreign_key: :customer_id, class_name: 'Address'
+  has_many :customer_locations
+  has_many :locations, through: :customer_locations
 
   validates_presence_of :name, :email
   validates_uniqueness_of :name, :email
