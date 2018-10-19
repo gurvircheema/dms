@@ -1,0 +1,5 @@
+<%= simple_form_for([:admin, @customer, @customer_location], html: { class: 'form' }) do |f| %>
+  <%= f.input :location_id, collection: Location.all.map(&:dropdown_list_item) %>
+  <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+  <%= link_to 'Cancel', [:admin, @customer], class: 'btn btn-sm btn-secondary' %>
+<% end %>

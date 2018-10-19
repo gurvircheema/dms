@@ -1,8 +1,14 @@
 class Driver < ApplicationRecord
-  enum immigration_status: [:canadian_citizen, :permanent_resident, :work_permit, :student_permit]
-  enum driver_type: [:company_driver, :owner_operator]
-
   has_many :violation_tickets
   has_many :licenses
-  validates_presence_of :name, :city, :state, :country, :phone, :email, :active
+  has_one :address
+
+  validates_presence_of :name, :phone, :email, :active
+
+  default_scope { where(deleted_at: nil) }
+
+  accepts_nested_attributes_for :address
+
+  enum immigration_status: [:canadian_citizen, :permanent_resident, :work_permit, :student_permit]
+  enum driver_type: [:company_driver, :owner_operator]
 end

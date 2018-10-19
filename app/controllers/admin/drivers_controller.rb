@@ -6,13 +6,16 @@ class Admin::DriversController < Admin::ApplicationController
   end
 
   def show
+    @address = @driver.address || @driver.build_address
     @violation_tickets = @driver.violation_tickets
   end
 
-  def edit; end
+  def edit
+  end
 
   def new
     @driver = Driver.new
+    @driver.build_address
   end
 
   def create
@@ -40,13 +43,13 @@ class Admin::DriversController < Admin::ApplicationController
   private
 
   def set_driver
-    @driver = Driver.find(params[:id])
+    @driver = Driver.includes(:address).find(params[:id])
   end
 
   def driver_params
-    params.require(:driver).permit(:name, :address, :city, :state, :country,
-                                   :zip, :phone, :cell, :email, :active,
-                                   :driver_type, :immigration_status,
-                                   :date_of_birth)
+    params.require(:driver).permit(
+      :name, :phone, :cell, :email, :active, :driver_type,
+      :immigration_status, :date_of_birth, address_attributes: [:address_line_1,
+        :address_line_2, :city, :state_province, :country, :zipcode])
   end
 end

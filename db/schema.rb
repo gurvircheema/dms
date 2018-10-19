@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_204443) do
+ActiveRecord::Schema.define(version: 2018_10_17_072902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,22 +36,44 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "city"
+    t.string "state_province"
+    t.string "country"
+    t.string "zipcode"
+    t.bigint "location_id"
+    t.bigint "customer_id"
+    t.bigint "vendor_id"
+    t.bigint "driver_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
+    t.index ["driver_id"], name: "index_addresses_on_driver_id"
+    t.index ["location_id"], name: "index_addresses_on_location_id"
+    t.index ["vendor_id"], name: "index_addresses_on_vendor_id"
+  end
+
+  create_table "customer_locations", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer_locations_on_customer_id"
+    t.index ["location_id"], name: "index_customer_locations_on_location_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address"
-    t.string "city", null: false
-    t.string "province", null: false
-    t.string "country"
-    t.string "zip"
     t.string "phone"
     t.string "toll_free"
     t.string "fax"
     t.string "email", null: false
-    t.string "billing_address"
-    t.string "billing_city"
-    t.string "billing_province"
-    t.string "billing_country"
-    t.string "billing_zip"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -60,11 +82,6 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
 
   create_table "drivers", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address"
-    t.string "city", null: false
-    t.string "state", null: false
-    t.string "country", default: "Canada", null: false
-    t.string "zip"
     t.string "phone", null: false
     t.string "cell"
     t.string "email", null: false
@@ -72,9 +89,31 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.boolean "active", default: true, null: false
     t.integer "immigration_status", default: 0, null: false
     t.integer "driver_type", default: 0, null: false
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "email"], name: "index_drivers_on_name_and_email", unique: true
+  end
+
+  create_table "drop_locations", force: :cascade do |t|
+    t.datetime "appt_date", null: false
+    t.string "ref_number"
+    t.string "contact"
+    t.integer "skids"
+    t.integer "cases"
+    t.integer "weight"
+    t.boolean "ltl", default: false, null: false
+    t.string "commodity"
+    t.string "notes"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
+    t.bigint "location_id"
+    t.bigint "load_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["load_id"], name: "index_drop_locations_on_load_id"
+    t.index ["location_id"], name: "index_drop_locations_on_location_id"
   end
 
   create_table "equipment", force: :cascade do |t|
@@ -108,6 +147,8 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.integer "lease_monthly_rate"
     t.integer "lease_buyout_cost"
     t.bigint "driver_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_equipment_on_driver_id"
@@ -120,19 +161,40 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.string "restrictions"
     t.string "province"
     t.bigint "driver_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_licenses_on_driver_id"
     t.index ["number"], name: "index_licenses_on_number", unique: true
   end
 
+  create_table "loads", force: :cascade do |t|
+    t.string "customer_ref_number"
+    t.integer "customer_rate"
+    t.string "currency", null: false
+    t.string "customer_notes"
+    t.string "equipment_type", null: false
+    t.decimal "vendor_cost", precision: 10, scale: 2
+    t.boolean "picked_up", default: false, null: false
+    t.boolean "delivered", default: false, null: false
+    t.boolean "invoiced", default: false, null: false
+    t.boolean "payment_received", default: false, null: false
+    t.boolean "paid_to_vendor", default: false, null: false
+    t.datetime "deleted_at"
+    t.string "deleted_by"
+    t.bigint "customer_id"
+    t.bigint "driver_id"
+    t.bigint "vendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_loads_on_customer_id"
+    t.index ["driver_id"], name: "index_loads_on_driver_id"
+    t.index ["vendor_id"], name: "index_loads_on_vendor_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address", null: false
-    t.string "city", null: false
-    t.string "province", null: false
-    t.string "country", null: false
-    t.string "zip"
     t.string "contact"
     t.string "email"
     t.string "phone"
@@ -142,6 +204,8 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.text "receiving_info"
     t.text "additional_info"
     t.bigint "customer_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_locations_on_customer_id"
@@ -154,6 +218,8 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.string "subject"
     t.text "description"
     t.bigint "user_id"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notes_on_user_id"
@@ -167,9 +233,30 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.boolean "reminder", default: false, null: false
     t.datetime "deleted_at"
     t.bigint "equipment_id"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["equipment_id"], name: "index_permits_on_equipment_id"
+  end
+
+  create_table "pickup_locations", force: :cascade do |t|
+    t.datetime "appt_date", null: false
+    t.string "ref_number"
+    t.string "contact"
+    t.integer "skids"
+    t.integer "cases"
+    t.decimal "weight", precision: 10, scale: 2
+    t.boolean "ltl", default: false, null: false
+    t.string "commodity"
+    t.string "notes"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
+    t.bigint "location_id"
+    t.bigint "load_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["load_id"], name: "index_pickup_locations_on_load_id"
+    t.index ["location_id"], name: "index_pickup_locations_on_location_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -190,26 +277,17 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.string "internal_name", null: false
     t.string "legal_name", null: false
     t.string "remit_name", null: false
+    t.string "email"
     t.string "account_number"
     t.string "website"
     t.string "federal_id_number"
     t.string "preferred_currency"
     t.integer "payment_terms", default: 30, null: false
     t.boolean "required_1099", default: false, null: false
-    t.string "address"
-    t.string "city"
-    t.string "state_province"
-    t.string "country"
-    t.string "zip"
     t.string "phone"
     t.string "toll_free"
     t.string "fax"
     t.boolean "remit_same_as_primary_address", default: false, null: false
-    t.string "remit_address"
-    t.string "remit_city"
-    t.string "remit_state_province"
-    t.string "remit_country"
-    t.string "remit_zip"
     t.string "remit_phone"
     t.string "remit_toll_free"
     t.string "remit_fax"
@@ -232,12 +310,13 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.integer "liability_coverage", default: 0, null: false
     t.date "liability_insurance_start_date"
     t.date "liability_insurance_expiry_date"
-    t.string "cargo_insurnace_provider"
+    t.string "cargo_insurance_provider"
     t.string "cargo_insurance_policy_number"
     t.integer "cargo_insurance_coverage", default: 0, null: false
     t.date "cargo_insurance_start_date"
     t.date "cargo_insurance_expiry_date"
-    t.date "deleted_at"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["internal_name"], name: "index_vendors_on_internal_name", unique: true
@@ -251,15 +330,30 @@ ActiveRecord::Schema.define(version: 2018_10_07_204443) do
     t.integer "points_deducted", default: 0, null: false
     t.date "issue_date"
     t.string "issue_place"
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_violation_tickets_on_driver_id"
   end
 
+  add_foreign_key "addresses", "customers"
+  add_foreign_key "addresses", "drivers"
+  add_foreign_key "addresses", "locations"
+  add_foreign_key "addresses", "vendors"
+  add_foreign_key "customer_locations", "customers"
+  add_foreign_key "customer_locations", "locations"
+  add_foreign_key "drop_locations", "loads"
+  add_foreign_key "drop_locations", "locations"
   add_foreign_key "equipment", "drivers"
   add_foreign_key "licenses", "drivers"
+  add_foreign_key "loads", "customers"
+  add_foreign_key "loads", "drivers"
+  add_foreign_key "loads", "vendors"
   add_foreign_key "locations", "customers"
   add_foreign_key "notes", "users"
   add_foreign_key "permits", "equipment"
+  add_foreign_key "pickup_locations", "loads"
+  add_foreign_key "pickup_locations", "locations"
   add_foreign_key "violation_tickets", "drivers"
 end

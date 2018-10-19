@@ -25,7 +25,7 @@
           <dt class='col-sm-4'>Website</dt>
           <dd class='col-sm-8'><%= @vendor.website %></dd>
           <dt class='col-sm-4'>Email</dt>
-          <dd class='col-sm-8'>NA</dd>
+          <dd class='col-sm-8'><%= @vendor.email %></dd>
           <dt class='col-sm-4'>Federal ID Number</dt>
           <dd class='col-sm-8'><%= @vendor.federal_id_number %></dd>
           <dt class='col-sm-4'>Preferred Currency</dt>
@@ -88,7 +88,7 @@
         <div class='secondary-header'>Cargo Insurance</div>
         <dl class='row'>
           <dt class='col-sm-4'>Provider Name</dt>
-          <dd class='col-sm-8'><%= @vendor.cargo_insurnace_provider %></dd>
+          <dd class='col-sm-8'><%= @vendor.cargo_insurance_provider %></dd>
           <dt class='col-sm-4'>Insured Amount</dt>
           <dd class='col-sm-8'><%= @vendor.cargo_insurance_coverage %></dd>
           <dt class='col-sm-4'>Policy Number</dt>
@@ -107,15 +107,15 @@
           <div class='col-md-4'>
             <dl class='row'>
               <dt class='col-sm-4 col-xs-4'>Address</dt>
-              <dd class='col-sm-8 col-xs-8'><%= @vendor.address %></dd>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.primary_address.address_line_1 %></dd>
               <dt class='col-sm-4 col-xs-4'>City</dt>
-              <dd class='col-sm-8 col-xs-8'><%= @vendor.city %></dd>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.primary_address.city %></dd>
               <dt class='col-sm-4 col-xs-4'>State Province</dt>
-              <dd class='col-sm-8 col-xs-8'><%= @vendor.state_province %></dd>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.primary_address.state_province %></dd>
               <dt class='col-sm-4 col-xs-4'>Country</dt>
-              <dd class='col-sm-8 col-xs-8'><%= @vendor.country %></dd>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.primary_address.country %></dd>
               <dt class='col-sm-4 col-xs-4'>ZIP</dt>
-              <dd class='col-sm-8 col-xs-8'><%= @vendor.zip %></dd>
+              <dd class='col-sm-8 col-xs-8'><%= @vendor.primary_address.zipcode %></dd>
               <hr>
               <dt class='col-sm-4 col-xs-4'>Phone</dt>
               <dd class='col-sm-8 col-xs-8'><%= @vendor.phone %></dd>
@@ -127,7 +127,7 @@
           </div>
           <div class='col-md-8'>
             <div class='embed-responsive embed-responsive-4by3'>
-              <iframe class='embed-responsive-item' width="800" height="800" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= @vendor.city%>%20<%= @vendor.state_province %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+              <iframe class='embed-responsive-item' width="800" height="800" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= @vendor.primary_address.city%>%20<%= @vendor.primary_address.state_province %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
               </iframe>
             </div>
           </div>

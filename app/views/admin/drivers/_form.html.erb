@@ -3,31 +3,11 @@
     <div class='form-group'>
       <%= f.input :name, class: 'form-control' %>
     </div>
-    <div class='form-group'>
-      <%= f.input :address, class: 'form-control' %>
-    </div>
-    <div class='form-group'>
-      <%= f.input :city, class: 'form-control' %>
-    </div>
-    <div class='row'>
-      <div class='col-md-4'>
-        <div class='form-group'>
-          <%= f.input :state, class: 'form-control' %>
-        </div>
-      </div>
-      <div class='col-md-4'>
-        <div class='form-group'>
-          <%= f.input :country, collection: ['Canada', 'United States'], selected: 'Canada', class: 'form-control' %>
-        </div>
-      </div>
-      <div class='col-md-4'>
-        <div class='form-group'>
-          <%= f.input :zip, class: 'form-control' %>
-        </div>
-      </div>
-    </div>
+    <%= f.simple_fields_for :address do |a| %>
+      <%= render 'shared/address_fields', ff: a %>
+    <% end %>
     <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
-    <%= link_to 'Cancel', [:admin, :drivers], class: 'btn btn-sm btn-secondary' %>
+    <%= link_to 'Cancel', back_url(@driver), class: 'btn btn-sm btn-secondary' %>
   </div>
   <div class='col-md-6'>
     <div class='row'>

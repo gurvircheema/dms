@@ -7,4 +7,12 @@ module ApplicationHelper
     when 'alert' then 'alert alert-danger'
     end
   end
+
+  def back_url(record)
+    if record.persisted?
+      [:admin, record]
+    else
+      [:admin, record.class.name.pluralize.downcase]
+    end
+  end
 end

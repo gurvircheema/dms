@@ -7,6 +7,8 @@ class CreateLicenses < ActiveRecord::Migration[5.2]
       t.string :restrictions
       t.string :province
       t.references :driver, foreign_key: true
+      t.datetime :deleted_at
+      t.string :deleted_by
 
       t.timestamps
     end

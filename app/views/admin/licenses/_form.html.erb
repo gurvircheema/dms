@@ -1,20 +1,10 @@
 <div class='row'>
   <div class='col-md-12'>
-    <div class='form-group'>
-      <%= f.input :number %>
-    </div>
-    <div class='form-group'>
-      <%= f.input :issue_date %>
-    </div>
-    <div class='form-group'>
-      <%= f.input :expiry_date %>
-    </div>
-    <div class='form-group'>
-      <%= f.input :restrictions %>
-    </div>
-    <div class='form-group'>
-      <%= f.input :province %>
-    </div>
+    <%= f.input :number %>
+    <%= f.input :issue_date %>
+    <%= f.input :expiry_date %>
+    <%= f.input :restrictions %>
+    <%= f.input :province, collection: State.list.collect { |f| [f[1], f[0]]} %>
     <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
     <%= link_to 'Cancel', [:admin, @driver], class: 'btn btn-sm btn-secondary' %>
   </div>

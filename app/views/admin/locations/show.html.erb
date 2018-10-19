@@ -1,6 +1,10 @@
 <div class='primary-header'>
-  Location: <%= @location.name %>
-  <small class='text-muted'><%= @customer.name %></small>
+  <%= @location.name %>
+  <small class='text-muted'>Location</small>
+  <span class='float-right'>
+    <%= link_to 'Edit', [:edit, :admin, @location], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', [ :admin, :locations], class: 'btn btn-sm btn-secondary' %>
+  </span>
 </div>
 <div class='row'>
   <div class='col-sm-6'>
@@ -10,23 +14,23 @@
         <div>
           <div class='row'>
             <div class='col-sm-4 label'>Street</div>
-            <div class='col-sm-8'><%= @location.address %></div>
+            <div class='col-sm-8'><%= @location.primary_address.address_line_1 %></div>
           </div>
           <div class='row'>
             <div class='col-sm-4 label'>City</div>
-            <div class='col-sm-8'><%= @location.city %></div>
+            <div class='col-sm-8'><%= @location.primary_address.city %></div>
           </div>
           <div class='row'>
             <div class='col-sm-4 label'>Province</div>
-            <div class='col-sm-8'><%= @location.province %></div>
+            <div class='col-sm-8'><%= @location.primary_address.state_province %></div>
           </div>
           <div class='row'>
             <div class='col-sm-4 label'>Country</div>
-            <div class='col-sm-8'><%= @location.country %></div>
+            <div class='col-sm-8'><%= @location.primary_address.country %></div>
           </div>
           <div class='row'>
             <div class='col-sm-4 label'>Zipcode</div>
-            <div class='col-sm-8'><%= @location.zip %></div>
+            <div class='col-sm-8'><%= @location.primary_address.zipcode %></div>
           </div>
         </div>
       </div>
@@ -71,18 +75,18 @@
           <div class='col-sm-3 label'>Additional Info</div>
           <div class='col-sm-9'><%= @location.additional_info %></div>
         </div>
-      </div>  
+      </div>
     </div>
     <div class='row mt-2 pt-2'>
       <div class='col-sm-12'>
-        <%= link_to 'Back', [:admin, @customer], class: 'btn btn-sm btn-secondary' %>
-        <%= link_to 'Edit', [:edit, :admin, @customer, @location], class: 'btn btn-sm btn-primary' %>
+        <%= link_to 'Back', [:admin, :locations], class: 'btn btn-sm btn-secondary' %>
+        <%= link_to 'Edit', [:edit, :admin, @location], class: 'btn btn-sm btn-primary' %>
       </div>
     </div>
   </div>
   <div class='col-sm-6'>
     <div class='embed-responsive embed-responsive-16by9'>
-      <iframe class='embed-responsive-item' width='600' height='400' id='gmap_canvas' src='https://maps.google.com/maps?q=<%= @location.city %>&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+      <iframe class='embed-responsive-item' width='600' height='400' id='gmap_canvas' src='https://maps.google.com/maps?q=<%= @location.primary_address.city %>&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
     </div>
   </div>
 </div>

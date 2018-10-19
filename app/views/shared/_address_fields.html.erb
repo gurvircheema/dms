@@ -1,0 +1,17 @@
+<%= ff.input :address_line_1 %>
+<div class='row'>
+  <div class='col-md-8'>
+    <%= ff.input :city %>
+  </div>
+  <div class='col-md-4'>
+    <%= ff.input :state_province, collection: State.list.collect { |f| [f[1], f[0]]} %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-6'>
+    <%= ff.input :country, collection: Country.list.values, selected: 'Canada' %>
+  </div>
+  <div class='col-md-6'>
+    <%= ff.input :zipcode %>    
+  </div>
+</div>

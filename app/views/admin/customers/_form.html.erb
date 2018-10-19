@@ -4,44 +4,18 @@
       <%= f.input :name %>
       <div class='row'>
         <div class='col-md-6'>
-          <%= f.input :address %>
-          <div class='row'>
-            <div class='col-md-8'>
-              <%= f.input :city %>
-            </div>
-            <div class='col-md-4'>
-              <%= f.input :province %>
-            </div>
-          </div>
-          <div class='row'>
-            <div class='col-md-6'>
-              <%= f.input :country, collection: ['Canada', 'US'] %>
-            </div>
-            <div class='col-md-6'>
-              <%= f.input :zip %>
-            </div>
-          </div>
+          <div class='secondary-header'>Primary Address</div>
+          <%= f.simple_fields_for :address do |a| %>
+            <%= render 'shared/address_fields', ff: a %>
+          <% end %>
           <%= label_tag 'Billing address is same as main address' %>
           <%= check_box_tag 'same_billing_address' %>
         </div>
         <div class='col-md-6'>
-          <%= f.input :billing_address %>
-          <div class='row'>
-            <div class='col-md-8'>
-              <%= f.input :billing_city %>
-            </div>
-            <div class='col-md-4'>
-              <%= f.input :billing_province %>
-            </div>
-          </div>
-          <div class='row'>
-            <div class='col-md-6'>
-              <%= f.input :billing_country, collection: ['Canada', 'US'] %>
-            </div>
-            <div class='col-md-6'>
-              <%= f.input :billing_zip %>
-            </div>
-          </div>
+          <div class='secondary-header'>Billing Address</div>
+          <%= f.simple_fields_for :billing_address do |a| %>
+            <%= render 'shared/address_fields', ff: a %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -53,5 +27,5 @@
     </div>
   </div>
   <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
-  <%= link_to 'Cancel', [:admin, :customers], class: 'btn btn-sm btn-secondary' %>
+  <%= link_to 'Cancel', back_url(@customer), class: 'btn btn-sm btn-secondary' %>
 <% end %>

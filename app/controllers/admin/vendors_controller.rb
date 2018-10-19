@@ -7,6 +7,8 @@ class Admin::VendorsController < Admin::ApplicationController
 
   def new
     @vendor = Vendor.new
+    @vendor.build_address
+    @vendor.build_remit_address
   end
 
   def create
@@ -20,7 +22,10 @@ class Admin::VendorsController < Admin::ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    @vendor.build_address unless @vendor.address
+    @vendor.build_remit_address unless @vendor.remit_address
+  end
 
   def update
     if @vendor.update(vendor_params)
@@ -46,26 +51,17 @@ class Admin::VendorsController < Admin::ApplicationController
       :internal_name,
       :legal_name,
       :remit_name,
+      :email,
       :account_number,
       :website,
       :federal_id_number,
       :preferred_currency,
       :payment_terms,
       :required_1099,
-      :address,
-      :city,
-      :state_province,
-      :country,
-      :zip,
       :phone,
       :toll_free,
       :fax,
       :remit_same_as_primary_address,
-      :remit_address,
-      :remit_city,
-      :remit_state_province,
-      :remit_country,
-      :remit_zip,
       :remit_phone,
       :remit_toll_free,
       :remit_fax,
@@ -88,11 +84,19 @@ class Admin::VendorsController < Admin::ApplicationController
       :liability_coverage,
       :liability_insurance_start_date,
       :liability_insurance_expiry_date,
-      :cargo_insurnace_provider,
+      :cargo_insurance_provider,
       :cargo_insurance_policy_number,
       :cargo_insurance_coverage,
       :cargo_insurance_start_date,
       :cargo_insurance_expiry_date,
+      address_attributes: [
+        :address_line_1, :address_line_2, :city, :state_province,
+        :country, :zipcode
+      ],
+      remit_address_attributes: [
+        :address_line_1, :address_line_2, :city, :state_province,
+        :country, :zipcode
+      ]
     )
   end
 end

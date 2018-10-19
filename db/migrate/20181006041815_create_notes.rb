@@ -6,6 +6,8 @@ class CreateNotes < ActiveRecord::Migration[5.2]
       t.string :subject
       t.text :description
       t.references :user, foreign_key: true
+      t.datetime :deleted_at
+      t.string :deleted_by
 
       t.timestamps
     end
