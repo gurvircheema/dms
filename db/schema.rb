@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_16_234109) do
+ActiveRecord::Schema.define(version: 2018_10_17_072902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 2018_10_16_234109) do
     t.index ["driver_id"], name: "index_addresses_on_driver_id"
     t.index ["location_id"], name: "index_addresses_on_location_id"
     t.index ["vendor_id"], name: "index_addresses_on_vendor_id"
+  end
+
+  create_table "customer_locations", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer_locations_on_customer_id"
+    t.index ["location_id"], name: "index_customer_locations_on_location_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -331,6 +340,8 @@ ActiveRecord::Schema.define(version: 2018_10_16_234109) do
   add_foreign_key "addresses", "drivers"
   add_foreign_key "addresses", "locations"
   add_foreign_key "addresses", "vendors"
+  add_foreign_key "customer_locations", "customers"
+  add_foreign_key "customer_locations", "locations"
   add_foreign_key "drop_locations", "loads"
   add_foreign_key "drop_locations", "locations"
   add_foreign_key "equipment", "drivers"
