@@ -7,15 +7,15 @@ gem 'rails', '~> 5.2.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1.3'
 gem 'coffee-rails', '~> 4.2'
-gem 'devise'
-gem 'foreman'
+gem 'devise', '~> 4.5'
+gem 'foreman', '~> 0.85.0'
 gem 'jbuilder', '~> 2.5'
-gem 'jquery-rails'
-gem 'mini_magick', :git => 'git://github.com/minimagick/minimagick.git', :ref => '6d0f8f953112cce6324a524d76c7e126ee14f392'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+gem 'mini_magick', '~> 4.9', '>= 4.9.2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
-gem 'simple_form'
+gem 'simple_form', '~> 4.0', '>= 4.0.1'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 3.5'
@@ -35,13 +35,14 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'chromedriver-helper'
-  gem 'database_cleaner'
-  gem 'factory_bot_rails'
-  gem 'ffaker'
-  gem 'rails-controller-testing'
+  gem 'database_cleaner', '~> 1.7'
+  gem 'factory_bot_rails', '~> 4.11', '>= 4.11.1'
+  gem 'ffaker', '~> 2.10'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
+  gem 'rspec_junit_formatter', '~> 0.4.1'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'simplecov', require: false
+  gem 'simplecov', '~> 0.16.1', require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
