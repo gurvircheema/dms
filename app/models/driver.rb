@@ -1,11 +1,10 @@
 class Driver < ApplicationRecord
+  include SoftDeletable
   has_many :violation_tickets
   has_many :licenses
   has_one :address
 
   validates_presence_of :name, :phone, :email, :active
-
-  default_scope { where(deleted_at: nil) }
 
   accepts_nested_attributes_for :address
 

@@ -1,4 +1,5 @@
 class Address < ApplicationRecord
+  include SoftDeletable
   belongs_to :location, optional: true
   belongs_to :customer, optional: true
   belongs_to :vendor, optional: true
@@ -7,8 +8,6 @@ class Address < ApplicationRecord
   validates_presence_of :city, :state_province, :country
   validates_inclusion_of :country, in: Country.list.values
   validates_inclusion_of :state_province, in: State.list.keys
-
-  default_scope { where(deleted_at: nil) }
 
   def full_address
     "#{address_line_1}, #{city}, #{state_province} #{zipcode}"

@@ -1,11 +1,10 @@
 class Vendor < ApplicationRecord
+  include SoftDeletable
   has_many :notes, as: :notable
   has_one :address
   has_one :remit_address, class_name: 'Address', foreign_key: :vendor_id
 
   validates_presence_of :internal_name, :legal_name, :remit_name, :vendor_type
-
-  default_scope { where(deleted_at: nil) }
 
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :remit_address
