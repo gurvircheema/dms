@@ -14,6 +14,17 @@ class Admin::CustomerLocationsController < Admin::ApplicationController
     end
   end
 
+  def destroy
+    length = @customer.customer_locations.length
+    if length > 1
+      @customer_location = @customer.customer_locations.find(params[:id])
+      @customer_location.destroy
+      redirect_to [:admin, @customer], notice: 'Customer Location removed'
+    else
+      redirect_to [:admin, @customer], alert: 'Customer should have atleast one location'
+    end
+  end
+
   private
 
   def set_customer

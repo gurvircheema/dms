@@ -1,0 +1,122 @@
+<div class='primary-header'>
+  <%= @company.name %>
+  <small class='text-muted'>Company Information</small>
+  <span class='float-right'>
+    <%= link_to 'Edit', [:edit, :admin, @company], class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', root_path, class: 'btn btn-sm btn-secondary' %>
+  </span>
+</div>
+<div class='row small'>
+  <div class='col-md-4'>
+    <table class='table table-sm table-borderless'>
+      <tr>
+        <th class='td-35'>Name</th>
+        <td class='td-65'><%= @company.name %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Address</th>
+        <td class='td-65'>
+          <div><%= @company.address.try(:address_line_1) %></div>
+          <div><%= @company.address.try(:city) %>, <%= @company.address.try(:state_province) %></div>
+          <div><%= @company.address.try(:country) %> <%= @company.address.try(:zipcode) %></div>
+        </td>
+      </tr>
+      <tr>
+        <th class='td-35'>Contact</th>
+        <td class='td-65'><%= @company.contact %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Starting Date</th>
+        <td class='td-65'><%= @company.starting_date %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Phone</th>
+        <td class='td-65'><%= @company.phone %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Fax</th>
+        <td class='td-65'><%= @company.fax %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Email</th>
+        <td class='td-65'><%= @company.email %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Website</th>
+        <td class='td-65'><%= @company.website %></td>
+      </tr>
+    </table>
+  </div>
+  <div class='col-md-4'>
+    <table class='table table-sm table-borderless'>
+      <tr>
+        <th class='td-35'>HST Number</th>
+        <td class='td-65'><%= @company.hst_num %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>HST Percentage</th>
+        <td class='td-65'><%= @company.hst_percentage %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>PST Number</th>
+        <td class='td-65'><%= @company.pst_num %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>PST Percentage</th>
+        <td class='td-65'><%= @company.pst_percentage %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>GST Number</th>
+        <td class='td-65'><%= @company.gst_num %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>GST Percentage</th>
+        <td class='td-65'><%= @company.gst_percentage %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>US Dot</th>
+        <td class='td-65'><%= @company.us_dot %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>MC Number</th>
+        <td class='td-65'><%= @company.mc_num %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>CVOR Number</th>
+        <td class='td-65'><%= @company.cvor_num %></td>
+      </tr>
+    </table>
+  </div>
+  <div class='col-md-4'>
+    <table class='table table-sm table-borderless'>
+      <tr>
+        <th class='td-35'>Factoring Company</th>
+        <td class='td-65'><%= @company.factory_company %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Last Invoice</th>
+        <td class='td-65'><%= @company.last_invoice %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Customer Invoice Notes</th>
+        <td class='td-65'><%= @company.terms_for_customer_invoice %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Terms & Conditions for Carrier</th>
+        <td class='td-65'><%= @company.terms_conditions_for_carrier %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Notes for Bill of Lading</th>
+        <td class='td-65'><%= @company.notes_for_bol %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Notes for Factor Invoice</th>
+        <td class='td-65'><%= @company.notes_for_factor_invoice %></td>
+      </tr>
+      <tr>
+        <th class='td-35'>Notes on Reminder Letter</th>
+        <td class='td-65'><%= @company.notes_on_reminder_letter %></td>
+      </tr>
+    </table>
+  </div>
+</div>

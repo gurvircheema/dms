@@ -67,7 +67,10 @@
               <td><%= cl.location.name %></td>
               <td><%= cl.location.primary_address.address_line_1 %></td>
               <td><%= cl.location.primary_address.city %> <%= cl.location.primary_address.state_province %></td>
-              <td><%= link_to 'Show', [:admin, cl.location], class: 'btn-link btn-sm' %></td>
+              <td>
+                <%= link_to 'Show', [:admin, cl.location], class: 'btn-link btn-xs' %>
+                <%= link_to 'Delete', [:admin, @customer, cl], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-link btn-xs' %>
+              </td>
             </tr>
           <% end %>
         </tbody>

@@ -1,0 +1,57 @@
+<div class='primary-header'>
+  Edit Company
+  <span class='float-right'>
+    <%= link_to 'Back', [:admin, @company], class: 'btn btn-sm btn-secondary' %>
+  </span>
+</div>
+<%= simple_form_for([:admin, @company], html: { class: 'form'}) do |f| %>
+<div class='row'>
+  <div class='col-md-4'>
+    <%= f.input :name %>
+    <%= f.input :contact %>
+    <%= f.input :starting_date, html5: true, as: :date %>
+    <%= f.input :phone %>
+    <%= f.input :fax %>
+    <%= f.input :email %>
+    <%= f.input :website %>
+  </div>
+  <div class='col-md-4'>
+    <div class='row'>
+      <div class='col-md-8'><%= f.input :hst_num %></div>
+      <div class='col-md-4'><%= f.input :hst_percentage %></div>
+    </div>
+    <div class='row'>
+      <div class='col-md-8'><%= f.input :pst_num %></div>
+      <div class='col-md-4'><%= f.input :pst_percentage %></div>
+    </div>
+    <div class='row'>
+      <div class='col-md-8'><%= f.input :gst_num %></div>
+      <div class='col-md-4'><%= f.input :gst_percentage %></div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'><%= f.input :us_dot %></div>
+      <div class='col-md-6'><%= f.input :mc_num %></div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'><%= f.input :cvor_num %></div>
+      <div class='col-md-6'><%= f.input :currency %></div>
+    </div>
+    <%= f.input :state, collection: State.list.collect { |f| [f[1], f[0]]} %>
+    <div class='row'>
+      <div class='col-md-6'><%= f.input :scac_code %></div>
+      <div class='col-md-6'><%= f.input :carrier_code %></div>
+    </div>
+  </div>
+  <div class='col-md-4'>
+    <%= f.input :factory_company %>
+    <%= f.input :last_invoice %>
+    <%= f.input :terms_for_customer_invoice %>
+    <%= f.input :terms_conditions_for_carrier %>
+    <%= f.input :notes_for_bol %>
+    <%= f.input :notes_for_factor_invoice %>
+    <%= f.input :notes_on_reminder_letter %>
+  </div>
+</div>
+  <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+  <%= link_to 'Back', [:admin, @company], class: 'btn btn-sm btn-secondary' %>
+<% end %>

@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
   namespace :admin do
+    resources :companies, only: [:show, :edit, :update]
     resources :drivers do
       resources :violation_tickets, except: [:index, :destroy]
       resources :licenses, except: [:index, :destroy]
     end
     resources :customers, except: [:destroy] do
-      resources :customer_locations, only: [:new, :create]
+      resources :customer_locations, only: [:new, :create, :destroy]
     end
     resources :locations, except: [:destroy]
     resources :equipment do
