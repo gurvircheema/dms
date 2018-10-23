@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_072902) do
+ActiveRecord::Schema.define(version: 2018_10_22_161526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,40 @@ ActiveRecord::Schema.define(version: 2018_10_17_072902) do
     t.index ["driver_id"], name: "index_addresses_on_driver_id"
     t.index ["location_id"], name: "index_addresses_on_location_id"
     t.index ["vendor_id"], name: "index_addresses_on_vendor_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "address_id"
+    t.string "contact", null: false
+    t.date "starting_date", null: false
+    t.string "phone", null: false
+    t.string "fax", null: false
+    t.string "email", null: false
+    t.string "website", null: false
+    t.string "hst_num"
+    t.decimal "hst_percentage", precision: 10, scale: 2
+    t.string "pst_num"
+    t.decimal "pst_percentage", precision: 10, scale: 2
+    t.string "gst_num"
+    t.decimal "gst_percentage", precision: 10, scale: 2
+    t.string "factory_company"
+    t.string "us_dot"
+    t.string "mc_num"
+    t.string "cvor_num"
+    t.string "currency", null: false
+    t.string "state", null: false
+    t.string "scac_code"
+    t.string "carrier_code"
+    t.string "last_invoice", default: "1", null: false
+    t.string "terms_for_customer_invoice"
+    t.string "terms_conditions_for_carrier"
+    t.string "notes_for_bol"
+    t.string "notes_for_factor_invoice"
+    t.string "notes_on_reminder_letter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_companies_on_address_id"
   end
 
   create_table "customer_locations", force: :cascade do |t|
@@ -341,6 +375,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_072902) do
   add_foreign_key "addresses", "drivers"
   add_foreign_key "addresses", "locations"
   add_foreign_key "addresses", "vendors"
+  add_foreign_key "companies", "addresses"
   add_foreign_key "customer_locations", "customers"
   add_foreign_key "customer_locations", "locations"
   add_foreign_key "drop_locations", "loads"
