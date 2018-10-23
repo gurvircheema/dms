@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
-  layout :layout_by_resource
   before_action :authenticate_user!
+
+  def index
+    flash.notice = 'No page found at that address'
+    redirect_to root_path
+  end
 
   private
 

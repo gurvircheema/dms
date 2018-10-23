@@ -22,4 +22,6 @@ Rails.application.routes.draw do
       resources :drop_locations, only: [:new, :create, :destroy]
     end
   end
+
+  match '*path', to: 'application#index', via: :all
 end
