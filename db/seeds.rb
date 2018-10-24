@@ -20,6 +20,4 @@ ActiveRecord::Base.transaction do
     currency: ENV['company_currency'],
     last_invoice: ENV['company_last_invoice'],
   )
-  byebug
-  false
 end
