@@ -11,4 +11,8 @@ class User < ApplicationRecord
   def destroy
     update(deleted_at: Time.now)
   end
+
+  def role?(role)
+    roles.any? { |r| r.name.underscore.to_sym == role }
+  end
 end
