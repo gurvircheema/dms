@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :pickup_locations, only: [:new, :create, :destroy]
       resources :drop_locations, only: [:new, :create, :destroy]
     end
+    resources :users, except: [:show]
   end
 
   match '*path', to: 'application#index', via: :all

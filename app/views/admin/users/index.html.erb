@@ -1,0 +1,31 @@
+<div class='primary-header'>
+  Users
+  <span class='float-right'>
+    <%= link_to 'New User', [:new, :admin, :user], class: 'btn btn-sm btn-primary' %>
+  </span>
+</div>
+<div class='table-responsive small'>
+  <table class='table table-sm table-bordered'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to 'Edit', [:edit, :admin, user], class: 'btn btn-xs btn-outline-primary' %>
+            <%= link_to 'Delete', [:admin, user], method: :delete, data: { confirm: 'Are you sure ?' }, class: 'btn btn-xs btn-outline-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
