@@ -21,9 +21,11 @@
         <li class='nav-item'>
           <%= link_to 'Vendors', [:admin, :vendors], class: 'nav-link' %>
         </li>
-        <li class='nav-item'>
-          <%= link_to 'Loads', [:admin, :loads], class: 'nav-link' %>
-        </li>
+        <% if policy(Load.new).index? %>
+          <li class='nav-item'>
+            <%= link_to 'Loads', [:admin, :loads], class: 'nav-link' %>
+          </li>
+        <% end %>
         <li class='nav-item'>
           <%= link_to 'Company', [:admin, Company.first], class: 'nav-link' %>
         </li>
