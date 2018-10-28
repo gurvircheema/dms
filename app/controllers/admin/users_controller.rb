@@ -3,14 +3,17 @@ class Admin::UsersController < Admin::ApplicationController
 
   def index
     @users = User.all
+    authorize @users
   end
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
     @user = User.new(user_params)
+    authorize @user
     if @user.save
       redirect_to [:admin, :users], notice: 'New user added.'
     else
@@ -19,9 +22,11 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def edit
+    authorize @user
   end
 
   def update
+    authorize @user
     if @user.update(user_params)
       redirect_to [:admin, :users], notice: 'User updated'
     else
@@ -30,6 +35,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def destroy
+    authorize @user
     @user.destroy
     redirect_to [:admin, :users], notice: 'User deleted'
   end

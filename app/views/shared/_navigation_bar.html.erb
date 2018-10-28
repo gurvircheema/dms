@@ -29,9 +29,11 @@
         <li class='nav-item'>
           <%= link_to 'Company', [:admin, Company.first], class: 'nav-link' %>
         </li>
-        <li class='nav-item'>
-          <%= link_to 'Users', [:admin, :users], class: 'nav-link' %>
-        </li>
+        <% if policy(User.new).index? %>
+          <li class='nav-item'>
+            <%= link_to 'Users', [:admin, :users], class: 'nav-link' %>
+          </li>
+        <% end %>
       </ul>
     </div>
     <form class='form-inline' action='/search'>
