@@ -36,9 +36,11 @@
             <%= link_to 'Loads', [:admin, :loads], class: 'nav-link' %>
           </li>
         <% end %>
-        <li class='nav-item'>
-          <%= link_to 'Company', [:admin, Company.first], class: 'nav-link' %>
-        </li>
+        <% if policy(Load.new).index? %>
+          <li class='nav-item'>
+            <%= link_to 'Company', [:admin, Company.first], class: 'nav-link' %>
+          </li>
+        <% end %>
         <% if policy(User.new).index? %>
           <li class='nav-item'>
             <%= link_to 'Users', [:admin, :users], class: 'nav-link' %>

@@ -1,10 +1,10 @@
 class LocationPolicy < ApplicationPolicy
-	attr_reader :user, :load
+	attr_reader :user, :location
 
-	def initialize(user, load)
+	def initialize(user, location)
 		raise Pundit::NotAuthorizedError, "must be logged in" unless user
 		@user = user
-		@load = load
+		@location = location
 	end
 
 	def index?

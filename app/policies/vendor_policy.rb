@@ -1,10 +1,10 @@
 class VendorPolicy < ApplicationPolicy
-	attr_reader :user, :load
+	attr_reader :user, :vendor
 
-	def initialize(user, load)
+	def initialize(user, vendor)
 		raise Pundit::NotAuthorizedError, "must be logged in" unless user
 		@user = user
-		@load = load
+		@vendor = vendor
 	end
 
 	def index?

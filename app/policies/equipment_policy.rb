@@ -1,10 +1,10 @@
 class EquipmentPolicy < ApplicationPolicy
-	attr_reader :user, :load
+	attr_reader :user, :equipment
 
-	def initialize(user, load)
+	def initialize(user, equipment)
 		raise Pundit::NotAuthorizedError, "must be logged in" unless user
 		@user = user
-		@load = load
+		@equipment = equipment
 	end
 
 	def index?

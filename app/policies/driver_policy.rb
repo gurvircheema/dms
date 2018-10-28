@@ -1,10 +1,10 @@
 class DriverPolicy < ApplicationPolicy
-	attr_reader :user, :load
+	attr_reader :user, :driver
 
-	def initialize(user, load)
+	def initialize(user, driver)
 		raise Pundit::NotAuthorizedError, "must be logged in" unless user
 		@user = user
-		@load = load
+		@driver = driver
 	end
 
 	def index?

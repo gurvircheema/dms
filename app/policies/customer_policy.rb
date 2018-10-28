@@ -1,10 +1,10 @@
 class CustomerPolicy < ApplicationPolicy
-	attr_reader :user, :load
+	attr_reader :user, :customer
 
-	def initialize(user, load)
+	def initialize(user, customer)
 		raise Pundit::NotAuthorizedError, "must be logged in" unless user
 		@user = user
-		@load = load
+		@customer = customer
 	end
 
 	def index?
