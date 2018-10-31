@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, @user], html: { class: 'form' }) do |f| %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <%= f.input :name %>
+      <%= f.input :email %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+      <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+      <%= link_to 'Back', [:admin, :users], class: 'btn btn-sm btn-secondary' %>
+    </div>
+  </div>
+<% end %>

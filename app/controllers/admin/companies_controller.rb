@@ -2,12 +2,15 @@ class Admin::CompaniesController < Admin::ApplicationController
   before_action :find_company
 
   def show
+    authorize @company
   end
 
   def edit
+    authorize @company
   end
 
   def update
+    authorize @company
     @company.update!(company_params)
     redirect_to [:admin, @company], notice: 'Company updated'
   end

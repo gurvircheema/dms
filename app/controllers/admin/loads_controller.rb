@@ -2,17 +2,20 @@ class Admin::LoadsController < Admin::ApplicationController
   before_action :set_load, only: [:show, :edit, :update, :destroy]
 
   def index
-    @loads = Load.all
+    @loads = Load.includes(:customer, :vendor).all
+    authorize @loads
   end
 
   def new
     @load = Load.new
     @load.pickup_locations.build
     @load.drop_locations.build
+    authorize @load
   end
 
   def create
     @load = Load.new(load_params)
+    authorize @load
     if @load.save
       redirect_to [:admin, @load], notice: 'New load created'
     else
@@ -21,14 +24,17 @@ class Admin::LoadsController < Admin::ApplicationController
   end
 
   def show
+    authorize @load
   end
 
   def edit
+    authorize @load
     @load.pickup_locations.build if @load.pickup_locations.empty?
     @load.drop_locations.build if @load.drop_locations.empty?
   end
 
   def update
+    authorize @load
     if @load.update(load_params)
       redirect_to [:admin, @load], notice: 'Load updated'
     else
@@ -37,6 +43,7 @@ class Admin::LoadsController < Admin::ApplicationController
   end
 
   def destroy
+    authorize @load
     @load.update(deleted_at: Time.now, deleted_by: current_user)
     redirect_to [:admin, @load], notice: 'Load deleted'
   end
