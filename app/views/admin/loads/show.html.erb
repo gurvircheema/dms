@@ -45,7 +45,8 @@
   </div>
   <div class='col-md-8 col-sm-12'>
     <div class='secondary-header small'>Actions</div>
-    <%= link_to 'Print load confirmation', '#', class: 'btn btn-xs btn-outline-primary' %>
+    <%= link_to 'Load Confirmation', [:admin, :load_confirmation], class: 'btn btn-xs btn-outline-primary' %>
+    <%= link_to 'Download PDF', [:admin, :load_confirmation, format: :pdf], target: '_blank', class: 'btn btn-xs btn-outline-danger' %>
     <%= link_to 'Email load confirmation', '#', class: 'btn btn-xs btn-outline-primary' %>
     <%= link_to 'Print Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
     <%= link_to 'Email Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
@@ -61,20 +62,27 @@
       <table class='table table-sm'>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Ref #</th>
-            <th>LTL</th>
-            <th>Commodity</th>
+            <th style='width: 35%'>Name</th>
+            <th style='width: 15%'>Contact</th>
+            <th style='width: 15%'>Ref #</th>
+            <th style='width: 15%'>Appt Date/Time</th>
+            <th style='width: 15%'>Commodity</th>
+            <th style='width: 5%'></th>
           </tr>
         </thead>
         <tbody>
           <% @load.pickup_locations.each do |pickup| %>
             <tr>
-              <td><%= pickup.location.name %></td>
-              <td><%= pickup.location.primary_address.full_address %></td>
+              <td>
+                <%= pickup.location.name %><br>
+                <%= pickup.location.primary_address.full_address %>
+              </td>
+              <td><%= pickup.contact %></td>
               <td><%= pickup.ref_number %></td>
-              <td><%= pickup.ltl %></td>
+              <td>
+                <%= pickup.appt_date.strftime("%b %d, %Y") %><br>
+                <%= pickup.appt_date.strftime("%I:%M %p") %>
+              </td>
               <td><%= pickup.commodity %></td>
               <td><%= link_to 'delete', [:admin, @load, pickup], method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-xs btn-danger' %></td>
             </tr>
@@ -93,20 +101,27 @@
       <table class='table table-sm'>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Ref #</th>
-            <th>LTL</th>
-            <th>Commodity</th>
+            <th style='width: 35%'>Name</th>
+            <th style='width: 15%'>Contact</th>
+            <th style='width: 15%'>Ref #</th>
+            <th style='width: 15%'>Appt Date/Time</th>
+            <th style='width: 15%'>Commodity</th>
+            <th style='width: 5%'></th>
           </tr>
         </thead>
         <tbody>
           <% @load.drop_locations.each do |drop| %>
             <tr>
-              <td><%= drop.location.name %></td>
-              <td><%= drop.location.primary_address.full_address %></td>
+              <td>
+                <%= drop.location.name %><br>
+                <%= drop.location.primary_address.full_address %>
+              </td>
+              <td><%= drop.contact %></td>
               <td><%= drop.ref_number %></td>
-              <td><%= drop.ltl %></td>
+              <td>
+                <%= drop.appt_date.strftime("%b %d, %Y") %><br>
+                <%= drop.appt_date.strftime("%I:%M %p") %>
+              </td>
               <td><%= drop.commodity %></td>
               <td><%= link_to 'delete', [:admin, @load, drop], method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-xs btn-danger' %></td>
             </tr>
@@ -115,5 +130,4 @@
       </table>
     </div>
   </div>
-
 </div>
