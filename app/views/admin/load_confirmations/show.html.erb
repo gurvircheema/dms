@@ -1,0 +1,137 @@
+<div class='primary-header'>
+  Load Confirmation
+  <small class='text-muted'>Load #<%= @load.id %></small>
+  <span class='float-right'>
+    <%= link_to 'Download PDF', [:admin, :load_confirmation, format: :pdf], target: '_blank', class: 'btn btn-sm btn-danger' %>
+    <%= link_to 'Back', [:admin, @load], class: 'btn btn-sm btn-secondary' %>
+  </span>
+</div>
+<div class='row mb-2'>
+  <div class='col-sm-8'>
+    <div class='secondary-header'>Company</div>
+    <div><b>Isher Transport Ltd.</b></div>
+    <div class='address'>8051 Hyde St</div>
+    <div class='address'>Mission BC</div>
+    <div class='address'>V2V 6Z9</div>
+    <div class='address'>Email: info@isher.ca</div>
+    <div class='address'>Phone: 604-287-7600</div>
+  </div>
+  <div class='col-sm-4'>
+    <div class='secondary-header'>Carrier</div>
+    <div class='company-name'><b><%= @load.vendor.internal_name %></b></div>
+    <div class='address'><%= @load.vendor.address.address_line_1 %></div>
+    <div class='address'><%= @load.vendor.address.city %> <%= @load.vendor.address.state_province %></div>
+    <div class='address'><%= @load.vendor.address.zipcode %></div>
+    <div class='address'>Email: <%= @load.vendor.email %></div>
+    <div class='address'>Phone: <%= @load.vendor.phone %></div>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='secondary-header'>Pickup</div>
+  </div>
+  <div class='col-md-12 table-responsive'>
+    <table class='table table-sm table-borderless'>
+      <thead class='thead-light'>
+        <tr>
+          <th style='width:35%'>Address</th>
+          <th style='width:15%'>Contact</th>
+          <th style='width:15%'>Ref</th>
+          <th style='width:15%'>Date/Time</th>
+          <th style='width:20%'>Goods</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @load.pickup_locations.each do |pickup| %>
+          <tr>
+            <td>
+              <%= pickup.location.address.address_line_1 %><br>
+              <%= pickup.location.address.city %>
+              <%= pickup.location.address.state_province %><br>
+              <%= pickup.location.address.country %>
+              <%= pickup.location.address.zipcode %>
+            </td>
+            <td><%= pickup.contact %></td>
+            <td><%= pickup.ref_number %></td>
+            <td>
+              <%= pickup.appt_date.strftime("%b %d, %Y") %><br>
+              <%= pickup.appt_date.strftime("%I:%M %p") %>
+            </td>
+            <td><%= pickup.commodity %></td>
+          </tr>
+          <% if pickup.notes.present? %>
+            <tr class='small'>
+              <td colspan='6'><b><i>Note: </i></b><%= pickup.notes %><td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='secondary-header'>Drops</div>
+  </div>
+  <div class='col-md-12 table-responsive'>
+    <table class='table table-sm table-borderless'>
+      <thead class='thead-light'>
+        <tr>
+          <th style='width:35%'>Address</th>
+          <th style='width:15%'>Contact</th>
+          <th style='width:15%'>Ref</th>
+          <th style='width:15%'>Date/Time</th>
+          <th style='width:20%'>Goods</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @load.drop_locations.each do |drop| %>
+          <tr>
+            <td>
+              <%= drop.location.address.address_line_1 %><br>
+              <%= drop.location.address.city %>
+              <%= drop.location.address.state_province %><br>
+              <%= drop.location.address.country %>
+              <%= drop.location.address.zipcode %>
+            </td>
+            <td><%= drop.contact %></td>
+            <td><%= drop.ref_number %></td>
+            <td>
+              <%= drop.appt_date.strftime("%b %d, %Y") %><br>
+              <%= drop.appt_date.strftime("%I:%M %p") %>
+            </td>
+            <td><%= drop.commodity %></td>
+          </tr>
+          <% if drop.notes.present? %>
+            <tr class='small'>
+              <td colspan='6'><b><i>Note: </i></b><%= drop.notes %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class='row small'>
+  <div class='col'>
+    The office must be notified immidiately of any problems or delays
+    <ul>
+      <li>Driver must ID as Isher Transport Ltd.</li>
+      <li>Original Bill of Lading with Proof of Delivery with signature on it is required for payment</li>
+      <li>No double brokering or back solicitation permitted. This may result into <b>Non-Payment</b>.</li>
+      <li>Isher Transport Ltd. assums no responsibility to person(s) or property in the event of loss or liability that may occur during the fulfillment of this load agreement.</li>
+      <li>Carrier must hold all neccessary insurance and authorities</li>
+      <li>Any freight claims may be deducted from the agreed rate.</li>
+      <li>Please send all your pods at pod@isher.ca</li>
+    </ul>
+  </div>
+</div>
+<% content_for :footer do %>
+  <div class='container-fluid'>
+    <div class='row small'>
+      <div class='col align-self-start'><%= Date.today %></div>
+      <div class='col align-self-end text-right'>Powered by DMS</div>
+    </div>
+  </div>
+<% end %>

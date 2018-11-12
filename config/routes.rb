@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :pickup_locations, only: [:new, :create, :destroy]
       resources :drop_locations, only: [:new, :create, :destroy]
     end
+    resources :load_confirmations, only: [:show]
     resources :users, except: [:show]
   end
 
