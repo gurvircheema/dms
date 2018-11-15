@@ -7,7 +7,7 @@
 <div class='row mb-2'>
   <table>
     <tr>
-      <td style='width:75%'>
+      <td style='width:40%'>
         <div class='secondary-header'>Company</div>
         <div class='company-name'><b>Isher Transport Ltd.</b></div>
         <div class='address'>8051 Hyde St</div>
@@ -16,7 +16,7 @@
         <div class='address'>Email: info@isher.ca</div>
         <div class='address'>Phone: 604-287-7600</div>
       </td>
-      <td>
+      <td style='width:40%'>
         <div class='secondary-header'>Carrier</div>
         <div class='company-name'><b><%= @load.vendor.internal_name %></b></div>
         <div class='address'><%= @load.vendor.address.address_line_1 %></div>
@@ -24,6 +24,21 @@
         <div class='address'><%= @load.vendor.address.zipcode %></div>
         <div class='address'>Email: <%= @load.vendor.email %></div>
         <div class='address'>Phone: <%= @load.vendor.phone %></div>
+      </td>
+      <td>
+        <table class='table table-sm table-borderless'>
+          <tr>
+            <th class='table-secondary'>Load Number</th>
+            <td><%= @load.id %></td>
+          </tr>
+          <tr>
+            <th class='table-secondary text-right'>Price (CAD) $</th>
+            <td><%= @load.vendor_cost %></td>
+          </tr>
+          <tr><td></td></tr>
+          <tr><td></td></tr>
+          <tr><td></td></tr>
+        </table>
       </td>
     </tr>
   </table>
@@ -33,13 +48,12 @@
     <div class='secondary-header'>Pickups</div>
   </div>
   <table class='table table-sm table-borderless'>
-    <thead class='thead-light'>
+    <thead class='small table-secondary'>
       <tr>
         <th style='width:40%'>Address</th>
-        <th style='width:15%'>Contact</th>
-        <th style='width:15%'>Ref</th>
-        <th style='width:15%'>Date/Time</th>
-        <th style='width:15%'>Goods</th>
+        <th style='width:20%'>Ref No. & Contact</th>
+        <th style='width:20%'>Pickup Date & Time</th>
+        <th style='width:20%'>Goods & Weight</th>
       </tr>
     </thead>
     <tbody>
@@ -53,13 +67,17 @@
             <%= pickup.location.address.country %>
             <%= pickup.location.address.zipcode %>
           </td>
-          <td><%= pickup.contact %></td>
-          <td><%= pickup.ref_number %></td>
+          <td>
+            <b><%= pickup.ref_number %></b><br>
+            <i><%= pickup.contact %></i>
           <td>
             <%= pickup.appt_date.strftime("%b %d, %Y") %><br>
             <%= pickup.appt_date.strftime("%I:%M %p") %>
           </td>
-          <td><%= pickup.commodity %></td>
+          <td>
+            <%= pickup.commodity %><br>
+            <%= pickup.weight %>
+          </td>
         </tr>
         <% if pickup.notes.present? %>
           <tr>
@@ -75,13 +93,12 @@
     <div class='secondary-header'>Drops</div>
   </div>
   <table class='table table-sm table-borderless'>
-    <thead class='thead-light'>
+    <thead class='small table-secondary'>
       <tr>
         <th style='width:40%'>Address</th>
-        <th style='width:15%'>Contact</th>
-        <th style='width:15%'>Ref</th>
-        <th style='width:15%'>Date/Time</th>
-        <th style='width:15%'>Goods</th>
+        <th style='width:20%'>Ref No. & Contact</th>
+        <th style='width:20%'>Pickup Date & Time</th>
+        <th style='width:20%'>Goods & Weight</th>
       </tr>
     </thead>
     <tbody class='small'>
@@ -95,13 +112,18 @@
             <%= drop.location.address.country %>
             <%= drop.location.address.zipcode %>
           </td>
-          <td><%= drop.contact %></td>
-          <td><%= drop.ref_number %></td>
+          <td>
+            <b><%= drop.ref_number %></b><br>
+            <i><%= drop.contact %></i>
+          </td>
           <td>
             <%= drop.appt_date.strftime("%b %d, %Y") %><br>
             <%= drop.appt_date.strftime("%I:%M %p") %>
           </td>
-          <td><%= drop.commodity %></td>
+          <td>
+            <%= drop.commodity %><br>
+            <%= drop.weight %>
+          </td>
         </tr>
         <% if drop.notes.present? %>
           <tr>
@@ -109,6 +131,11 @@
           </tr>
         <% end %>
       <% end %>
+      <tr>
+        <td colspan='2'></td>
+        <th class='text-right table-secondary'>All Inclusive Price</th>
+        <th class='text-center'>$ <%= @load.vendor_cost %></th>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -123,6 +150,7 @@
       <li>Carrier must hold all neccessary insurance and authorities</li>
       <li>Any freight claims may be deducted from the agreed rate.</li>
       <li>Please send all your pods at pod@isher.ca</li>
+      <li>All Prices are in Canadian Dollars (CAD)</li>
     </ul>
   </div>
 </div>

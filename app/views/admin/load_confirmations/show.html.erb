@@ -7,7 +7,7 @@
   </span>
 </div>
 <div class='row mb-2'>
-  <div class='col-sm-8'>
+  <div class='col-sm-4'>
     <div class='secondary-header'>Company</div>
     <div><b>Isher Transport Ltd.</b></div>
     <div class='address'>8051 Hyde St</div>
@@ -25,6 +25,18 @@
     <div class='address'>Email: <%= @load.vendor.email %></div>
     <div class='address'>Phone: <%= @load.vendor.phone %></div>
   </div>
+  <div class='col-sm-4'>
+    <table class='table table-sm table-borderless'>
+      <tr>
+        <th  style='width:40%' class='table-secondary text-right'>Load Number</th>
+        <td><%= @load.id %></td>
+      </tr>
+      <tr>
+        <th class='table-secondary text-right'>Price</th>
+        <td><%= @load.vendor_cost %></td>
+      </tr>
+    </table>
+  </div>
 </div>
 <div class='row'>
   <div class='col-md-12'>
@@ -32,12 +44,12 @@
   </div>
   <div class='col-md-12 table-responsive'>
     <table class='table table-sm table-borderless'>
-      <thead class='thead-light'>
+      <thead class='table-secondary'>
         <tr>
           <th style='width:35%'>Address</th>
           <th style='width:15%'>Contact</th>
           <th style='width:15%'>Ref</th>
-          <th style='width:15%'>Date/Time</th>
+          <th style='width:15%'>Pickup Date & Time</th>
           <th style='width:20%'>Goods</th>
         </tr>
       </thead>
@@ -57,7 +69,10 @@
               <%= pickup.appt_date.strftime("%b %d, %Y") %><br>
               <%= pickup.appt_date.strftime("%I:%M %p") %>
             </td>
-            <td><%= pickup.commodity %></td>
+            <td>
+              <%= pickup.commodity %><br>
+              <%= pickup.weight %>
+            </td>
           </tr>
           <% if pickup.notes.present? %>
             <tr class='small'>
@@ -76,12 +91,12 @@
   </div>
   <div class='col-md-12 table-responsive'>
     <table class='table table-sm table-borderless'>
-      <thead class='thead-light'>
+      <thead class='table-secondary'>
         <tr>
           <th style='width:35%'>Address</th>
           <th style='width:15%'>Contact</th>
           <th style='width:15%'>Ref</th>
-          <th style='width:15%'>Date/Time</th>
+          <th style='width:15%'>Delivery Date & Time</th>
           <th style='width:20%'>Goods</th>
         </tr>
       </thead>
@@ -101,7 +116,10 @@
               <%= drop.appt_date.strftime("%b %d, %Y") %><br>
               <%= drop.appt_date.strftime("%I:%M %p") %>
             </td>
-            <td><%= drop.commodity %></td>
+            <td>
+              <%= drop.commodity %><br>
+              <%= drop.weight %>
+            </td>
           </tr>
           <% if drop.notes.present? %>
             <tr class='small'>
@@ -109,6 +127,11 @@
             </tr>
           <% end %>
         <% end %>
+        <tr>
+          <td colspan='3'></td>
+          <th class='text-right table-secondary'>All Inclusive Price</th>
+          <th>$ <%= @load.vendor_cost %></th>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -124,6 +147,7 @@
       <li>Carrier must hold all neccessary insurance and authorities</li>
       <li>Any freight claims may be deducted from the agreed rate.</li>
       <li>Please send all your pods at pod@isher.ca</li>
+      <li>All Prices are in Canadian Dollars (CAD)</li>
     </ul>
   </div>
 </div>
