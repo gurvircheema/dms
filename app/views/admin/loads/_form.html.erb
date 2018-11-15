@@ -10,6 +10,10 @@
         <div class='col-md-4'><%= f.input :customer_rate %></div>
         <div class='col-md-4'><%= f.input :vendor_cost %></div>
       </div>
+      <div class='row'>
+        <div class='col-md-6'><%= f.input :vendor_id, collection: Vendor.all.collect { |v| [v.internal_name, v.id] } %></div>
+        <div class='col-md-6'><%= f.input :driver_id, collection: Driver.all %></div>
+      </div>
       <%= f.input :customer_notes, as: :text %>
       <div class='row'>
         <div class='col-md-4'>

@@ -31,6 +31,12 @@
       <dt class='col-sm-4'>Vendor Cost</dt>
       <dd class='col-sm-8'><%= @load.vendor_cost.to_i %></dd>
 
+      <dt class='col-sm-4'>Carrier</dt>
+      <dd class='col-sm-8'><%= @load.vendor.try(:internal_name) %></dd>
+
+      <dt class='col-sm-4'>Driver</dt>
+      <dd class='col-sm-8'><%= @load.driver.try(:name) %></dd>
+
       <dt class='col-sm-4'>Status</dt>
       <dd class='col-sm-8'>
         <div>Picked Up: <strong><%= @load.picked_up %></strong></div>
