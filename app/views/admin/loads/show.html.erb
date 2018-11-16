@@ -26,10 +26,10 @@
       <dd class='col-sm-8'><%= @load.customer_ref_number %></dd>
 
       <dt class='col-sm-4'>Customer Rate</dt>
-      <dd class='col-sm-8'><%= @load.customer_rate.to_i %> <%= @load.currency %></dd>
+      <dd class='col-sm-8'><%= number_to_currency(@load.customer_rate.to_f, unit: '$') %> <%= @load.currency %></dd>
 
       <dt class='col-sm-4'>Vendor Cost</dt>
-      <dd class='col-sm-8'><%= @load.vendor_cost.to_i %></dd>
+      <dd class='col-sm-8'><%= number_to_currency(@load.vendor_cost.to_f, unit: '$') %></dd>
 
       <dt class='col-sm-4'>Carrier</dt>
       <dd class='col-sm-8'><%= @load.vendor.try(:internal_name) %></dd>
@@ -89,7 +89,10 @@
                 <%= pickup.appt_date.strftime("%b %d, %Y") %><br>
                 <%= pickup.appt_date.strftime("%I:%M %p") %>
               </td>
-              <td><%= pickup.commodity %></td>
+              <td>
+                <%= pickup.commodity %><br>
+                <%= number_with_precision(pickup.weight, precision: 2) %>
+              </td>
               <td><%= link_to 'delete', [:admin, @load, pickup], method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-xs btn-danger' %></td>
             </tr>
           <% end %>
@@ -128,7 +131,10 @@
                 <%= drop.appt_date.strftime("%b %d, %Y") %><br>
                 <%= drop.appt_date.strftime("%I:%M %p") %>
               </td>
-              <td><%= drop.commodity %></td>
+              <td>
+                <%= drop.commodity %><br>
+                <%= number_with_delimiter(drop.weight, precision: 2) %>
+              </td>
               <td><%= link_to 'delete', [:admin, @load, drop], method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-xs btn-danger' %></td>
             </tr>
           <% end %>

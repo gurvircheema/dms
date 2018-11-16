@@ -26,7 +26,7 @@
     <div class='address'>Phone: <%= number_to_phone(@load.vendor.phone) %></div>
   </div>
   <div class='col-sm-4 text-center'>
-    <table class='table table-sm table-borderless'>
+    <table class='table table-sm table-bordered'>
       <tr>
         <th  style='width:40%' class='table-secondary'>Load Number</th>
         <td><%= @load.id %></td>
@@ -71,7 +71,7 @@
             </td>
             <td>
               <%= pickup.commodity %><br>
-              <%= pickup.weight %>
+              <%= "#{number_with_precision(pickup.weight.to_f, precision: 2)} lbs" %>
             </td>
           </tr>
           <% if pickup.notes.present? %>
@@ -118,7 +118,7 @@
             </td>
             <td>
               <%= drop.commodity %><br>
-              <%= drop.weight %>
+              <%= "#{number_with_precision(drop.weight.to_f, precision: 2)} lbs" %>
             </td>
           </tr>
           <% if drop.notes.present? %>
@@ -129,8 +129,8 @@
         <% end %>
         <tr class='text-center'>
           <td colspan='3'></td>
-          <th class='table-secondary'>All Inclusive Price</th>
-          <th><%= number_to_currency(@load.vendor_cost, unit: '$') %></th>
+          <th class='table-secondary border border-secondary'>All Inclusive Price</th>
+          <th class='border border-secondary'><%= number_to_currency(@load.vendor_cost, unit: '$') %></th>
         </tr>
       </tbody>
     </table>

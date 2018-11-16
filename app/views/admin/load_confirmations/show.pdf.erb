@@ -164,7 +164,7 @@
         </td>
         <td>
           <%= pickup.commodity %><br>
-          <%= pickup.weight %>
+          <%= "#{number_with_precision(pickup.weight.to_f, precision: 2)} lbs" %>
         </td>
       </tr>
       <% if pickup.notes.present? %>
@@ -207,7 +207,7 @@
         </td>
         <td>
           <%= drop.commodity %><br>
-          <%= drop.weight %>
+          <%= "#{number_with_precision(drop.weight.to_f, precision: 2)} lbs" %>
         </td>
       </tr>
       <% if drop.notes.present? %>
