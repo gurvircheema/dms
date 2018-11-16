@@ -15,6 +15,9 @@ class Admin::LoadConfirmationsController < Admin::ApplicationController
   private
 
   def find_load
-    @load = Load.find(params[:id])
+    @load = Load.includes(:vendor, :driver,
+      pickup_locations: [location: :address],
+      drop_locations: [location: :address]
+    ).find(params[:id])
   end
 end
