@@ -1,6 +1,12 @@
 ActiveRecord::Base.transaction do
+  User.create(
+    name: ENV['root_user_name'],
+    password: ENV['root_user_password'],
+    email: ENV['root_user_email'],
+    admin: true
+  )
   Address.create!(
-    address_line_1: ENV['address_address_line_1'],
+    address_line_1: ENV['address_line_1'],
     city: ENV['address_city'],
     state_province: ENV['address_state_province'],
     country: ENV['address_country'],

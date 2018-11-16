@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: dms_production
-  username: dms
+  host: <%= ENV['DMS_DATABASE_HOST'] %>
+  username: <%= ENV['DMS_DATABASE_USERNAME'] %>
   password: <%= ENV['DMS_DATABASE_PASSWORD'] %>
