@@ -1,5 +1,11 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   root to: 'home#index'
   namespace :admin do
     resources :companies, only: [:show, :edit, :update]
@@ -22,7 +28,11 @@ Rails.application.routes.draw do
       resources :pickup_locations, only: [:new, :create, :destroy]
       resources :drop_locations, only: [:new, :create, :destroy]
     end
-    resources :load_confirmations, only: [:show]
+    resources :load_confirmations, only: [:show] do
+      member do
+        post :email
+      end
+    end
     resources :users, except: [:show]
   end
 
