@@ -13,6 +13,15 @@ class LoadMailer < ApplicationMailer
       to: receiver_email(receiver),
       subject: "Isher Transport Load Confirmation - #{@load.id}"
     )
+    message = {
+      mailer: self.class.name,
+      action: action_name,
+      mailer_action: "#{self.class.name}##{action_name}",
+      to: receiver,
+      from: Array(headers.from).first,
+      subject: headers.subject
+    }
+    MailLogger.log(message)
   end
 
   private
