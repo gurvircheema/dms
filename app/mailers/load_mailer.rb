@@ -1,5 +1,5 @@
 class LoadMailer < ApplicationMailer
-  def carrier_confirmation(load_id, receiver = nil)
+  def carrier_confirmation(load_id, receiver)
     @load = Load.includes(:vendor, :driver,
       pickup_locations: [location: :address],
       drop_locations: [location: :address]
@@ -8,6 +8,7 @@ class LoadMailer < ApplicationMailer
       render_to_string(pdf: 'load_confirmation', template: 'admin/load_confirmations/show.pdf.erb', layout: 'pdf')
     )
     self.instance_variable_set(:@lookup_context, nil)
+
     mail(
       to: receiver_email(receiver),
       subject: "Isher Transport Load Confirmation - #{@load.id}"
@@ -17,12 +18,6 @@ class LoadMailer < ApplicationMailer
   private
 
   def receiver_email(receiver)
-    if receiver
-      receiver
-    elsif Rails.env == 'production'
-      @load.vendor.email
-    else
-      ENV['CARRIER_EMAIL_PLACEHOLDER']
-    end
+    receiver.present? ? receiver : @load.vendor.email
   end
 end

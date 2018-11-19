@@ -51,12 +51,24 @@
   </div>
   <div class='col-md-8 col-sm-12'>
     <div class='secondary-header small'>Actions</div>
-    <%= link_to 'Load Confirmation', [:admin, :load_confirmation], class: 'btn btn-xs btn-outline-primary' %>
-    <%= link_to 'Download PDF', [:admin, :load_confirmation, format: :pdf], target: '_blank', class: 'btn btn-xs btn-outline-danger' %>
-    <%= link_to 'Email load confirmation', '#', class: 'btn btn-xs btn-outline-primary' %>
-    <%= link_to 'Print Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
-    <%= link_to 'Email Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
-    <%= link_to 'Text Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
+    <div class='row'>
+      <div class='col-md-6'>
+        <%= link_to 'Load Confirmation', [:admin, :load_confirmation], class: 'btn btn-xs btn-outline-primary' %>
+        <%= link_to 'Download PDF', [:admin, :load_confirmation, format: :pdf], target: '_blank', class: 'btn btn-xs btn-outline-danger' %>
+        <%= link_to 'Print Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
+        <%= link_to 'Email Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
+        <%= link_to 'Text Driver Dispatch', '#', class: 'btn btn-xs btn-outline-primary' %>
+      </div>
+      <div class='col-md-6'>
+        <%= simple_form_for(:load_confirmation, url: [:email, :admin, :load_confirmation], html: { class: 'form' }) do |f| %>
+          <div class='row'>
+            <div class='col-sm-12'><%= f.label :Email, 'Email Confirmation', required: false %></div>
+            <div class='col-sm-8'><%= f.input :email, required: false, label: false, input_html: { value: @load.vendor.try(:email), class: 'form-control-sm' } %></div>
+            <div class='col-sm-4'><%= f.submit 'Send', class: 'btn btn-outline-primary btn-sm' %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <hr>
     <div class='secondary-header'>
       Pickups
