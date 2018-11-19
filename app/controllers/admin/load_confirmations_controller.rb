@@ -12,9 +12,25 @@ class Admin::LoadConfirmationsController < Admin::ApplicationController
     end
   end
 
+  def email
+    EmailWorker.perform_async(
+      'carrier_confirmation',
+      load_id: @load.id,
+      email: email_params[:email]
+    )
+    redirect_to [:admin, @load], notice: 'Email Sent!'
+  end
+
   private
 
   def find_load
-    @load = Load.find(params[:id])
+    @load = Load.includes(:vendor, :driver,
+      pickup_locations: [location: :address],
+      drop_locations: [location: :address]
+    ).find(params[:id])
+  end
+
+  def email_params
+    params.require(:load_confirmation).permit(:email)
   end
 end

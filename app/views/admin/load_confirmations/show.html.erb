@@ -7,7 +7,7 @@
   </span>
 </div>
 <div class='row mb-2'>
-  <div class='col-sm-8'>
+  <div class='col-sm-4'>
     <div class='secondary-header'>Company</div>
     <div><b>Isher Transport Ltd.</b></div>
     <div class='address'>8051 Hyde St</div>
@@ -23,7 +23,19 @@
     <div class='address'><%= @load.vendor.address.city %> <%= @load.vendor.address.state_province %></div>
     <div class='address'><%= @load.vendor.address.zipcode %></div>
     <div class='address'>Email: <%= @load.vendor.email %></div>
-    <div class='address'>Phone: <%= @load.vendor.phone %></div>
+    <div class='address'>Phone: <%= number_to_phone(@load.vendor.phone) %></div>
+  </div>
+  <div class='col-sm-4 text-center'>
+    <table class='table table-sm table-bordered'>
+      <tr>
+        <th  style='width:40%' class='table-secondary'>Load Number</th>
+        <td><%= @load.id %></td>
+      </tr>
+      <tr>
+        <th class='table-secondary'>Price</th>
+        <td><%= number_to_currency(@load.vendor_cost, unit: '$') %></td>
+      </tr>
+    </table>
   </div>
 </div>
 <div class='row'>
@@ -32,13 +44,13 @@
   </div>
   <div class='col-md-12 table-responsive'>
     <table class='table table-sm table-borderless'>
-      <thead class='thead-light'>
+      <thead class='table-secondary'>
         <tr>
           <th style='width:35%'>Address</th>
           <th style='width:15%'>Contact</th>
-          <th style='width:15%'>Ref</th>
-          <th style='width:15%'>Date/Time</th>
-          <th style='width:20%'>Goods</th>
+          <th style='width:15%'>Ref Num</th>
+          <th style='width:15%'>Pickup Date & Time</th>
+          <th style='width:20%'>Goods and Weight</th>
         </tr>
       </thead>
       <tbody>
@@ -57,11 +69,14 @@
               <%= pickup.appt_date.strftime("%b %d, %Y") %><br>
               <%= pickup.appt_date.strftime("%I:%M %p") %>
             </td>
-            <td><%= pickup.commodity %></td>
+            <td>
+              <%= pickup.commodity %><br>
+              <%= "#{number_with_precision(pickup.weight.to_f, precision: 2)} lbs" %>
+            </td>
           </tr>
           <% if pickup.notes.present? %>
             <tr class='small'>
-              <td colspan='6'><b><i>Note: </i></b><%= pickup.notes %><td>
+              <td colspan='5'><b><i>Note: </i></b><%= pickup.notes %><td>
             </tr>
           <% end %>
         <% end %>
@@ -76,13 +91,13 @@
   </div>
   <div class='col-md-12 table-responsive'>
     <table class='table table-sm table-borderless'>
-      <thead class='thead-light'>
+      <thead class='table-secondary'>
         <tr>
           <th style='width:35%'>Address</th>
           <th style='width:15%'>Contact</th>
           <th style='width:15%'>Ref</th>
-          <th style='width:15%'>Date/Time</th>
-          <th style='width:20%'>Goods</th>
+          <th style='width:15%'>Delivery Date & Time</th>
+          <th style='width:20%'>Goods and Weight</th>
         </tr>
       </thead>
       <tbody>
@@ -101,21 +116,29 @@
               <%= drop.appt_date.strftime("%b %d, %Y") %><br>
               <%= drop.appt_date.strftime("%I:%M %p") %>
             </td>
-            <td><%= drop.commodity %></td>
+            <td>
+              <%= drop.commodity %><br>
+              <%= "#{number_with_precision(drop.weight.to_f, precision: 2)} lbs" %>
+            </td>
           </tr>
           <% if drop.notes.present? %>
             <tr class='small'>
-              <td colspan='6'><b><i>Note: </i></b><%= drop.notes %></td>
+              <td colspan='5'><b><i>Note: </i></b><%= drop.notes %></td>
             </tr>
           <% end %>
         <% end %>
+        <tr class='text-center'>
+          <td colspan='3'></td>
+          <th class='table-secondary border border-secondary'>All Inclusive Price</th>
+          <th class='border border-secondary'><%= number_to_currency(@load.vendor_cost, unit: '$') %></th>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
 <div class='row small'>
   <div class='col'>
-    The office must be notified immidiately of any problems or delays
+    The office must be notified immediately of any problems or delays
     <ul>
       <li>Driver must ID as Isher Transport Ltd.</li>
       <li>Original Bill of Lading with Proof of Delivery with signature on it is required for payment</li>
@@ -124,8 +147,21 @@
       <li>Carrier must hold all neccessary insurance and authorities</li>
       <li>Any freight claims may be deducted from the agreed rate.</li>
       <li>Please send all your pods at pod@isher.ca</li>
+      <li>All Prices are in Canadian Dollars (CAD)</li>
     </ul>
   </div>
+</div>
+<div class='row'>
+  <div class='col-sm-4'>
+    <div><b>Company: Isher Transport Ltd</b></div>
+    <p class='border-bottom'>&nbsp;</p>
+  </div>
+  <div class='col-sm-2'></div>
+  <div class='col-sm-4'>
+    <div><b>Carrier: <%= @load.vendor.internal_name %></b></div>
+    <p class='border-bottom'>&nbsp;</p>
+  </div>
+  <div class='col-sm-2'></div>
 </div>
 <% content_for :footer do %>
   <div class='container-fluid'>

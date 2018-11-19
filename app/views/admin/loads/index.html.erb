@@ -33,9 +33,9 @@
           <td>19/11/2017</td>
           <td><%= load.customer_ref_number %></td>
           <td><%= load.vendor.try(:name) || load.driver.try(:name) %></td>
-          <td><%= load.customer_rate.to_i %></td>
-          <td><%= load.vendor_cost.to_i %></td>
-          <td><%= load.customer_rate.to_i - load.vendor_cost.to_i %></td>
+          <td><%= number_to_currency(load.customer_rate, unit: '$') %></td>
+          <td><%= number_to_currency(load.vendor_cost, unit: '$') %></td>
+          <td><%= number_to_currency((load.customer_rate.to_f - load.vendor_cost.to_f), unit: '$') %></td>
           <td><%= link_to 'Show', [:admin, load], class: 'btn btn-xs btn-outline-primary' %></td>
         </tr>
       <% end %>
