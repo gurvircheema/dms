@@ -6,13 +6,17 @@ RSpec.describe LoadMailer, type: :mailer do
   let(:vendor) { FactoryBot.create(:vendor, address: vendor_address) }
   let(:load) { FactoryBot.create(:load, customer: customer, vendor: vendor) }
 
+  LoadMailer.class_eval do
+    default from: 'test@example.com'
+  end
+
   describe '#carrier_confirmation' do
     let(:email) { LoadMailer.carrier_confirmation(load.id, 'abc@gmail.com') }
 
     it 'renders the headers' do
       expect(email.subject).to eq("Isher Transport Load Confirmation - #{load.id}")
       expect(email.to).to eq(['abc@gmail.com'])
-      expect(email.from).to eq([ENV['DEFAULT_FROM_EMAIL']])
+      expect(email.from).to eq(['test@example.com'])
     end
 
     it 'renders the body' do

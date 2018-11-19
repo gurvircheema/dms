@@ -27,7 +27,7 @@ ActiveRecord::Base.transaction do
     last_invoice: ENV['company_last_invoice'],
   )
 
-  %w(admin accountant dispatcher driver carrier customer).each do |role|
+  %w[admin accountant dispatcher driver carrier customer].each do |role|
     Role.create(name: role)
   end
 end
