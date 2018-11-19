@@ -63,6 +63,8 @@ class Admin::LoadsController < Admin::ApplicationController
       :equipment_type,
       :customer_notes,
       :vendor_cost,
+      :vendor_id,
+      :driver_id,
       :picked_up,
       :delivered,
       :invoiced,
