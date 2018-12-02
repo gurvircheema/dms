@@ -4,4 +4,11 @@
     <%= link_to 'Back', back_url(@customer), class: 'btn btn-sm btn-secondary' %>
   </span>
 </div>
-<%= render 'form' %>
+<!--<%= render 'form' %> -->
+<%= content_tag :div,
+  id: "react-mount",
+  data: {
+    customer: @customer_json
+  }.to_json do %>
+<% end %>
+<%= javascript_pack_tag 'customer_form' %>

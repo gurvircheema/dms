@@ -13,6 +13,7 @@ class Admin::CustomersController < Admin::ApplicationController
   def edit
     @customer.build_address unless @customer.address
     @customer.build_billing_address unless @customer.billing_address
+    @customer_json = CustomerSerializer.new(@customer, root: false)
   end
 
   def new
@@ -24,19 +25,29 @@ class Admin::CustomersController < Admin::ApplicationController
   def create
     @customer = Customer.new(customer_params)
     success = create_customer_and_location
-    if success
-      redirect_to [:admin, @customer], notice: 'New customer added'
-    else
-      render :new, error: 'Error occurred, please try again'
+    respond_to do |format|
+      if success
+        format.html { redirect_to [:admin, @customer], notice: 'New customer added' }
+        format.json { render json: @customer, status: :ok }
+      else
+        format.html { render :new, error: 'Error occurred, please try again' }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
-    if @customer.update(customer_params)
-      redirect_to [:admin, @customer], notice: 'customer info updated'
-    else
-      render :edit, error: 'Error occurred, please try again'
+    respond_to do |format|
+      if @customer.update(customer_params)
+        format.html { redirect_to [:admin, @customer], notice: 'customer info updated' }
+        format.json { render json: { location: admin_customer_path(@customer) }, status: :ok }
+      else
+        format.html { render :edit, error: 'Error occurred, please try again' }
+        format.json { render json: { errors: @customer.errors }, status: :unprocessable_entity }
+
+      end
     end
+
   end
 
   private
@@ -53,11 +64,11 @@ class Admin::CustomersController < Admin::ApplicationController
       :fax,
       :email,
       address_attributes: [
-        :address_line_1, :address_line_2, :city,
+        :id, :address_line_1, :address_line_2, :city,
         :state_province, :country, :zipcode
       ],
       billing_address_attributes: [
-        :address_line_1, :address_line_2, :city,
+        :id, :address_line_1, :address_line_2, :city,
         :state_province, :country, :zipcode
       ]
      )
