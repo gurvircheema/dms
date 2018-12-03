@@ -8,15 +8,14 @@ class CustomerForm extends React.Component {
     super(props)
     this.state = {
       customer: {
-        ...this.props.customer,
-        address_attributes: this.props.customer.address,
-        billing_address_attributes: this.props
+        ...this.props.customer
       }
     }
     this.customerValueChanged = this.customerValueChanged.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.addressValueChanged = this.addressValueChanged.bind(this)
     this.billingAddressValueChanged = this.billingAddressValueChanged.bind(this)
+    this.similarAddress = this.similarAddress.bind(this)
   }
 
   customerValueChanged(event) {
@@ -79,6 +78,26 @@ class CustomerForm extends React.Component {
           ...errors.response.data
         })
       })
+  }
+
+  similarAddress(event) {
+    if (event.target.checked) {
+      this.setState({
+        ...this.state,
+        customer: {
+          ...this.state.customer,
+          billing_address: this.state.customer.address
+        }
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        customer: {
+          ...this.state.customer,
+          billing_address: {}
+        }
+      })
+    }
   }
 
   formClass(key_name) {
@@ -187,6 +206,15 @@ class CustomerForm extends React.Component {
                     />
                     {this.errorMessage('address.zipcode')}
                   </div>
+                </div>
+                <div className='form-check'>
+                  <input
+                    type='checkbox'
+                    name='same_billing_address'
+                    onChange={this.similarAddress}
+                    className='form-check-input'
+                  />
+                  <label className='form-check-label'>Primary Address is same as Billing Address</label>
                 </div>
               </div>
               <div className='col-md-6'>
