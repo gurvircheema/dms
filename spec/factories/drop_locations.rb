@@ -3,6 +3,6 @@ FactoryBot.define do
     ref_number { 'DO12346' }
     appt_date { Time.now }
     commodity { 'Steel' }
-    currency { 'CAD' }
+    location
   end
 end
