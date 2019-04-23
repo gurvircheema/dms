@@ -3,6 +3,7 @@ class Admin::LoadsController < Admin::ApplicationController
 
   def index
     @loads = Load.includes(:customer, :vendor).all
+    @loads_json = LoadSerializer.new(@loads).serialized_json
     authorize @loads
   end
 

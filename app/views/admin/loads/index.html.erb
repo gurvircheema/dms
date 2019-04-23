@@ -4,6 +4,10 @@
     <%= link_to 'New Load', [:new, :admin, :load], class: 'btn btn-sm btn-primary' %>
   </span>
 </div>
+<%= javascript_pack_tag 'loads' %>
+<%= content_tag :div, id: 'react-loads', data: @loads_json do %>
+<% end %>
+
 <div class='table-responsive small'>
   <table class='table table-sm table-bordered'>
     <thead>
