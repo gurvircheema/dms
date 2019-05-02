@@ -1,0 +1,12 @@
+.status {
+  display: flex;
+  flex-direction: column;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}

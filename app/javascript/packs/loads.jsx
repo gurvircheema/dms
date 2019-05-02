@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import LoadsTable from '../components/loads_table'
+import LoadsTable from '../components/LoadsTable'
 
 const Loads = (props) => {
   const loads = props.loads.data;
