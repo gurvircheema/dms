@@ -5,34 +5,31 @@ import LoadsTableRow from '../LoadsTableRow';
 
 class LoadsTable extends React.Component {
   constructor(props) {
-    super(props)
-    const loads = this.props.loads.map( load => ({...load, expanded: false }) )
+    super(props);
+    const { loads } = this.props;
+    const expandedLoads = loads.map(load => ({ ...load, expanded: false }));
     this.state = {
-      loads: loads
-    }
-    this.rowClickHandler = this.rowClickHandler.bind(this)
+      loads: expandedLoads,
+    };
+    this.rowClickHandler = this.rowClickHandler.bind(this);
   }
 
-  rowClickHandler(load_id) {
-    this.setState(state => {
-      const loads = state.loads.map(load => {
-        if(load.id === load_id) {
-          return {...load, expanded: !load.expanded}
-        } else {
-          return load
-        }
-      });
-
-      return {
-        loads: loads
-      }
-    })
+  rowClickHandler(loadId) {
+    this.setState((state) => {
+      const loads = state.loads.map(load => (
+        load.id === loadId
+          ? { ...load, expanded: !load.expanded }
+          : load
+      ));
+      return { loads };
+    });
   }
 
   render() {
+    const { loads } = this.state;
     return (
-      <div className='table-responsive small'>
-        <table className='table table-sm table-bordered'>
+      <div className="table-responsive small">
+        <table className="table table-sm table-bordered">
           <thead>
             <tr>
               <th>ID</th>
@@ -46,26 +43,26 @@ class LoadsTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.loads.map((load, idx) =>
+            {loads.map(load => (
               <LoadsTableRow
-                key={idx}
+                key={load.id}
                 load={load}
                 rowClickHandler={this.rowClickHandler}
               />
-            )}
+            ))}
           </tbody>
         </table>
       </div>
-    )
+    );
   }
 }
 
 LoadsTable.propTypes = {
-  loads: PropTypes.array
-}
+  loads: PropTypes.arrayOf(PropTypes.shape({})),
+};
 
 LoadsTable.defaultProps = {
-  loads: []
-}
+  loads: [],
+};
 
 export default LoadsTable;
