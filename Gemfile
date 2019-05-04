@@ -23,7 +23,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'simple_form', '~> 4.0', '>= 4.0.1'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.0', '>= 4.0.2'
 gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary'
 
