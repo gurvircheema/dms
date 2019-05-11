@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const statusStyle = {
-  display: 'flex',
-  flexDirection: 'column',
+  display: "flex",
+  flexDirection: "column"
 };
 
 const greenStyle = {
-  color: 'green',
+  color: "green"
 };
 
 const redStyle = {
-  color: 'red',
+  color: "red"
 };
 
 const Status = load => (
@@ -36,11 +36,15 @@ const LoadsTableRow = ({ load, rowClickHandler }) => (
       <td>
         {load.attributes.vendor_name
           ? `${load.attributes.vendor_name} (Vendor)`
-          : `${load.attributes.driver_name} (Driver)`
-        }
+          : `${load.attributes.driver_name} (Driver)`}
       </td>
       <td>
-        <a href={`/admin/loads/${load.id}`} className="btn btn-xs btn-outline-primary">Details</a>
+        <a
+          href={`/admin/loads/${load.id}`}
+          className="btn btn-xs btn-outline-primary"
+        >
+          Details
+        </a>
       </td>
     </tr>
     {load.expanded && (
@@ -72,7 +76,7 @@ const LoadsTableRow = ({ load, rowClickHandler }) => (
 
 LoadsTableRow.propTypes = {
   load: PropTypes.shape({}).isRequired,
-  rowClickHandler: PropTypes.func.isRequired,
+  rowClickHandler: PropTypes.func.isRequired
 };
 
 export default LoadsTableRow;

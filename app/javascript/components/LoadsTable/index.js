@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import LoadsTableRow from '../LoadsTableRow';
+import LoadsTableRow from "../LoadsTableRow";
 
 class LoadsTable extends React.Component {
   constructor(props) {
@@ -9,18 +9,16 @@ class LoadsTable extends React.Component {
     const { loads } = this.props;
     const expandedLoads = loads.map(load => ({ ...load, expanded: false }));
     this.state = {
-      loads: expandedLoads,
+      loads: expandedLoads
     };
     this.rowClickHandler = this.rowClickHandler.bind(this);
   }
 
   rowClickHandler(loadId) {
-    this.setState((state) => {
-      const loads = state.loads.map(load => (
-        load.id === loadId
-          ? { ...load, expanded: !load.expanded }
-          : load
-      ));
+    this.setState(state => {
+      const loads = state.loads.map(load =>
+        load.id === loadId ? { ...load, expanded: !load.expanded } : load
+      );
       return { loads };
     });
   }
@@ -58,11 +56,11 @@ class LoadsTable extends React.Component {
 }
 
 LoadsTable.propTypes = {
-  loads: PropTypes.arrayOf(PropTypes.shape({})),
+  loads: PropTypes.arrayOf(PropTypes.shape({}))
 };
 
 LoadsTable.defaultProps = {
-  loads: [],
+  loads: []
 };
 
 export default LoadsTable;
