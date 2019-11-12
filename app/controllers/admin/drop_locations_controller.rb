@@ -4,6 +4,10 @@ class Admin::DropLocationsController < Admin::ApplicationController
 
   def new
     @drop_location = @load.drop_locations.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

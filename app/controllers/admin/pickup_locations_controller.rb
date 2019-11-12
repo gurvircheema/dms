@@ -4,6 +4,10 @@ class Admin::PickupLocationsController < Admin::ApplicationController
 
   def new
     @pickup_location = @load.pickup_locations.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
