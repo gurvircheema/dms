@@ -7,7 +7,7 @@ gem 'rails', '~> 5.2.3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'coffee-rails', '~> 4.2'
-gem 'devise', '~> 4.5'
+gem 'devise', '~> 4.7'
 gem 'fast_jsonapi', '~> 1.5'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'foreman', '~> 0.85.0'
