@@ -71,7 +71,7 @@
         <div class='secondary-header'>
           Ticket Violations
           <div class='float-right'>
-            <%= link_to 'Add new violation', [:new, :admin, @driver, :violation_ticket], class: 'btn btn-sm btn-primary', data: { modal: true } %>
+            <%= link_to 'Add new violation', [:new, :admin, @driver, :violation_ticket], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
           </div>
         </div>
         <table class='table table-sm'>
@@ -105,7 +105,7 @@
         <div class='secondary-header'>
           Licenses
           <span class='float-right'>
-            <%= link_to 'Add License', [:new, :admin, @driver, :license], class: 'btn btn-sm btn-primary' %>
+            <%= link_to 'Add License', [:new, :admin, @driver, :license], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
           </span>
         </div>
         <div class='table-responsive'>

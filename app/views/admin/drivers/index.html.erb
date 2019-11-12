@@ -1,7 +1,7 @@
 <div class='primary-header'>
   Drivers
   <span class='float-right'>
-    <%= link_to 'Add new driver', [:new, :admin, :driver], class: 'btn btn-sm btn-primary' %>
+    <%= link_to 'Add new driver', [:new, :admin, :driver], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
   </span>
 </div>
 <div class='table-responsive small'>

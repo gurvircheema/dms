@@ -16,6 +16,10 @@ class Admin::DriversController < Admin::ApplicationController
   def new
     @driver = Driver.new
     @driver.build_address
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

@@ -4,6 +4,10 @@ class Admin::ViolationTicketsController < ApplicationController
 
   def new
     @violation_ticket = @driver.violation_tickets.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

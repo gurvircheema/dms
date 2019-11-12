@@ -1,0 +1,25 @@
+<%= simple_form_for([:admin, @driver, @license], html: { class: 'form' })do |f| %>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Violation Ticket</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.input :number %>
+        <%= f.input :issue_date %>
+        <%= f.input :expiry_date %>
+        <%= f.input :restrictions %>
+        <%= f.input :province, collection: State.list.collect { |f| [f[1], f[0]]} %>
+        <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+        <%= link_to 'Cancel', [:admin, @driver], class: 'btn btn-sm btn-secondary' %>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+    <%= link_to 'Cancel', [:admin, @driver], class: 'btn btn-sm btn-secondary' %>
+  </div>
+<% end %>
