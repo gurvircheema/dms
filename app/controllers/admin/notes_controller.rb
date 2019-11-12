@@ -4,6 +4,10 @@ class Admin::NotesController < Admin::ApplicationController
 
   def new
     @note = @notable.notes.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit; end

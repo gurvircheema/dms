@@ -279,7 +279,7 @@
             <div class='secondary-header'>
               Permits
               <span class='float-right'>
-                <%= link_to 'Add Permit', [:new, :admin, @equipment, :permit], class: 'btn btn-sm btn-primary' %>
+                <%= link_to 'Add Permit', [:new, :admin, @equipment, :permit], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
               </span>
             </div>
             <div class='table-responsive'>

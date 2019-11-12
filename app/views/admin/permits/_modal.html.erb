@@ -1,0 +1,22 @@
+<%= simple_form_for([:admin, @equipment, @permit], html: { class: 'form' }) do |f| %>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Permit</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <%= f.input :permit_type %>
+    <%= f.input :permit_number %>
+    <%= f.input :state_province %>
+    <%= f.input :expiry_date, html5: true %>
+    <%= f.input :reminder %>
+    <% unless @permit.new_record? %>
+      <%= link_to 'Delete', [:admin, @equipment, @permit], method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+    <%= link_to 'Cancel', [:admin, @equipment], class: 'btn btn-sm btn-secondary' %>
+  </div>
+<% end %>

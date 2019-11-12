@@ -4,6 +4,10 @@ class Admin::PermitsController < Admin::ApplicationController
 
   def new
     @permit = @equipment.permits.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
