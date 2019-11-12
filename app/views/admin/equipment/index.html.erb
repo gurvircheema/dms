@@ -1,7 +1,7 @@
 <div class='primary-header'>
   Equipment
   <span class='float-right'>
-    <%= link_to 'New Equipment', [:new, :admin, :equipment], class: 'btn btn-sm btn-primary' %>
+    <%= link_to 'New Equipment', [:new, :admin, :equipment], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
   </span>
 </div>
 <div class='table-responsive small'>

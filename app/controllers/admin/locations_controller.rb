@@ -8,6 +8,10 @@ class Admin::LocationsController < Admin::ApplicationController
   def new
     @location = Location.new
     @location.build_address
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

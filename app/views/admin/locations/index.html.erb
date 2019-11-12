@@ -1,7 +1,7 @@
 <div class='primary-header'>
   Locations
   <span class='float-right'>
-    <%= link_to 'Add Location', [:new, :admin, :location], class: 'btn btn-sm btn-primary' %>
+    <%= link_to 'Add Location', [:new, :admin, :location], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
   </span>
 </div>
 <div class='table-responsive small'>

@@ -1,0 +1,129 @@
+<%= simple_form_for([:admin, @equipment], html: { class: 'form' }) do |f| %>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add New Equipment</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class='row small'>
+      <div class='col-md-4'>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :unit_number %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :unit_type, collection: Equipment.unit_types.keys %>
+          </div>
+        </div>
+        <%= f.input :owned_by_company, collection: Vendor.all.map(&:internal_name) %>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :active_date, html5: true  %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :inactive_date, html5: true  %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-8'>
+            <%= f.input :license_plate %>
+          </div>
+          <div class='col-md-4'>
+            <%= f.input :license_plate_state, collection: State.list.collect { |f| [f[1], f[0]]} %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>
+            <%= f.input :make %>
+          </div>
+          <div class='col-md-4'>
+            <%= f.input :model %>
+          </div>
+          <div class='col-md-4'>
+            <%= f.input :year %>
+          </div>
+        </div>
+        <%= f.input :vin %>
+      </div>
+      <div class='col-md-4'>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :certification_registration_number %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :certification_registration_expiry, html5: true %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :safety_inspection_number %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :safety_inspection_expiry, html5: true %>
+          </div>
+        </div>
+        <%= f.input :insurance_provider %>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :insurance_policy_number %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :insurance_policy_expiry, html5: true  %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :ifta_decal_number %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :ifta_decal_expiry, html5: true  %>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4'>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :fuel_type, collection: Equipment.fuel_types.keys %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :number_of_axles %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :gross_weight_lbs %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :body_color %>
+          </div>
+        </div>
+        <%= f.input :driver, collection: Driver.all, selected: @equipment.driver_id %>
+        <hr>
+        <%= f.input :leased_vehicle %>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :lease_company %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :lease_end_date, html5: true  %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= f.input :lease_monthly_rate %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :lease_buyout_cost %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit 'Submit', class: 'btn btn-sm btn-primary' %>
+      <%= link_to 'Cancel', admin_equipment_index_path, class: 'btn btn-sm btn-secondary' %>
+  </div>
+<% end %>
+
+
