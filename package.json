@@ -25,5 +25,9 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
+  },
+  "engines": {
+    "node": "12.6.0",
+    "yarn": "1.16.0"
   }
 }

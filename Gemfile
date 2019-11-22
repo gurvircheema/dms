@@ -14,10 +14,12 @@ gem 'foreman', '~> 0.85.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'mini_magick', '~> 4.9', '>= 4.9.2'
+gem 'oauth2', '~> 1.2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'pghero'
 gem 'puma', '~> 3.11'
 gem 'pundit', '~> 2.0'
+gem 'quickbooks-ruby', '~> 1.0', '>= 1.0.1'
 gem 'redis'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
@@ -34,6 +36,7 @@ end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rufo', '~> 0.7.0', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
