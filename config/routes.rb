@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   end
 
   root to: 'home#index'
+  get 'qb/authenticate', to: 'oauth#authenticate'
+  get 'qb/oauth_callback', to: 'oauth#oauth_callback'
+  get 'qb/success_callback', to: 'oauth#success'
   namespace :admin do
     resources :companies, only: [:show, :edit, :update]
     resources :drivers do
