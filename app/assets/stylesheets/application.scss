@@ -1,5 +1,6 @@
-@import "bootstrap";
-body, html {
+@import 'bootstrap';
+body,
+html {
   height: 100%;
 }
 
@@ -44,4 +45,12 @@ body, html {
 .td-65 {
   @extend .text-muted;
   width: 65%;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  justify-content: space-between;
+  align-items: baseline;
 }

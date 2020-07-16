@@ -1,7 +1,9 @@
-<div class='primary-header'>
-  <%= @driver.name %>
-  <small class='text-muted'>Personal Information</small>
-  <span class='float-right'>
+<div class='primary-header flex-wrap'>
+  <div class='flex-wrap'>
+    <div class='mr-1'><%= @driver.name %></div>
+    <small class='text-muted'>Personal Information</small>
+  </div>
+  <span>
     <%= link_to 'Mark active/inactive', [:admin, @driver], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-warning' %>
     <%= link_to 'Edit', [:edit, :admin, @driver], class: 'btn btn-sm btn-danger' %>
     <%= link_to 'Back', [:admin, :drivers], class: 'btn btn-sm btn-secondary' %>
@@ -68,11 +70,9 @@
   <div class='col-md-4'>
     <div class='row'>
       <div class='col-md-12 small'>
-        <div class='secondary-header'>
+        <div class='secondary-header flex-wrap'>
           Ticket Violations
-          <div class='float-right'>
-            <%= link_to 'Add new violation', [:new, :admin, @driver, :violation_ticket], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
-          </div>
+          <%= link_to 'Add new violation', [:new, :admin, @driver, :violation_ticket], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
         </div>
         <table class='table table-sm'>
           <thead class='small'>
@@ -102,11 +102,9 @@
   <div class='col-md-4'>
     <div class='row'>
       <div class='col-md-12'>
-        <div class='secondary-header'>
+        <div class='secondary-header flex-wrap'>
           Licenses
-          <span class='float-right'>
-            <%= link_to 'Add License', [:new, :admin, @driver, :license], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
-          </span>
+          <%= link_to 'Add License', [:new, :admin, @driver, :license], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
         </div>
         <div class='table-responsive'>
           <table class='table table-sm small'>
