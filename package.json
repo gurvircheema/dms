@@ -1,33 +1,15 @@
 {
-  "name": "dms",
-  "private": true,
-  "scripts": {
-    "lint": "eslint app/javascript",
-    "precommit": "eslint app/javascript"
-  },
   "dependencies": {
-    "@rails/webpacker": "^4.0.2",
-    "babel-preset-react": "^6.24.1",
-    "prop-types": "^15.6.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "@babel/preset-react": "^7.10.4",
+    "@rails/webpacker": "^5.1.1",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react_ujs": "^2.6.1",
+    "webpacker": "^4.6.0"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.0",
-    "husky": "^2.2.0",
-    "webpack-dev-server": "^3.3.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
-  "engines": {
-    "node": "12.6.0",
-    "yarn": "1.16.0"
+    "webpack-dev-server": "^3.11.0"
   }
 }
