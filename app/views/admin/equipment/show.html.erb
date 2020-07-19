@@ -1,13 +1,16 @@
-<div class='primary-header'>
+<% content_for :topbar_heading do %>
   <%= @equipment.year %>
   <%= @equipment.make %>
   <%= @equipment.model %>
-  <small class='text-muted'>Equipment</small>
-  <span class='float-right'>
-    <%= link_to 'Edit', [:edit, :admin, @equipment], class: 'btn btn-sm btn-danger' %>
-    <%= link_to 'Back', admin_equipment_index_path, class: 'btn btn-sm btn-secondary' %>
-  </span>
-</div>
+<% end %>
+<% content_for :topbar_subheading do %>
+  Equipment
+<% end %>
+<% content_for :topbar_buttons do %>
+  <%= link_to 'Edit', [:edit, :admin, @equipment], class: 'btn btn-sm btn-danger' %>
+  <%= link_to 'Back', admin_equipment_index_path, class: 'btn btn-sm btn-secondary' %>
+<% end %>
+<%= render 'admin/shared/topbar' %>
 <div class='row small'>
   <div class='col-md-6'>
     <div class='secondary-header'>General Info</div>
@@ -276,11 +279,9 @@
       <div class='col-md-6'>
         <div class='row'>
           <div class='col-md-12'>
-            <div class='secondary-header'>
+            <div class='secondary-header flex-wrap'>
               Permits
-              <span class='float-right'>
-                <%= link_to 'Add Permit', [:new, :admin, @equipment, :permit], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
-              </span>
+              <%= link_to 'Add Permit', [:new, :admin, @equipment, :permit], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary align-self-center' %>
             </div>
             <div class='table-responsive'>
               <table class='table table-sm'>

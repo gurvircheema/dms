@@ -1,10 +1,8 @@
 <div class='row'>
   <div class='col-md-12'>
-    <div class='secondary-header'>
+    <div class='secondary-header flex-wrap'>
       Notes
-      <span class='float-right'>
-        <%= link_to 'Add Note', [:new, :admin, record, :note], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary' %>
-      </span>
+      <%= link_to 'Add Note', [:new, :admin, record, :note], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary align-self-center' %>
     </div>
     <div class='table-responsive'>
       <table class='table table-sm'>
