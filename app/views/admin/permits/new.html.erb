@@ -1,4 +1,6 @@
-<div class='primary-header'>
-  Add new permit
-</div>
+<% content_for :topbar_heading do %>
+  Edit Permit
+<% end %>
+<%= render 'admin/shared/topbar' %>
+
 <%= render 'form' %>

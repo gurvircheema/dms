@@ -1,10 +1,11 @@
-<div class='primary-header'>
+<% content_for :topbar_heading do %>
   Driving License
-  <span class='float-right'>
-    <%= link_to 'Edit', [:edit, :admin, @driver, @license], class: 'btn btn-sm btn-danger' %>
-    <%= link_to 'Back', [:admin, @driver], class: 'btn btn-sm btn-secondary' %>
-  </span>
-</div>
+<% end %>
+<% content_for :topbar_buttons do %>
+  <%= link_to 'Edit', [:edit, :admin, @driver, @license], class: 'btn btn-sm btn-danger' %>
+  <%= link_to 'Back', [:admin, @driver], class: 'btn btn-sm btn-secondary' %>
+<% end %>
+<%= render 'admin/shared/topbar' %>
 <%= simple_form_for([:admin, @driver, @license]) do |f| %>
   <%= f.input :number, readonly: true %>
   <%= f.input :issue_date, readonly: true %>

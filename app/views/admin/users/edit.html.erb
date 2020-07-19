@@ -1,7 +1,9 @@
-<div class='primary-header'>
+<% content_for :topbar_heading do %>
   Edit User
-  <span class='float-right'>
-    <%= link_to 'Back', [:admin, :users], class: 'btn btn-sm btn-secondary' %>
-  </span>
-</div>
+<% end %>
+<% content_for :topbar_buttons do %>
+  <%= link_to 'Back', [:admin, :users], class: 'btn btn-sm btn-secondary' %>
+<% end %>
+<%= render 'admin/shared/topbar' %>
+
 <%= render 'form' %>
