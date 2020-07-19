@@ -1,7 +1,10 @@
-<div class='primary-header flex-wrap'>
+<% content_for :topbar_heading do %>
   Drivers
+<% end %>
+<% content_for :topbar_buttons do %>
   <%= link_to 'Add new driver', [:new, :admin, :driver], remote: true, data: { toggle: "modal", target: "#myModal" }, class: 'btn btn-sm btn-primary align-self-center' %>
-</div>
+<% end %>
+<%= render 'admin/shared/topbar' %>
 <div class='table-responsive small'>
   <table class='table table-sm table-bordered'>
     <thead>

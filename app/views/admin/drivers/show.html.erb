@@ -1,14 +1,15 @@
-<div class='primary-header flex-wrap'>
-  <div class='flex-wrap'>
-    <div class='mr-1'><%= @driver.name %></div>
-    <small class='text-muted'>Personal Information</small>
-  </div>
-  <span>
-    <%= link_to 'Mark active/inactive', [:admin, @driver], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-warning' %>
-    <%= link_to 'Edit', [:edit, :admin, @driver], class: 'btn btn-sm btn-danger' %>
-    <%= link_to 'Back', [:admin, :drivers], class: 'btn btn-sm btn-secondary' %>
-  </span>
-</div>
+<% content_for :topbar_heading do %>
+  <%= @driver.name %>
+<% end %>
+<% content_for :topbar_subheading do %>
+  Personal Information
+<% end %>
+<% content_for :topbar_buttons do %>
+  <%= link_to 'Mark active/inactive', [:admin, @driver], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-warning' %>
+  <%= link_to 'Edit', [:edit, :admin, @driver], class: 'btn btn-sm btn-danger' %>
+  <%= link_to 'Back', [:admin, :drivers], class: 'btn btn-sm btn-secondary' %>
+<% end %>
+<%= render 'admin/shared/topbar' %>
 <div class='row'>
   <div class='col-md-4'>
     <div class='secondary-header'>Basic Information</div>

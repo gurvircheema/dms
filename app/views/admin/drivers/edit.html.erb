@@ -1,7 +1,10 @@
-<div class='primary-header flex-wrap'>
+<% content_for :topbar_heading do %>
   Edit Driver
+<% end %>
+<% content_for :topbar_buttons do %>
   <%= link_to 'Back', back_url(@driver), class: 'btn btn-sm btn-secondary align-self-center' %>
-</div>
+<% end %>
+<%= render 'admin/shared/topbar' %>
 <%= simple_form_for([:admin, @driver], html: { class: 'form'}) do |f| %>
   <%= render 'form', f: f %>
 <% end %>
