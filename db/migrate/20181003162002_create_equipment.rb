@@ -8,7 +8,7 @@ class CreateEquipment < ActiveRecord::Migration[5.2]
       t.date :inactive_date
       t.string :license_plate
       t.string :license_plate_state
-      t.string :vin,              null: false
+      t.string :vin, null: false
       t.string :certification_registration_number
       t.date :certification_registration_expiry
       t.string :safety_inspection_number
@@ -25,12 +25,12 @@ class CreateEquipment < ActiveRecord::Migration[5.2]
       t.string :number_of_axles
       t.integer :gross_weight_lbs
       t.string :body_color
-      t.boolean :leased_vehicle,  null: false, default: false
+      t.boolean :leased_vehicle, null: false, default: false
       t.string :lease_company
       t.date :lease_end_date
       t.integer :lease_monthly_rate
       t.integer :lease_buyout_cost
-      t.references :driver,       foreign_key: true
+      t.references :driver, foreign_key: true
       t.datetime :deleted_at
       t.string :deleted_by
 

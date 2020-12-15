@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: %i[edit update destroy]
 
   def index
     @users = User.all
@@ -15,7 +15,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.new(user_params)
     authorize @user
     if @user.save
-      redirect_to [:admin, :users], notice: 'New user added.'
+      redirect_to %i[admin users], notice: 'New user added.'
     else
       render :new, alert: 'Something went wrong, please try again'
     end
@@ -28,7 +28,7 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     authorize @user
     if @user.update(user_params)
-      redirect_to [:admin, :users], notice: 'User updated'
+      redirect_to %i[admin users], notice: 'User updated'
     else
       render :edit, alert: 'Something went wrong, please try again'
     end
@@ -37,7 +37,7 @@ class Admin::UsersController < Admin::ApplicationController
   def destroy
     authorize @user
     @user.destroy
-    redirect_to [:admin, :users], notice: 'User deleted'
+    redirect_to %i[admin users], notice: 'User deleted'
   end
 
   private

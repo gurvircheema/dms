@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe HomeController, type: :controller do
-
-  describe "GET #index" do
+  describe 'GET #index' do
     context 'User not logged in' do
-      it "returns http success" do
+      it 'returns http success' do
         get :index
         expect(response).to redirect_to(new_user_session_path)
       end
@@ -27,5 +26,4 @@ RSpec.describe HomeController, type: :controller do
       end
     end
   end
-
 end

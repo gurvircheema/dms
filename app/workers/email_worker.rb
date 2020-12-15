@@ -3,7 +3,7 @@ class EmailWorker
 
   ALLOWED_EMAIL_TYPES = [
     'carrier_confirmation'
-  ]
+  ].freeze
 
   def perform(email_type, args = {})
     return unless ALLOWED_EMAIL_TYPES.include?(email_type.to_s)

@@ -14,7 +14,7 @@ RSpec.describe Admin::LicensesController, type: :controller do
     let(:post_req) { post :create, params: { driver_id: driver.id, license: valid_attr } }
 
     it 'creates a license record' do
-      expect{ post_req }.to change(License, :count).by(1)
+      expect { post_req }.to change(License, :count).by(1)
     end
   end
 

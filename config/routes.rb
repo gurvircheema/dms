@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   devise_for :users
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
     mount PgHero::Engine, at: 'pghero'
   end
@@ -12,25 +12,25 @@ Rails.application.routes.draw do
   get 'qb/oauth_callback', to: 'oauth#oauth_callback'
   get 'qb/success_callback', to: 'oauth#success'
   namespace :admin do
-    resources :companies, only: [:show, :edit, :update]
+    resources :companies, only: %i[show edit update]
     resources :drivers do
-      resources :violation_tickets, except: [:index, :destroy]
-      resources :licenses, except: [:index, :destroy]
+      resources :violation_tickets, except: %i[index destroy]
+      resources :licenses, except: %i[index destroy]
     end
     resources :customers, except: [:destroy] do
-      resources :customer_locations, only: [:new, :create, :destroy]
+      resources :customer_locations, only: %i[new create destroy]
     end
     resources :locations, except: [:destroy]
     resources :equipment do
-      resources :notes, except: [:index, :show, :destroy]
-      resources :permits, except: [:index, :show]
+      resources :notes, except: %i[index show destroy]
+      resources :permits, except: %i[index show]
     end
     resources :vendors do
-      resources :notes, except: [:index, :show]
+      resources :notes, except: %i[index show]
     end
     resources :loads do
-      resources :pickup_locations, only: [:new, :create, :destroy]
-      resources :drop_locations, only: [:new, :create, :destroy]
+      resources :pickup_locations, only: %i[new create destroy]
+      resources :drop_locations, only: %i[new create destroy]
     end
     resources :load_confirmations, only: [:show] do
       member do

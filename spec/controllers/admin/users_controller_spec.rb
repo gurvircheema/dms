@@ -35,9 +35,9 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   describe '#create' do
-    let(:post_req) {
+    let(:post_req) do
       post :create, params: { user: attributes_for(:user) }
-    }
+    end
 
     it 'creates a new user' do
       expect { post_req }.to change(User, :count).by(1)
@@ -45,12 +45,12 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   describe '#update' do
-    before { put :update, params: { id: user.id, user: { name: 'Example' } }}
+    before { put :update, params: { id: user.id, user: { name: 'Example' } } }
 
     it 'updates the user and redirect to user index' do
       user.reload
       expect(user.name).to eq('Example')
-      expect(response).to redirect_to([:admin, :users])
+      expect(response).to redirect_to(%i[admin users])
     end
   end
 

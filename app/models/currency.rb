@@ -1,5 +1,5 @@
 class Currency
   def self.list
-    ['CAD', 'USD']
+    %w[CAD USD]
   end
 end

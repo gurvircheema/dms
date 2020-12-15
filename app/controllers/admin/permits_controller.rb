@@ -1,6 +1,6 @@
 class Admin::PermitsController < Admin::ApplicationController
   before_action :set_equipment
-  before_action :set_permit, only: [:edit, :update, :destroy]
+  before_action :set_permit, only: %i[edit update destroy]
 
   def new
     @permit = @equipment.permits.new
@@ -19,8 +19,7 @@ class Admin::PermitsController < Admin::ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @permit.update(permit_params)

@@ -22,10 +22,10 @@ RSpec.describe Admin::LocationsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe 'GET #show' do
     before { get :show, params: request_params }
 
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
 
@@ -34,10 +34,10 @@ RSpec.describe Admin::LocationsController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
+  describe 'GET #edit' do
     before { get :edit, params: request_params }
 
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
 
@@ -49,7 +49,7 @@ RSpec.describe Admin::LocationsController, type: :controller do
   describe 'PUT #update' do
     before do
       put :update,
-        params: request_params.merge({ location: { name: 'Samuel CPP'} })
+          params: request_params.merge({ location: { name: 'Samuel CPP' } })
     end
 
     it 'updates the location' do

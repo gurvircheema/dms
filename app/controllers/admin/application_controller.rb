@@ -2,7 +2,7 @@ class Admin::ApplicationController < ApplicationController
   before_action :authenticate_user!
   before_action :check_if_user_is_admin
 
-  rescue_from ActionController::RoutingError do |exception|
+  rescue_from ActionController::RoutingError do |_exception|
     redirect_to root_path
   end
 
@@ -14,7 +14,7 @@ class Admin::ApplicationController < ApplicationController
 
   def role_can_access_admin_panel
     current_user.admin? ||
-    current_user.role?(:admin) ||
-    current_user.role?(:dispatcher)
+      current_user.role?(:admin) ||
+      current_user.role?(:dispatcher)
   end
 end

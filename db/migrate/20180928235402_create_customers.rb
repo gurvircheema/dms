@@ -5,7 +5,7 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :phone
       t.string :toll_free
       t.string :fax
-      t.string :email,      null: false
+      t.string :email, null: false
       t.datetime :deleted_at
       t.string :deleted_by
 

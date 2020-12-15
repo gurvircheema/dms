@@ -1,5 +1,5 @@
 class Admin::DriversController < Admin::ApplicationController
-  before_action :set_driver, only: [:show, :edit, :update, :destroy]
+  before_action :set_driver, only: %i[show edit update destroy]
 
   def index
     @drivers = Driver.all
@@ -10,8 +10,7 @@ class Admin::DriversController < Admin::ApplicationController
     @violation_tickets = @driver.violation_tickets
   end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @driver = Driver.new
@@ -25,7 +24,7 @@ class Admin::DriversController < Admin::ApplicationController
   def create
     @driver = Driver.new(driver_params)
     if @driver.save!
-      redirect_to [:admin, :drivers], notice: 'New driver has been added'
+      redirect_to %i[admin drivers], notice: 'New driver has been added'
     else
       render :new, error: 'There was an error, please try again'
     end
@@ -33,7 +32,7 @@ class Admin::DriversController < Admin::ApplicationController
 
   def update
     if @driver.update(driver_params)
-      redirect_to [:admin, :drivers], notice: 'Driver updated'
+      redirect_to %i[admin drivers], notice: 'Driver updated'
     else
       render :edit, error: 'There was an error, please try again'
     end
@@ -41,7 +40,7 @@ class Admin::DriversController < Admin::ApplicationController
 
   def destroy
     @driver.update_column(:active, false)
-    redirect_to [:admin, :drivers], notice: 'Driver marked deleted'
+    redirect_to %i[admin drivers], notice: 'Driver marked deleted'
   end
 
   private
@@ -53,7 +52,8 @@ class Admin::DriversController < Admin::ApplicationController
   def driver_params
     params.require(:driver).permit(
       :name, :phone, :cell, :email, :active, :driver_type,
-      :immigration_status, :date_of_birth, address_attributes: [:address_line_1,
-        :address_line_2, :city, :state_province, :country, :zipcode])
+      :immigration_status, :date_of_birth, address_attributes: %i[address_line_1
+                                                                  address_line_2 city state_province country zipcode]
+    )
   end
 end

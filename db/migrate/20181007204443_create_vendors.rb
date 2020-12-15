@@ -18,7 +18,7 @@ class CreateVendors < ActiveRecord::Migration[5.2]
       t.string :remit_phone
       t.string :remit_toll_free
       t.string :remit_fax
-      t.integer :vendor_type,                   null: false, default: 0
+      t.integer :vendor_type, null: false, default: 0
       t.string :rating
       t.string :contract_on_file
       t.string :docker_number
@@ -31,15 +31,15 @@ class CreateVendors < ActiveRecord::Migration[5.2]
       t.boolean :hazmat,                        null: false, default: false
       t.date :hazmat_expiry_date
       t.string :smc3_tariff_code
-      t.boolean :approved,                      null: false, default: false
+      t.boolean :approved, null: false, default: false
       t.string :liability_insurance_provider
       t.string :liability_policy_number
-      t.integer :liability_coverage,            null: false, default: 0
+      t.integer :liability_coverage, null: false, default: 0
       t.date :liability_insurance_start_date
       t.date :liability_insurance_expiry_date
       t.string :cargo_insurance_provider
       t.string :cargo_insurance_policy_number
-      t.integer :cargo_insurance_coverage,      null: false, default: 0
+      t.integer :cargo_insurance_coverage, null: false, default: 0
       t.date :cargo_insurance_start_date
       t.date :cargo_insurance_expiry_date
       t.datetime :deleted_at

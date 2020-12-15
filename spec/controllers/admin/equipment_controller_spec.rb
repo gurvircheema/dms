@@ -26,7 +26,7 @@ RSpec.describe Admin::EquipmentController, type: :controller do
   end
 
   describe 'GET #show' do
-    before { get :show, params: { id: equipment.id} }
+    before { get :show, params: { id: equipment.id } }
 
     it 'renders the show template' do
       expect(response).to render_template(:show)

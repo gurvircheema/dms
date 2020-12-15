@@ -1,37 +1,38 @@
 class CustomerPolicy < ApplicationPolicy
-	attr_reader :user, :customer
+  attr_reader :user, :customer
 
-	def initialize(user, customer)
-		raise Pundit::NotAuthorizedError, "must be logged in" unless user
-		@user = user
-		@customer = customer
-	end
+  def initialize(user, customer)
+    raise Pundit::NotAuthorizedError, 'must be logged in' unless user
 
-	def index?
-		user.admin? || user.role?(:admin) || user.role?(:dispatcher)
-	end
+    @user = user
+    @customer = customer
+  end
 
-	def show?
-		index?
-	end
+  def index?
+    user.admin? || user.role?(:admin) || user.role?(:dispatcher)
+  end
 
-	def new?
-		index?
-	end
+  def show?
+    index?
+  end
 
-	def create?
-		index?
-	end
+  def new?
+    index?
+  end
 
-	def edit?
-		index?
-	end
+  def create?
+    index?
+  end
 
-	def update?
-		index?
-	end
+  def edit?
+    index?
+  end
 
-	def destroy?
-		index?
-	end
+  def update?
+    index?
+  end
+
+  def destroy?
+    index?
+  end
 end

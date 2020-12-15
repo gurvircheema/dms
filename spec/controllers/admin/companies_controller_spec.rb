@@ -27,7 +27,7 @@ RSpec.describe Admin::CompaniesController, type: :controller do
   end
 
   describe '#update' do
-    before { put :update, params: { id: company.id, company: { name: 'New Name', contact: 'New Contact' }}}
+    before { put :update, params: { id: company.id, company: { name: 'New Name', contact: 'New Contact' } } }
 
     it 'updates the company' do
       company.reload

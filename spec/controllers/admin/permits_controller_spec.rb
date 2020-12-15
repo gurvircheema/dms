@@ -42,9 +42,10 @@ RSpec.describe Admin::PermitsController, type: :controller do
   describe 'PUT #update' do
     before do
       put :update,
-        params: {
-        equipment_id: equipment.id, id: permit.id,
-        permit: { permit_number: 'ABC123' } }
+          params: {
+            equipment_id: equipment.id, id: permit.id,
+            permit: { permit_number: 'ABC123' }
+          }
     end
 
     it 'updates the record' do
@@ -54,9 +55,9 @@ RSpec.describe Admin::PermitsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    before {
+    before do
       delete :destroy, params: { equipment_id: equipment.id, id: permit.id }
-    }
+    end
 
     it 'marks the deleted_at for given record' do
       permit.reload

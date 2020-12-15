@@ -1,37 +1,38 @@
 class DriverPolicy < ApplicationPolicy
-	attr_reader :user, :driver
+  attr_reader :user, :driver
 
-	def initialize(user, driver)
-		raise Pundit::NotAuthorizedError, "must be logged in" unless user
-		@user = user
-		@driver = driver
-	end
+  def initialize(user, driver)
+    raise Pundit::NotAuthorizedError, 'must be logged in' unless user
 
-	def index?
-		user.admin? || user.role?(:admin) || user.role?(:dispatcher)
-	end
+    @user = user
+    @driver = driver
+  end
 
-	def show?
-		index?
-	end
+  def index?
+    user.admin? || user.role?(:admin) || user.role?(:dispatcher)
+  end
 
-	def new?
-		index?
-	end
+  def show?
+    index?
+  end
 
-	def create?
-		index?
-	end
+  def new?
+    index?
+  end
 
-	def edit?
-		index?
-	end
+  def create?
+    index?
+  end
 
-	def update?
-		index?
-	end
+  def edit?
+    index?
+  end
 
-	def destroy?
-		index?
-	end
+  def update?
+    index?
+  end
+
+  def destroy?
+    index?
+  end
 end

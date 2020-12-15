@@ -15,7 +15,7 @@ class Location < ApplicationRecord
   def dropdown_list_item
     [
       "#{name}: #{primary_address.address_line_1}, " +
-      "#{primary_address.city} #{primary_address.state_province}",
+        "#{primary_address.city} #{primary_address.state_province}",
       id
     ]
   end

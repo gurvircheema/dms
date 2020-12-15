@@ -1,5 +1,5 @@
-FactoryBot.define do 
-	factory :role do
-		name { :dispatcher }
-	end
+FactoryBot.define do
+  factory :role do
+    name { :dispatcher }
+  end
 end

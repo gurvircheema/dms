@@ -47,7 +47,7 @@ RSpec.describe Admin::VendorsController, type: :controller do
 
   describe 'PUT #update' do
     before do
-      put :update, params: { id: vendor.id, vendor: { internal_name: 'ABC' }}
+      put :update, params: { id: vendor.id, vendor: { internal_name: 'ABC' } }
     end
 
     it 'updates the vendor' do

@@ -1,6 +1,6 @@
 class Admin::ViolationTicketsController < ApplicationController
   before_action :set_driver
-  before_action :set_violation_ticket, only: [:show, :edit, :update]
+  before_action :set_violation_ticket, only: %i[show edit update]
 
   def new
     @violation_ticket = @driver.violation_tickets.new

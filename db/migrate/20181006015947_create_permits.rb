@@ -7,7 +7,7 @@ class CreatePermits < ActiveRecord::Migration[5.2]
       t.date :expiry_date,      null: false
       t.boolean :reminder,      null: false, default: false
       t.datetime :deleted_at
-      t.references :equipment,  foreign_key: true
+      t.references :equipment, foreign_key: true
       t.string :deleted_by
 
       t.timestamps

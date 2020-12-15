@@ -1,5 +1,5 @@
 class Admin::LoadsController < Admin::ApplicationController
-  before_action :set_load, only: [:show, :edit, :update, :destroy]
+  before_action :set_load, only: %i[show edit update destroy]
 
   def index
     @loads = Load.includes(:customer, :vendor).all
@@ -71,14 +71,14 @@ class Admin::LoadsController < Admin::ApplicationController
       :invoiced,
       :payment_received,
       :paid_to_vendor,
-      pickup_locations_attributes: [
-        :location_id, :appt_date, :ref_number, :contact, :skids, :cases,
-        :weight, :ltl, :commodity, :notes
+      pickup_locations_attributes: %i[
+        location_id appt_date ref_number contact skids cases
+        weight ltl commodity notes
       ],
-      drop_locations_attributes: [
-        :location_id, :appt_date, :ref_number, :contact, :skids, :cases,
-        :weight, :ltl, :commodity, :notes
-      ],
+      drop_locations_attributes: %i[
+        location_id appt_date ref_number contact skids cases
+        weight ltl commodity notes
+      ]
     )
   end
 end

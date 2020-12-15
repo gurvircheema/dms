@@ -1,6 +1,6 @@
 class Admin::LicensesController < ApplicationController
   before_action :set_driver
-  before_action :set_license, only: [:show, :edit, :update]
+  before_action :set_license, only: %i[show edit update]
   def new
     @license = @driver.licenses.new
   end

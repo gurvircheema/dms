@@ -8,6 +8,6 @@ class Driver < ApplicationRecord
 
   accepts_nested_attributes_for :address
 
-  enum immigration_status: [:canadian_citizen, :permanent_resident, :work_permit, :student_permit]
-  enum driver_type: [:company_driver, :owner_operator]
+  enum immigration_status: %i[canadian_citizen permanent_resident work_permit student_permit]
+  enum driver_type: %i[company_driver owner_operator]
 end

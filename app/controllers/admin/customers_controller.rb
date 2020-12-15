@@ -1,5 +1,5 @@
 class Admin::CustomersController < Admin::ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update]
+  before_action :set_customer, only: %i[show edit update]
 
   def index
     @customers = Customer.all.order(:name)
@@ -52,21 +52,22 @@ class Admin::CustomersController < Admin::ApplicationController
       :toll_free,
       :fax,
       :email,
-      address_attributes: [
-        :address_line_1, :address_line_2, :city,
-        :state_province, :country, :zipcode
+      address_attributes: %i[
+        address_line_1 address_line_2 city
+        state_province country zipcode
       ],
-      billing_address_attributes: [
-        :address_line_1, :address_line_2, :city,
-        :state_province, :country, :zipcode
+      billing_address_attributes: %i[
+        address_line_1 address_line_2 city
+        state_province country zipcode
       ]
-     )
+    )
   end
 
   def create_customer_and_location
     ActiveRecord::Base.transaction do
       @customer.save!
-      location = Location.create!(name: @customer.name, address: @customer.address, phone: @customer.phone, email: @customer.email, toll_free: @customer.toll_free, fax: @customer.fax)
+      location = Location.create!(name: @customer.name, address: @customer.address, phone: @customer.phone,
+                                  email: @customer.email, toll_free: @customer.toll_free, fax: @customer.fax)
       @customer.customer_locations.create!(location: location)
     end
   end

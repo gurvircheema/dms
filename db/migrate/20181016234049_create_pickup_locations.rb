@@ -1,7 +1,7 @@
 class CreatePickupLocations < ActiveRecord::Migration[5.2]
   def change
     create_table :pickup_locations do |t|
-      t.datetime :appt_date,  null: false
+      t.datetime :appt_date, null: false
       t.string :ref_number
       t.string :contact
       t.integer :skids

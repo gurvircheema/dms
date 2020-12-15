@@ -1,12 +1,11 @@
 class Admin::EquipmentController < Admin::ApplicationController
-  before_action :set_equipment, only: [:show, :edit, :update]
+  before_action :set_equipment, only: %i[show edit update]
 
   def index
     @equipment = Equipment.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @equipment = Equipment.new
@@ -26,8 +25,7 @@ class Admin::EquipmentController < Admin::ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @equipment.driver = Driver.find(params[:equipment][:driver]) if params.dig(:equipment, :driver).present?

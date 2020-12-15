@@ -10,11 +10,11 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :email,          null: false
       t.string :website,        null: false
       t.string :hst_num
-      t.decimal :hst_percentage, precision:10, scale: 2
+      t.decimal :hst_percentage, precision: 10, scale: 2
       t.string :pst_num
-      t.decimal :pst_percentage, precision:10, scale: 2
+      t.decimal :pst_percentage, precision: 10, scale: 2
       t.string :gst_num
-      t.decimal :gst_percentage, precision:10, scale: 2
+      t.decimal :gst_percentage, precision: 10, scale: 2
       t.string :factory_company
       t.string :us_dot
       t.string :mc_num
@@ -23,7 +23,7 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :state,          null: false
       t.string :scac_code
       t.string :carrier_code
-      t.string :last_invoice,   null: false, default: 1
+      t.string :last_invoice, null: false, default: 1
       t.string :terms_for_customer_invoice
       t.string :terms_conditions_for_carrier
       t.string :notes_for_bol

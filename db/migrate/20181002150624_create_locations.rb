@@ -1,7 +1,7 @@
 class CreateLocations < ActiveRecord::Migration[5.2]
   def change
     create_table :locations do |t|
-      t.string :name,         null: false
+      t.string :name, null: false
       t.string :contact
       t.string :email
       t.string :phone

@@ -117,7 +117,7 @@ RSpec.describe Admin::DriversController, type: :controller do
   describe '#update' do
     let!(:driver) { FactoryBot.create(:driver) }
     context 'User is not signed in' do
-      before { put :update, params: { id: driver.id, driver: { name: 'Test User'} } }
+      before { put :update, params: { id: driver.id, driver: { name: 'Test User' } } }
 
       it 'returns the status code 302' do
         expect(response).to have_http_status(302)
@@ -132,7 +132,7 @@ RSpec.describe Admin::DriversController, type: :controller do
       let(:user) { FactoryBot.create(:user, admin: true) }
       before do
         sign_in user
-        put :update, params: { id: driver.id, driver: { name: 'Test User'} }
+        put :update, params: { id: driver.id, driver: { name: 'Test User' } }
       end
 
       it 'returns the status code 302' do

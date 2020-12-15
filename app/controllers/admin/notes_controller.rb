@@ -1,6 +1,6 @@
 class Admin::NotesController < Admin::ApplicationController
   before_action :set_notable
-  before_action :set_note, only: [:edit, :update]
+  before_action :set_note, only: %i[edit update]
 
   def new
     @note = @notable.notes.new

@@ -1,8 +1,8 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe LoadMailer, type: :mailer do
   let(:customer) { FactoryBot.create(:customer) }
-  let(:vendor_address) { FactoryBot.create(:address)}
+  let(:vendor_address) { FactoryBot.create(:address) }
   let(:vendor) { FactoryBot.create(:vendor, address: vendor_address) }
   let(:load) { FactoryBot.create(:load, customer: customer, vendor: vendor) }
 

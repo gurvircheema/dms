@@ -6,8 +6,8 @@ class Admin::LoadConfirmationsController < Admin::ApplicationController
       format.html
       format.pdf do
         render pdf: "load_confirmation-#{@load.id}",
-        layout: 'pdf.html.erb',
-        show_as_html: params[:debug].present?
+               layout: 'pdf.html.erb',
+               show_as_html: params[:debug].present?
       end
     end
   end
@@ -25,9 +25,8 @@ class Admin::LoadConfirmationsController < Admin::ApplicationController
 
   def find_load
     @load = Load.includes(:vendor, :driver,
-      pickup_locations: [location: :address],
-      drop_locations: [location: :address]
-    ).find(params[:id])
+                          pickup_locations: [location: :address],
+                          drop_locations: [location: :address]).find(params[:id])
   end
 
   def email_params

@@ -1,5 +1,5 @@
 class Admin::VendorsController < Admin::ApplicationController
-  before_action :set_vendor, only: [:show, :edit, :update, :destroy]
+  before_action :set_vendor, only: %i[show edit update destroy]
 
   def index
     @vendors = Vendor.all.order(:internal_name)
@@ -37,7 +37,7 @@ class Admin::VendorsController < Admin::ApplicationController
 
   def destroy
     @vendor.update(deleted_at: Time.now)
-    redirect_to [:admin, :vendors], notice: "Vendor removed."
+    redirect_to %i[admin vendors], notice: 'Vendor removed.'
   end
 
   private
@@ -89,13 +89,13 @@ class Admin::VendorsController < Admin::ApplicationController
       :cargo_insurance_coverage,
       :cargo_insurance_start_date,
       :cargo_insurance_expiry_date,
-      address_attributes: [
-        :address_line_1, :address_line_2, :city, :state_province,
-        :country, :zipcode
+      address_attributes: %i[
+        address_line_1 address_line_2 city state_province
+        country zipcode
       ],
-      remit_address_attributes: [
-        :address_line_1, :address_line_2, :city, :state_province,
-        :country, :zipcode
+      remit_address_attributes: %i[
+        address_line_1 address_line_2 city state_province
+        country zipcode
       ]
     )
   end

@@ -6,10 +6,10 @@ RSpec.describe Admin::CustomersController, type: :controller do
 
   before { sign_in_admin_user }
 
-  describe "GET #index" do
+  describe 'GET #index' do
     before { get :index }
 
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
 
@@ -18,22 +18,22 @@ RSpec.describe Admin::CustomersController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe 'GET #show' do
     before { get :show, params: { id: customer.id } }
 
     it 'renders the show template' do
       expect(response).to render_template(:show)
     end
 
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET #new" do
-    before { get :new}
+  describe 'GET #new' do
+    before { get :new }
 
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
 
@@ -42,10 +42,10 @@ RSpec.describe Admin::CustomersController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
+  describe 'GET #edit' do
     before { get :edit, params: { id: customer.id } }
 
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
 
@@ -56,9 +56,9 @@ RSpec.describe Admin::CustomersController, type: :controller do
 
   describe 'POST #create' do
     let(:customer_attr) { FactoryBot.attributes_for(:customer) }
-    let(:post_request) {
+    let(:post_request) do
       post :create, params: { customer: customer_attr }
-    }
+    end
 
     it 'create the new customer' do
       expect { post_request }.to change(Customer, :count).by(1)

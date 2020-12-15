@@ -10,7 +10,7 @@ ActiveRecord::Base.transaction do
     city: ENV['address_city'],
     state_province: ENV['address_state_province'],
     country: ENV['address_country'],
-    zipcode: ENV['address_zipcode'],
+    zipcode: ENV['address_zipcode']
   )
 
   Company.create!(
@@ -24,7 +24,7 @@ ActiveRecord::Base.transaction do
     website: ENV['company_website'],
     state: ENV['company_state'],
     currency: ENV['company_currency'],
-    last_invoice: ENV['company_last_invoice'],
+    last_invoice: ENV['company_last_invoice']
   )
 
   %w[admin accountant dispatcher driver carrier customer].each do |role|

@@ -39,7 +39,8 @@ RSpec.describe Admin::ViolationTicketsController, type: :controller do
 
   describe '#update' do
     before do
-      put :update, params: { id: violation_ticket.id, driver_id: driver.id, violation_ticket: { description: 'Speeding' } }
+      put :update,
+          params: { id: violation_ticket.id, driver_id: driver.id, violation_ticket: { description: 'Speeding' } }
     end
 
     it 'updates the violation ticket' do
