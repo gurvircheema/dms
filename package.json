@@ -10,9 +10,7 @@
     "lint": "eslint app/*"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.10.4",
-    "@rails/webpacker": "^5.1.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "@rails/webpacker": "5.2.1",
     "eslint": "^7.4.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -22,10 +20,6 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "prettier": "^2.0.5",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react_ujs": "^2.6.1",
     "webpacker": "^4.6.0"
   },
   "devDependencies": {
